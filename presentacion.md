@@ -32,11 +32,30 @@ El cloud por el que me decidí se trata de un Debian Buster v.10, en el cual he 
 
 Los pasos de la instalación de los diferentes servicios son:
 
+🔵 _Previamente siempre debemos realizar_ `sudo apt-get update` y `sudo apt-get upgrade`!
 
 ### INSTALACIÓN DNS BIND
 
-### INSTALACIÓN PHP
 
+### INSTALACIÓN PHP
+Debemos instalar el lenguaje PHP en nuestro Cloud ya que es esencial para crear sitios web y configurar el backend.
+#### REPOSITORIOS Y SOURCES
+ - Debemos descargar los repositorios PPA de SURY
+ ```ls
+sudo apt -y install lsb-release apt-transport-https ca-certificates 
+sudo wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+ ```
+ - Seguidamente tenemos que agregar los repositorios descargados anteriormente al archivo `source.list`
+ ```sh
+ echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/php.list
+ ```
+ - Procedemos a actualizar la lista de paquetes para que detecte el nuevo introducido
+ ```sh
+ sudo apt-get update
+ ```
+ - Por ultimo efectuamos la comanda de instalación
+ `sudo apt -y install php7.4`
+ 
 ### INSTALACIÓN MARIA DB
 
 ### INSTALACIÓN APACHE2
@@ -67,3 +86,4 @@ Como los DNS todavia no se encuentran propagados he modificado mi archivo de hos
 Para acceder a wordpress tenemos que introducir la siguiente URL `http://cosmosdesign.es/wp-admin/` donde nos llevará a iniciar sesión que dará a la siguiente ventana
 ![image](https://user-images.githubusercontent.com/73543470/166509748-f8182557-7336-4fbb-b21e-98d8467e90e0.png)
 
+Una vez llegados a este punto procederemos a utilizar uno de los Temas predefinidos de los que consta Wordpress. Para ello debemos acceder a:
