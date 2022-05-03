@@ -20,8 +20,8 @@ va guiando en tu proceso de aprendizaje.
 Una vez expuestos estos puntos, creo que quedan argumentados los motivos por los que he realizado este proyecto y en que puntos me he fijado para fortalecer las debilidades
 
 ## ÍNDICE
--
--
+- Instalación servicios Cloud
+- Configuración 
 -
 -
 
@@ -36,10 +36,22 @@ Los pasos de la instalación de los diferentes servicios son:
 
 ### INSTALACIÓN DNS BIND
 
+### INSTALACIÓN APACHE2
+La función principal de apache es brindar a los usuarios todos los ficheros necesarios para la correcta visualización de la página web.
+- Instalamos realizando la comanda
+```sh
+sudo apt install apache2
+```
+- Comprobamos que este se encuentre activo
 
-### INSTALACIÓN PHP
+- Una vez instalado debemos proceder a configurar el VirtualHost del servicio web. En debian ya se encuentra un directorio previamente definido para realizar la creación de directorios relacionado con las webs. Por tanto procederemos a crear el directorio  `/var/www/cosmosdesign.es` con el nombre de nuestro dominio.
+```sh
+mkdir -p /var/wwww/datos/data
+```
+
+### PHP
 Debemos instalar el lenguaje PHP en nuestro Cloud ya que es esencial para crear sitios web y configurar el backend.
-#### REPOSITORIOS Y SOURCES
+#### INSTALACIÓN PHP
  - Debemos descargar los repositorios PPA de SURY
  ```ls
 sudo apt -y install lsb-release apt-transport-https ca-certificates 
@@ -53,14 +65,25 @@ sudo wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gp
  ```sh
  sudo apt-get update
  ```
- - Por ultimo efectuamos la comanda de instalación
- `sudo apt -y install php7.4`
+ - Efectuamos la comanda de instalación
+ ```
+ sudo apt -y install php7.4
+ ```
+ - Como vamos a utilizar php como módulo de Apache activamos la versión con la que vamos a trabajar en nuestro Hosting y desactivamos la predefinida
+ ```sh
+sudo a2dismod php7.3
+sudo a2enmod php7.4
+ ```
+ 
+
  
 ### INSTALACIÓN MARIA DB
 
-### INSTALACIÓN APACHE2
+
 
 ### INSTALACIÓN NGINX
+Cuando alguien hace una solicitud para abrir una página web, el navegador se comunica con el servidor de ese sitio web. Luego, el servidor busca los archivos solicitados para la página y se los envía al navegador.
+Funcina como servidor proxy de correo electrónico SMPT, POP3, IMAP.
 
 ### INSTALACIÓN POSTFIX
 
