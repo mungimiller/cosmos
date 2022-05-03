@@ -43,7 +43,9 @@ La función principal de apache es brindar a los usuarios todos los ficheros nec
 sudo apt install apache2
 ```
 - Comprobamos que este se encuentre activo
-
+```sh
+systemctl status apache2
+```
 - Una vez instalado debemos proceder a configurar el VirtualHost del servicio web. En debian ya se encuentra un directorio previamente definido para realizar la creación de directorios relacionado con las webs. Por tanto procederemos a crear el directorio  `/var/www/cosmosdesign.es` con el nombre de nuestro dominio.
 ```sh
 mkdir -p /var/wwww/datos/data
@@ -109,4 +111,12 @@ Como los DNS todavia no se encuentran propagados he modificado mi archivo de hos
 Para acceder a wordpress tenemos que introducir la siguiente URL `http://cosmosdesign.es/wp-admin/` donde nos llevará a iniciar sesión que dará a la siguiente ventana
 ![image](https://user-images.githubusercontent.com/73543470/166509748-f8182557-7336-4fbb-b21e-98d8467e90e0.png)
 
-Una vez llegados a este punto procederemos a utilizar uno de los Temas predefinidos de los que consta Wordpress. Para ello debemos acceder a:
+Una vez llegados a este punto procederemos a utilizar uno de los Temas predefinidos de los que consta Wordpress. Para ello debemos acceder Apariencias > Temas. En este punto tras una larga busqueda, me decidí por el siguiente:
+![image](https://user-images.githubusercontent.com/73543470/166525726-202a64c7-8ebc-4232-a60e-1a01050b5f42.png)
+
+En este apartado mostraré mediante un breve resumen todas las modificaciones que he realizado en el tema elegido.
+
+## 4. INSTALACIÓN DE PLUGINS
+
+
+
