@@ -49,9 +49,10 @@ sudo systemctl status bind9
 ```sh
 mkdir /etc/bind/dbs
 ```
-
-- Hemos creado la carpeta ya que puede que en un futuro existan mas hostings en el servidor y por tanto diversas configuraciones. Debemos entrar a la carpeta y  vamos a crear un archivo con el nombre del dominio en cuestión y configurar los registros DNS que deben resolver para ese dominio.
+- Hemos creado la carpeta ya que puede que en un futuro existan mas hostings en el servidor y por tanto diversas configuraciones DNS. Debemos entrar a la carpeta y  vamos a crear un archivo con el nombre del dominio en cuestión y configurar los registros DNS que deben resolver para ese dominio.
 ![image](https://user-images.githubusercontent.com/73543470/166708050-8d4ded14-6bcd-42ca-ac76-449326423476.png)
+![image](https://user-images.githubusercontent.com/73543470/166709151-e4f824f7-eda7-43ed-8651-08c934f4a5e4.png)
+
 
 A continuación voy a explicar los parametros que aparecen en la siguiente imagen para poder entender mejor la configuración realizada
 
