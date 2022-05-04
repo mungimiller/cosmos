@@ -122,7 +122,16 @@ Como los DNS todavia no se encuentran propagados he modificado mi archivo de hos
 - Una vez llegados a este punto procederemos a utilizar uno de los Temas predefinidos de los que consta Wordpress. Para ello debemos acceder Apariencias > Temas. En este punto tras una larga busqueda, me decidí por el siguiente:
 ![image](https://user-images.githubusercontent.com/73543470/166525726-202a64c7-8ebc-4232-a60e-1a01050b5f42.png)
 
-En este apartado mostraré mediante un breve resumen todas las modificaciones que he realizado en el tema elegido.
+En este apartado mostraré mediante un breve resumen todas las modificaciones que he realizado en el tema elegido. Dividiendolo por las diferentes páginas realizadas en el Wordpress.
+
+- **Homepage** --> En este apartado, me interesaba que se viera con claridad los 3 conceptos básicos que engloban mi proyecto. A primera vista queria que supeiras que la pagina web trata de creación de pàginas web, también me interesaba que se vieran los 3 precios de los 3 formatos de páginas web a realizar y finalmente que entiendan que es un servicio que ofrece soporte y que este sea visible para que lo utilicen.
+
+- **Descripciones de productos** --> Un total de 3 páginas individuales donde se explica las características del producto, porque tiene ese precio, que servicios se ofrecen en el y el estilo de página web que se puede llegar a realizar con el plan seleccionado.
+
+- **Formulario de propuesta** --> Formulario donde debes especificar exactamente lo que deseas realizar en tu página web, el concepto de la empresa, los colores que pueden llegar a definir la entidad, cantidad de hojas aproximadas(como lo que estoy realizando yo en este apartado), aportar una cantidad de seleccionables que sean extras que tengan un coste extra en el proyecto. Además de dejar en claro al cliente que puede mantener-se en contacto con nosotros para hacer una evaluación continua de la página.
+
+- **Muro de mejoras** --> Muro donde el cliente puede ir dejando notas referente a los cambios que estan sucediendo en su página web junto con posibles mejoras.
+
 
 ## 4. INSTALACIÓN DE PLUGINS
 
@@ -133,6 +142,11 @@ Una vez creado el Wordpress, voy a realizar una lista con los plugins que tengo 
 
 
 **Información extra:** _Un CDN a grandes rasgos es un servidor donde se almacenan las imágenes, videos, etc. de tu página web. Basicamente almacena todos los archivos de gran peso, excepto el codigo de la página. Esta información se replican en diferentes nodos de manera que cuando algun usuario accede a la web, detectan que nodo de CDN se encuentra más cerca del punto de carga(PC USUARIO) y procede a cargar las imagenes de dicho nodo, mientras que el codigo lo carga desde el servidor donde se encuentra el hosting._
+
+## 5. INSTALACIÓN WOOCOMMERCE
+
+Es necesaria la instalación de dicha aplicación para poder realizar pagos online
+
 
 
 
