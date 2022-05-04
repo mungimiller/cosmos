@@ -35,7 +35,20 @@ Los pasos de la instalación de los diferentes servicios son:
 ▶️ _Previamente siempre debemos realizar_ `sudo apt-get update` y `sudo apt-get upgrade` !
 
 ### INSTALACIÓN DNS BIND
+En primer lugar instalaremos BIND9, permite a nuestro servidor gestionar los diferentes registros DNS, para que estos resuelvan correctamente y muestren la información de la dirección IP a la que apuntan.
 
+- Instalarlo con la siguiente comanda:
+```sh
+sudo apt install -y bind9
+```
+- Una vez instalado el servicio siempre hay que comprobar que este se encuentre activo
+```sh
+sudo systemctl status bind9
+```
+- A continuación, debemos configurar el dominio cosmosdesing.es, para ello tenemos que acceder al siguiente path `/etc/bind/` que es donde se encuentra toda la configuración de este servicio. 
+
+- Una vez en el vamos a crear una carpeta con el nombre `/dbs`( ya que puede que hayan mas dominios dentro del cloud ) y dentro de la carpeta vamos a crear un archivo con el nombre del domini en cuestión configurar los registros DNS que deben resolver para ese dominio.
+- 
 ### INSTALACIÓN APACHE2
 La función principal de apache es brindar a los usuarios todos los ficheros necesarios para la correcta visualización de la página web.
 - Instalamos realizando la comanda
