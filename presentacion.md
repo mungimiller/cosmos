@@ -147,6 +147,10 @@ Una vez creado el Wordpress, voy a realizar una lista con los plugins que tengo 
 
 Es necesaria la instalación de dicha aplicación para poder realizar pagos online
 
+## 6. CREACIÓN DE BOT DE SOPORTE
+
+## 7. ANALSIS EMPRESARIAL DEL PROYECTO.
+
 
 
 
