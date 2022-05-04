@@ -69,6 +69,9 @@ Aquí nos encontramos el registro A, el cual hace referencia a la página web. C
 - ![image](https://user-images.githubusercontent.com/73543470/166711970-6c14c516-534e-430f-911d-e03a3904b3b1.png)
 Observamos que estos dos parametros hacen referéncia a los registros CNAME que son alias del dominio, su funcion son parecida a la de un subdominio. EN este caso hemos indicado que si escriben el dominio con wwww tambienr resuelva y muestre nuestra pàgina. También hemos indicado que si escriben mail.cosmosdesign.es este resuelva con el nombre del servidor, el cual te redireccionará al webmail.
 
+- ![image](https://user-images.githubusercontent.com/73543470/166714916-efdf1d47-4500-425c-8dd4-227f1b52b85d.png)
+
+
 ### INSTALACIÓN APACHE2
 La función principal de apache es brindar a los usuarios todos los ficheros necesarios para la correcta visualización de la página web.
 - Instalamos realizando la comanda
