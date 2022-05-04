@@ -114,7 +114,6 @@ Como los DNS todavia no se encuentran propagados he modificado mi archivo de hos
 
 - Seguidamente tenemos que modificar el archivo añadiendo en la parte final de este el nombre del dominio i la IP asignada.
 
-- Finalmente observamos que podemos acceder a la pantalla de carga de la pàgina web.
 
 Para acceder a wordpress tenemos que introducir la siguiente URL `http://cosmosdesign.es/wp-admin/` donde nos llevará a iniciar sesión que dará a la siguiente ventana
 ![image](https://user-images.githubusercontent.com/73543470/166509748-f8182557-7336-4fbb-b21e-98d8467e90e0.png)
