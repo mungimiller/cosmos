@@ -32,7 +32,7 @@ El cloud por el que me decidí se trata de un Debian Buster v.10, en el cual he 
 
 Los pasos de la instalación de los diferentes servicios son:
 
-🔵 _Previamente siempre debemos realizar_ `sudo apt-get update` y `sudo apt-get upgrade`!
+▶️ _Previamente siempre debemos realizar_ `sudo apt-get update` y `sudo apt-get upgrade` !
 
 ### INSTALACIÓN DNS BIND
 
