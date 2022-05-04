@@ -50,12 +50,24 @@ sudo systemctl status bind9
 mkdir /etc/bind/dbs
 ```
 - Hemos creado la carpeta ya que puede que en un futuro existan mas hostings en el servidor y por tanto diversas configuraciones DNS. Debemos entrar a la carpeta y  vamos a crear un archivo con el nombre del dominio en cuestión y configurar los registros DNS que deben resolver para ese dominio.
-![image](https://user-images.githubusercontent.com/73543470/166708050-8d4ded14-6bcd-42ca-ac76-449326423476.png)
 ![image](https://user-images.githubusercontent.com/73543470/166709151-e4f824f7-eda7-43ed-8651-08c934f4a5e4.png)
-
 
 A continuación voy a explicar los parametros que aparecen en la siguiente imagen para poder entender mejor la configuración realizada
 
+- ![image](https://user-images.githubusercontent.com/73543470/166709653-f70ba7aa-477b-4b2f-91f2-bd14b8535b50.png)
+En este apartado debemos indicar le nombre del servidor, en mi caso tiene este nombre ya que al generar el cloud con con SW Hosting, le assigna un nombre con la fecha de creación del cloud.
+
+- ![image](https://user-images.githubusercontent.com/73543470/166711011-7b944677-b39a-4873-981a-be6b448c5073.png)
+Con la siguiente linea indicamos que el servidor de correo és el mismo en el que nos encontramos ahora mismo.
+
+- ![image](https://user-images.githubusercontent.com/73543470/166711274-b4d0ae55-80b9-4836-8247-f0f3e79aacc2.png)
+En la siguiente liena encontramos los registros DNS que utiliza nuestro Cloud para resolver a nivel de internet, en este caso tenemos dos, el principal que vendria a ser el nombre del cloud nuevamente y el secundario que es un servidor dns con el que trabaja SWHosting.
+
+- ![image](https://user-images.githubusercontent.com/73543470/166712006-6f4ff46e-f30a-4d64-ba8c-d72f9ea4e31e.png)
+Aquí nos encontramos el registro A, el cual hace referencia a la página web. Cuando escribimos cosmosdesign.es, realmente estamos haciando referencia a la IP descrita en este apartado.
+
+- ![image](https://user-images.githubusercontent.com/73543470/166711970-6c14c516-534e-430f-911d-e03a3904b3b1.png)
+Observamos que estos dos parametros hacen referéncia a los registros CNAME que son alias del dominio, su funcion son parecida a la de un subdominio. EN este caso hemos indicado que si escriben el dominio con wwww tambienr resuelva y muestre nuestra pàgina. También hemos indicado que si escriben mail.cosmosdesign.es este resuelva con el nombre del servidor, el cual te redireccionará al webmail.
 
 ### INSTALACIÓN APACHE2
 La función principal de apache es brindar a los usuarios todos los ficheros necesarios para la correcta visualización de la página web.
