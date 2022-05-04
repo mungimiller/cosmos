@@ -45,10 +45,17 @@ sudo apt install -y bind9
 ```sh
 sudo systemctl status bind9
 ```
-- A continuación, debemos configurar el dominio cosmosdesing.es, para ello tenemos que acceder al siguiente path `/etc/bind/` que es donde se encuentra toda la configuración de este servicio. 
+- A continuación, crear la carpeta donde se encontrará la configuración DNS del dominio cosmosdesing.es, para ello tenemos que acceder al siguiente path `/etc/bind/` que es donde se encuentra toda la configuración de este servicio. 
+```sh
+mkdir /etc/bind/dbs
+```
 
-- Una vez en el vamos a crear una carpeta con el nombre `/dbs`( ya que puede que hayan mas dominios dentro del cloud ) y dentro de la carpeta vamos a crear un archivo con el nombre del domini en cuestión configurar los registros DNS que deben resolver para ese dominio.
-- 
+- Hemos creado la carpeta ya que puede que en un futuro existan mas hostings en el servidor y por tanto diversas configuraciones. Debemos entrar a la carpeta y  vamos a crear un archivo con el nombre del dominio en cuestión y configurar los registros DNS que deben resolver para ese dominio.
+![image](https://user-images.githubusercontent.com/73543470/166708050-8d4ded14-6bcd-42ca-ac76-449326423476.png)
+
+A continuación voy a explicar los parametros que aparecen en la siguiente imagen para poder entender mejor la configuración realizada
+
+
 ### INSTALACIÓN APACHE2
 La función principal de apache es brindar a los usuarios todos los ficheros necesarios para la correcta visualización de la página web.
 - Instalamos realizando la comanda
