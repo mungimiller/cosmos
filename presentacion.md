@@ -119,7 +119,10 @@ Debes tener algo así al finalizar la instalación:
 🚦 _**Milter**, es una extensión utilizada para el procesamiento de correos. Permite a los administradores agregar filtros de correo_
 
 - Una vez configurados estos parametros debemos crear una estructura de directorios que contendra los host de confianza, las tablas de las claves, las tablas de las firmas y las claves criptográficas.
-- 
+```sh
+mkdir /etc/dkim
+```
+- Dentro del siguiente directorio procederemos a crear las diferentes partes que conforman nuestro DKIM.
 
 
 
