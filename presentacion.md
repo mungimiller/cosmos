@@ -123,11 +123,33 @@ Debes tener algo así al finalizar la instalación:
 mkdir /etc/dkim
 ```
 - Dentro del siguiente directorio procederemos a crear las diferentes partes que conforman nuestro DKIM.
+ 1. En primer lugar crearemos el fichero `hosts.txt` en el que indicaremos el parametro local host y nuestra IP.
+ ```sh
+ touch hosts.txt
+ ```
+  ![image](https://user-images.githubusercontent.com/73543470/166975862-96d47448-d57f-473f-a987-2d33cc6aa89f.png)
+  
+  2. A continuación crearemos archivo `dkimTable` que contenga una tabla de claves con el dominio y la ruta a su clave privada.
+  ![image](https://user-images.githubusercontent.com/73543470/166976612-0c8c3573-7ba2-4586-892e-64f43b06b179.png)
 
+  3. Crearemos el archivo `dkimSigningTable` que tiene la función de declarar los dominios/direcciones de correo y sus selectores
+  ![image](https://user-images.githubusercontent.com/73543470/166978332-58dac3bb-620c-438f-9d7c-8e7e41a76e64.png)
 
+  4. Una vez realizadas estas configuraciones tenemos que generar las claves publicas y privadas. Para generar nuestras claves efecutaremos la siguiente comanda:
+ ```sh
+ opendkim-genkey -s mail -d cosmosdesign.es
+ ```
+ 5. Esta comanda creará dos archivos ya que `-s` especifica el selector que debe utilizará y la `-d` el dominio en cuestión. Los dos archivos creados son `cosmosdesign.es.private` y `cosmosdesign.es.txt`
+ ![image](https://user-images.githubusercontent.com/73543470/166979958-c490b643-d4e3-47f5-9a07-eccf8b45d233.png)
+ 
+ - Una vez realizados estos cambios debemos agregar la clave publica a nuestro registro DNS generado `/etc/dkim/cosmosdesign.es.txt` y añadirla en el `/etc/bind/dbs/cosmosdesign.es`
+ ![image](https://user-images.githubusercontent.com/73543470/166981051-e75d5090-6f66-40c9-b672-56634904696e.png)
 
-
-- 
+- Finalmente debemos reiniciar Postfix y OpenDKIM
+```sh
+service postfix restart
+service opendkim restart
+```
 
 ### INSTALACIÓN APACHE2
 La función principal de apache es brindar a los usuarios todos los ficheros necesarios para la correcta visualización de la página web.
