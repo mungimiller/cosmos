@@ -52,41 +52,74 @@ mkdir /etc/bind/dbs
 - Hemos creado la carpeta ya que puede que en un futuro existan mas hostings en el servidor y por tanto diversas configuraciones DNS. Debemos entrar a la carpeta y  vamos a crear un archivo con el nombre del dominio en cuestión y configurar los registros DNS que deben resolver para ese dominio.
 ![image](https://user-images.githubusercontent.com/73543470/166709151-e4f824f7-eda7-43ed-8651-08c934f4a5e4.png)
 
+
+### CONFIGURACIÓN DNS DEL CLOUD
 A continuación voy a explicar los parametros que aparecen en la siguiente imagen para poder entender mejor la configuración realizada
 
 - ![image](https://user-images.githubusercontent.com/73543470/166709653-f70ba7aa-477b-4b2f-91f2-bd14b8535b50.png)
 
-En este apartado debemos indicar le nombre del servidor, en mi caso tiene este nombre ya que al generar el cloud con con SW Hosting, le assigna un nombre con la fecha de creación del cloud.
+  En este apartado debemos indicar le nombre del servidor, en mi caso tiene este nombre ya que al generar   el cloud con con SW Hosting, le assigna un nombre con la fecha de creación del cloud.
 
 - ![image](https://user-images.githubusercontent.com/73543470/166711011-7b944677-b39a-4873-981a-be6b448c5073.png)
 
-Con la siguiente linea indicamos que el servidor de correo és el mismo en el que nos encontramos ahora mismo.
+  Con la siguiente linea indicamos que el servidor de correo és el mismo en el que nos encontramos ahora  mismo.
 
 - ![image](https://user-images.githubusercontent.com/73543470/166711274-b4d0ae55-80b9-4836-8247-f0f3e79aacc2.png)
 
-En la siguiente liena encontramos los registros DNS que utiliza nuestro Cloud para resolver a nivel de internet, en este caso tenemos dos, el principal que vendria a ser el nombre del cloud nuevamente y el secundario que es un servidor dns con el que trabaja SWHosting.
+  En la siguiente liena encontramos los registros DNS que utiliza nuestro Cloud para resolver a nivel de internet, en este caso tenemos dos, el principal que vendria a ser el nombre del cloud nuevamente y el secundario que es un servidor dns con el que trabaja SWHosting.
 
 - ![image](https://user-images.githubusercontent.com/73543470/166712006-6f4ff46e-f30a-4d64-ba8c-d72f9ea4e31e.png)
 
-Aquí nos encontramos el registro A, el cual hace referencia a la página web. Cuando escribimos cosmosdesign.es, realmente estamos haciando referencia a la IP descrita en este apartado.
+  Aquí nos encontramos el registro A, el cual hace referencia a la página web. Cuando escribimos cosmosdesign.es, realmente estamos haciando referencia a la IP descrita en este apartado.
 
 - ![image](https://user-images.githubusercontent.com/73543470/166711970-6c14c516-534e-430f-911d-e03a3904b3b1.png)
 
-Observamos que estos dos parametros hacen referéncia a los registros CNAME que son alias del dominio, su funcion son parecida a la de un subdominio. EN este caso hemos indicado que si escriben el dominio con www tambien resuelva y muestre nuestra pàgina. También hemos indicado que si escriben mail.nombredelcloud.es este resuelva con el nombre del servidor, el cual te redireccionará al webmail.
+  Observamos que estos dos parametros hacen referéncia a los registros CNAME que son alias del dominio, su funcion son parecida a la de un subdominio. EN este caso hemos indicado que si escriben el dominio con www tambien resuelva y muestre nuestra pàgina. También hemos indicado que si escriben mail.nombredelcloud.es este resuelva con el nombre del servidor, el cual te redireccionará al webmail.
 
 - ![image](https://user-images.githubusercontent.com/73543470/166950612-5bd81bd9-5e39-41e0-a8b9-55e09c9335f6.png)
 
+  La función de SPF és determinar que servidores de correo y dominios tiene permitido enviar correo en nombre de tu dominio. También indica a los servidores que reciben tu correo que hacer con los mensajes una vez comprobados, confirman que los mensajes parecen proceder de tu servidor autorizado.
 
-La función de SPF és determinar que servidores de correo y dominios tiene permitido enviar correo en nombre de tu dominio. También indica a los servidores que reciben tu correo que hacer con los mensajes una vez comprobados, confirman que los mensajes parecen proceder de tu servidor autorizado.
+  En este caso hemos declarado mediante `MX` autorize a un servidor de correo mediante el registro MX del dominio. ( En este caso es el nombre del cloud y al no indicar el MX, automáticamente tomara el registro MX creado en este mismo archivo)
 
-En este caso hemos declarado mediante `MX` autorize a un servidor de correo mediante el registro MX del dominio. ( En este caso es el nombre del cloud y al no indicar el MX, automáticamente tomara el registro MX creado en este mismo archivo)
+  Mediante `a` autorizamos al servidor de correo por la IP del servidor de correo.
 
-Mediante `a` autorizamos al servidor de correo por la IP del servidor de correo.
-
-Finalmente con `~all` los servidores que reciben correo suelen aceptar los mensajes de remitentes que no figuran en el registro SPF, pero los marca como sospechosos.
-
+  Finalmente con `~all` los servidores que reciben correo suelen aceptar los mensajes de remitentes que no figuran en el registro SPF, pero los marca como sospechosos.
 
 
+- ![image](https://user-images.githubusercontent.com/73543470/166952004-258b38fd-9343-4e68-9d4f-8f68f574fb4b.png)
+
+En este apartado hemos configurado registro DKIM, que és un metodo de autentificación de correo electronico que evita que spammers entre otros elementos maliciosos, se hagan pasar por un dominio.
+
+Este se divide en dos partes, la que se almacena en los registro del DNS para el dominio y en las cabezeras que se adjunta a todos los correos electrònicos de un dominio.
+Al enviar un mensaje DKIM utiliza la clave privada para firmar el correo electronico mientras que la clave publica se publica en el DNS de tu dominio mediante registro TXT.
+
+Para generar las claves privadas-publicas e optado por **OpenDKIM**
+- Como siempre, previamente a una instalación realizamos
+```sh
+sudo apt-get update
+sudo apt-get dist-upgrade
+```
+- Instalamos los OpenDKIM y sus dependencias las cuales se instalan al escribir YES.
+```sh
+sudo apt-get install opendkim opendkim-tools
+```
+Debes tener algo así al finalizar la instalación:
+![image](https://user-images.githubusercontent.com/73543470/166957697-a762f788-3f5e-43f1-ab48-7dd53098b093.png)
+
+- A continuación debemos acceder al archivo `nano /etc/opendkim.conf` y debemos modificar los siguientes parametros para permitir la firma de mensajes para uno o más dominios.
+![image](https://user-images.githubusercontent.com/73543470/166958726-643542c7-4a96-4f4f-867d-087386640d50.png)
+
+- A continuación tenemos que ir al siguiente archivo `nano /etc/default/opendkim` y añadir al final del archivo la siguiente linea en la que especificamos el numero del puerto que utilizará.
+![image](https://user-images.githubusercontent.com/73543470/166959725-ea571a18-a9fc-4b17-9be1-c0e33d3f6a47.png)
+
+- Después debemos configurar postfix para utilizar el milter `nano /etc/postfix/main.cf`
+ ![image](https://user-images.githubusercontent.com/73543470/166961443-44653682-85f8-4e7c-a7a0-00adcbfac3d2.png)
+ 
+🚦 _**Milter**, es una extensión utilizada para el procesamiento de correos. Permite a los administradores agregar filtros de correo_
+
+- Una vez configurados estos parametros debemos crear una estructura de directorios que contendra los host de confianza, las tablas de las claves, las tablas de las firmas y las claves criptográficas.
+- 
 
 
 
