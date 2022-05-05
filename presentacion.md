@@ -67,10 +67,24 @@ En la siguiente liena encontramos los registros DNS que utiliza nuestro Cloud pa
 Aquí nos encontramos el registro A, el cual hace referencia a la página web. Cuando escribimos cosmosdesign.es, realmente estamos haciando referencia a la IP descrita en este apartado.
 
 - ![image](https://user-images.githubusercontent.com/73543470/166711970-6c14c516-534e-430f-911d-e03a3904b3b1.png)
-Observamos que estos dos parametros hacen referéncia a los registros CNAME que son alias del dominio, su funcion son parecida a la de un subdominio. EN este caso hemos indicado que si escriben el dominio con wwww tambienr resuelva y muestre nuestra pàgina. También hemos indicado que si escriben mail.cosmosdesign.es este resuelva con el nombre del servidor, el cual te redireccionará al webmail.
+Observamos que estos dos parametros hacen referéncia a los registros CNAME que son alias del dominio, su funcion son parecida a la de un subdominio. EN este caso hemos indicado que si escriben el dominio con www tambien resuelva y muestre nuestra pàgina. También hemos indicado que si escriben mail.nombredelcloud.es este resuelva con el nombre del servidor, el cual te redireccionará al webmail.
 
-- ![image](https://user-images.githubusercontent.com/73543470/166714916-efdf1d47-4500-425c-8dd4-227f1b52b85d.png)
+- ![image](https://user-images.githubusercontent.com/73543470/166950612-5bd81bd9-5e39-41e0-a8b9-55e09c9335f6.png)
+La función de SPF és determinar que servidores de correo y dominios tiene permitido enviar correo en nombre de tu dominio. También indica a los servidores que reciben tu correo que hacer con los mensajes una vez comprobados, confirman que los mensajes parecen proceder de tu servidor autorizado.
 
+En este caso hemos declarado mediante `MX` autorize a un servidor de correo mediante el registro MX del dominio. ( En este caso es el nombre del cloud y al no indicar el MX, automáticamente tomara el registro MX creado en este mismo archivo)
+
+Mediante `a` autorizamos al servidor de correo por la IP del servidor de correo.
+
+Finalmente con `~all` los servidores que reciben correo suelen aceptar los mensajes de remitentes que no figuran en el registro SPF, pero los marca como sospechosos.
+
+
+
+
+
+
+
+- 
 
 ### INSTALACIÓN APACHE2
 La función principal de apache es brindar a los usuarios todos los ficheros necesarios para la correcta visualización de la página web.
