@@ -168,7 +168,8 @@ service opendkim restart
 
 Una vez llegados ha este punto ya tendriamos configurado completamente nuestro servicio DNS en el cloud.
 
-## 2. INSTALACIÓN APACHE2
+## 2. INSTALACIÓN LAMP
+### APACHE2
 La función principal de apache es brindar a los usuarios todos los ficheros necesarios para la correcta visualización de la página web.
 - Instalamos realizando la comanda
 ```sh
@@ -204,7 +205,7 @@ mkdir  -p /var/www/cosmosdesign.es/logs
 chown -R  AL...78:AL...78 /var/www/cosmosdesign.es/datos
 chmod -R 755 /var/www/cosmosdesign.es/datos
 ```
-_Mediante `-R` especificamos que se realize de manera recursiva. De esta manera este usuario no puede acceder al resto del servidor solo a dichas carpetas, posteriormente configuraremos el servicio FTP.
+_Mediante `-R` especificamos que se realize de manera recursiva. De esta manera este usuario no puede acceder al resto del servidor solo a dichas carpetas, posteriormente configuraremos el servicio FTP._
 
 - Crearemos  el archivo `index.html` en el directorio `/var/www/cosmosdesign.es/datos/web` con el siguiente codigo para que Apache pueda servir el contenido.
 ```sh
@@ -221,7 +222,8 @@ nano /var/www/cosmosdesign.es/datos/web/index.html
 
 - En terminos generales la configuración de permisos debe quedar tal que así:
   ![image](https://user-images.githubusercontent.com/73543470/167138100-a0723d4b-a957-4226-a4c8-c6f4f9c3e277.png)
-_Al iniciar el Apache, este inicia una serie de processos que se ejecutan con el usuario www-data y el grupo www-data.En el caso de `/logs` hemos indicado que el usuario es www-data que forma parte del grupo root y el único que puede RWX és el usuario www-data _
+  
+_Al iniciar el Apache, este inicia una serie de processos que se ejecutan con el usuario www-data y el grupo www-data. En el caso de `/logs` hemos indicado que el usuario es www-data que forma parte del grupo root y el único que puede RWX és el usuario www-data_
 
 - Lo siguiente es modificar el archivo de configuración de apache para nuestro uso. En primer lugar crearemos el directorio `swhosting/vhosts/` para que el SWPanel sepa encontrar el archvio de vhosts. Dentro de este directorio crearemos el archivo `cosmosdesign.es.conf`
 ```sh
@@ -254,37 +256,25 @@ a2dissite 000-default.conf
 También podemos visualizar nuestra pagina web accediendo a nuestro navegador
 
 
-
-
-
 ### PHP
-Debemos instalar el lenguaje PHP en nuestro Cloud ya que es esencial para crear sitios web y configurar el backend.
-#### INSTALACIÓN PHP
- - Debemos descargar los repositorios PPA de SURY
- ```ls
-sudo apt -y install lsb-release apt-transport-https ca-certificates 
-sudo wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
- ```
- - Seguidamente tenemos que agregar los repositorios descargados anteriormente al archivo `source.list`
- ```sh
- echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/php.list
- ```
- - Procedemos a actualizar la lista de paquetes para que detecte el nuevo introducido
- ```sh
- sudo apt-get update
- ```
- - Efectuamos la comanda de instalación
- ```
- sudo apt -y install php7.4
- ```
- - Como vamos a utilizar php como módulo de Apache activamos la versión con la que vamos a trabajar en nuestro Hosting y desactivamos la predefinida
- ```sh
-sudo a2dismod php7.3
-sudo a2enmod php7.4
- ```
+Es el componente que procesará el codigo permitiendonos asi ejecutar scripts, conectarnos a las bases de datos MariaDB para obtener información y entregar el contenido a el servidor web.
+
+
+ 
+### INSTALACIÓN MARIA DB
+Para realizar la instalación de este paquete debemos efectuar la siguiente comanda:
+```sh
+apt install mariadb-server
+```
+
+-  A continuación ejecutaremos un script de seguridad e MariaDB.
+```sh
+mysql_secure_installation
+```
+ 
  
 
-### INSTALACIÓN CERTIFICADO SSL
+## 3. INSTALACIÓN CERTIFICADO SSL
 El certificado SSL que he instalado en esta ocasión es Lets Encrypt. Ya que este es gratuito, ademas de autorenovable por tanto "infinito".
 La funcion de este certificado es generar una clave publica para el dominio cosmosdesign.es que te identifique como administrador de tu dominio. Estas claves se generan a traves de la instalación y activación del certificado, y nos permitiran hacer conexiones cifradas entre usuarios y nuestro servidor.
 
@@ -336,18 +326,16 @@ Para olvidarnos del certificado por completo podemos realizar ela siguiente coma
 certbot renew --dry-run
 ```
 
-### INSTALACIÓN MARIA DB
-
-
 
 ### INSTALACIÓN NGINX
 Cuando alguien hace una solicitud para abrir una página web, el navegador se comunica con el servidor de ese sitio web. Luego, el servidor busca los archivos solicitados para la página y se los envía al navegador.
 Funcina como servidor proxy de correo electrónico SMPT, POP3, IMAP.
 
-### INSTALACIÓN POSTFIX
+## 4. INSTALACIÓN POSTFIX + DOVECOT
 
 
-## 2. CREACIÓN Y CONFIGURACIÓN DEL SERVICIO DE HOSTING
+
+## CREACIÓN Y CONFIGURACIÓN DEL SERVICIO DE HOSTING
 Una vez configurado el Cloud al completo podemos proceder a la creación del servicio de Hosting.
 Antes de proceder a realizar la instalación del servicio, he comprado el dominio de la página web cosmodesigns.es, mediante la opción que proporciona el SW Panel.
 Una vez este dominio es comprado los registros DNS no apuntan a ningún servicio de Hosting. Por tanto, procederemos a asignar los DNS que le pertocan al dominio 
@@ -363,7 +351,15 @@ de un certificado SSL. Utilizaremos un certificado llamado Lets Encryps, este es
 
 
 
-## 3. CONFIGURACIÓN DE WORDPRESS
+## 4. INSTALACIÓN/CONFIGURACIÓN DE WORDPRESS
+Previamente debemos tener instalado la pila LAMP y que nuestro dominio se encuetre baj un certificado SSL.
+
+### Crear BD y usuario en MARIADB
+- 
+
+### INSTALACIÓN DEL ENTORNO
+
+### CONFIGURAR INTERFICIE WORDPRESS
 Como los DNS todavia no se encuentran propagados he modificado mi archivo de host en Winodws para que mi PC apunte al dominio en cuestión con la IP asignada. Para así poder iniciar sesión en Wordpress y poder comenzar a adminstrarlo.
 - Para modificar el archivo de host de nuestro Windows debemos abrir un **Bloc de Notas ejecutado como administrador**.
 
