@@ -56,27 +56,32 @@ mkdir /etc/bind/dbs
 ### CONFIGURACIÓN DNS DEL CLOUD
 A continuación voy a explicar los parametros que aparecen en la siguiente imagen para poder entender mejor la configuración realizada
 
-- ![image](https://user-images.githubusercontent.com/73543470/166709653-f70ba7aa-477b-4b2f-91f2-bd14b8535b50.png)
+  ![image](https://user-images.githubusercontent.com/73543470/166709653-f70ba7aa-477b-4b2f-91f2-bd14b8535b50.png)
 
   En este apartado debemos indicar le nombre del servidor, en mi caso tiene este nombre ya que al generar   el cloud con con SW Hosting, le assigna un nombre con la fecha de creación del cloud.
 
-- ![image](https://user-images.githubusercontent.com/73543470/166711011-7b944677-b39a-4873-981a-be6b448c5073.png)
+####  REGISTRO MX
+  ![image](https://user-images.githubusercontent.com/73543470/166711011-7b944677-b39a-4873-981a-be6b448c5073.png)
 
   Con la siguiente linea indicamos que el servidor de correo és el mismo en el que nos encontramos ahora  mismo.
 
-- ![image](https://user-images.githubusercontent.com/73543470/166711274-b4d0ae55-80b9-4836-8247-f0f3e79aacc2.png)
+####  REGISTRO DNS
+![image](https://user-images.githubusercontent.com/73543470/166711274-b4d0ae55-80b9-4836-8247-f0f3e79aacc2.png)
 
   En la siguiente liena encontramos los registros DNS que utiliza nuestro Cloud para resolver a nivel de internet, en este caso tenemos dos, el principal que vendria a ser el nombre del cloud nuevamente y el secundario que es un servidor dns con el que trabaja SWHosting.
 
-- ![image](https://user-images.githubusercontent.com/73543470/166712006-6f4ff46e-f30a-4d64-ba8c-d72f9ea4e31e.png)
+####  REGISTRO A
+![image](https://user-images.githubusercontent.com/73543470/166712006-6f4ff46e-f30a-4d64-ba8c-d72f9ea4e31e.png)
 
   Aquí nos encontramos el registro A, el cual hace referencia a la página web. Cuando escribimos cosmosdesign.es, realmente estamos haciando referencia a la IP descrita en este apartado.
 
-- ![image](https://user-images.githubusercontent.com/73543470/166711970-6c14c516-534e-430f-911d-e03a3904b3b1.png)
+#### REGISTRO CNAME
+![image](https://user-images.githubusercontent.com/73543470/166711970-6c14c516-534e-430f-911d-e03a3904b3b1.png)
 
   Observamos que estos dos parametros hacen referéncia a los registros CNAME que son alias del dominio, su funcion son parecida a la de un subdominio. EN este caso hemos indicado que si escriben el dominio con www tambien resuelva y muestre nuestra pàgina. También hemos indicado que si escriben mail.nombredelcloud.es este resuelva con el nombre del servidor, el cual te redireccionará al webmail.
 
-- ![image](https://user-images.githubusercontent.com/73543470/166950612-5bd81bd9-5e39-41e0-a8b9-55e09c9335f6.png)
+#### REGISTRO TXT - SPF1
+![image](https://user-images.githubusercontent.com/73543470/166950612-5bd81bd9-5e39-41e0-a8b9-55e09c9335f6.png)
 
   La función de SPF és determinar que servidores de correo y dominios tiene permitido enviar correo en nombre de tu dominio. También indica a los servidores que reciben tu correo que hacer con los mensajes una vez comprobados, confirman que los mensajes parecen proceder de tu servidor autorizado.
 
@@ -86,13 +91,15 @@ A continuación voy a explicar los parametros que aparecen en la siguiente image
 
   Finalmente con `~all` los servidores que reciben correo suelen aceptar los mensajes de remitentes que no figuran en el registro SPF, pero los marca como sospechosos.
 
-- ![image](https://user-images.githubusercontent.com/73543470/166985751-da33ba48-b209-4e73-8b40-3b8e33cbad47.png)
+#### REGISTRO TXT - DMARC1
+![image](https://user-images.githubusercontent.com/73543470/166985751-da33ba48-b209-4e73-8b40-3b8e33cbad47.png)
 
   En este caso configuraremos el servicio dmarc1, ayuda a los destinatarios a determinar si un mensaje coincide con lo que sabe sobre un remitente. Por tanto, si el mensaje no coincide el servidor receptor puede verificar el registro DMARC para orientarte sobre como manejar el mensaje no alieneado.
   
   En este caso, la `-p` indica que que no se lleve a cabo ninguna acción contra el correo no autenticado, pero que envie en su lugar informes de correo electronico a la dirección mailto inscrita en el registro DMARC
   
-- ![image](https://user-images.githubusercontent.com/73543470/166985839-0d7df034-44e8-487f-972e-1d46a50559ad.png)
+ ####  REGISTRO SRV
+![image](https://user-images.githubusercontent.com/73543470/166985839-0d7df034-44e8-487f-972e-1d46a50559ad.png)
   
   El registro SRV permite que los servicios se ejecuten facilmente en puertos no standard y reducir la carga.
   
@@ -100,7 +107,8 @@ A continuación voy a explicar los parametros que aparecen en la siguiente image
   
   El valor `SRV` indica la clase de registro DNS que és. `443` indica el puerto en el que se encuentra el servicio. Finalmente `ce202205..dnssw.net` indica el nombre del host que  proporciona el servicio.
 
-- ![image](https://user-images.githubusercontent.com/73543470/166952004-258b38fd-9343-4e68-9d4f-8f68f574fb4b.png)
+#### REGISTRO TXT - DKIM1
+![image](https://user-images.githubusercontent.com/73543470/166952004-258b38fd-9343-4e68-9d4f-8f68f574fb4b.png)
 
 En este apartado hemos configurado registro DKIM, que és un metodo de autentificación de correo electronico que evita que spammers entre otros elementos maliciosos, se hagan pasar por un dominio.
 
@@ -115,52 +123,62 @@ Para generar las claves privadas-publicas e optado por **OpenDKIM**
 sudo apt-get update
 sudo apt-get dist-upgrade
 ```
-- Instalamos los OpenDKIM y sus dependencias las cuales se instalan al escribir YES.
+- Instalamos los **OpenDKIM** y sus dependencias las cuales se instalan al escribir `YES`.
 ```sh
 sudo apt-get install opendkim opendkim-tools
 ```
 Debes tener algo así al finalizar la instalación:
+
 ![image](https://user-images.githubusercontent.com/73543470/166957697-a762f788-3f5e-43f1-ab48-7dd53098b093.png)
 
 - A continuación debemos acceder al archivo `nano /etc/opendkim.conf` y debemos modificar los siguientes parametros para permitir la firma de mensajes para uno o más dominios.
+
 ![image](https://user-images.githubusercontent.com/73543470/166958726-643542c7-4a96-4f4f-867d-087386640d50.png)
 
-- A continuación tenemos que ir al siguiente archivo `nano /etc/default/opendkim` y añadir al final del archivo la siguiente linea en la que especificamos el numero del puerto que utilizará.
+- Luego tenemos que ir al siguiente archivo `nano /etc/default/opendkim` y añadir al final del archivo la siguiente linea en la que especificamos el numero del puerto que utilizará.
+
 ![image](https://user-images.githubusercontent.com/73543470/166959725-ea571a18-a9fc-4b17-9be1-c0e33d3f6a47.png)
 
 - Después debemos configurar postfix para utilizar el milter `nano /etc/postfix/main.cf`
+
  ![image](https://user-images.githubusercontent.com/73543470/166961443-44653682-85f8-4e7c-a7a0-00adcbfac3d2.png)
  
 🚦 _**Milter**, es una extensión utilizada para el procesamiento de correos. Permite a los administradores agregar filtros de correo_
 
+#### ESTRUCTURA DE DIRECTORIOS/ARCHIVOS
 - Una vez configurados estos parametros debemos crear una estructura de directorios que contendra los host de confianza, las tablas de las claves, las tablas de las firmas y las claves criptográficas.
 ```sh
 mkdir /etc/dkim
 ```
 - Dentro del siguiente directorio procederemos a crear las diferentes partes que conforman nuestro DKIM.
- 1. En primer lugar crearemos el fichero `hosts.txt` en el que indicaremos el parametro local host y nuestra IP.
+ **1.** En primer lugar crearemos el fichero `hosts.txt` en el que indicaremos el parametro local host y nuestra IP.
  ```sh
  touch hosts.txt
  ```
   ![image](https://user-images.githubusercontent.com/73543470/166975862-96d47448-d57f-473f-a987-2d33cc6aa89f.png)
   
-  2. A continuación crearemos archivo `dkimTable` que contenga una tabla de claves con el dominio y la ruta a su clave privada.
+  **2.** A continuación crearemos archivo `dkimTable` que contenga una tabla de claves con el dominio y la ruta a su clave privada.
+ 
   ![image](https://user-images.githubusercontent.com/73543470/166976612-0c8c3573-7ba2-4586-892e-64f43b06b179.png)
 
-  3. Crearemos el archivo `dkimSigningTable` que tiene la función de declarar los dominios/direcciones de correo y sus selectores
+  **3.** Crearemos el archivo `dkimSigningTable` que tiene la función de declarar los dominios/direcciones de correo y sus selectores
+  
   ![image](https://user-images.githubusercontent.com/73543470/166978332-58dac3bb-620c-438f-9d7c-8e7e41a76e64.png)
 
-  4. Una vez realizadas estas configuraciones tenemos que generar las claves publicas y privadas. Para generar nuestras claves efecutaremos la siguiente comanda:
+#### GENERAR CLAVE PÚBLICA/PRIVADA
+  **4.** Una vez realizadas estas configuraciones tenemos que generar las claves publicas y privadas. Para generar nuestras claves efecutaremos la siguiente comanda:
  ```sh
  opendkim-genkey -s mail -d cosmosdesign.es
  ```
-   5. Esta comanda creará dos archivos ya que `-s` especifica el selector que debe utilizará y la `-d` el dominio en cuestión. Los dos archivos creados son `cosmosdesign.es.private` y `cosmosdesign.es.txt`
+   **5.** Esta comanda creará dos archivos ya que `-s` especifica el selector que debe utilizará y la `-d` el dominio en cuestión. Los dos archivos creados son `cosmosdesign.es.private` y `cosmosdesign.es.txt`
+   
  ![image](https://user-images.githubusercontent.com/73543470/166979958-c490b643-d4e3-47f5-9a07-eccf8b45d233.png)
  
-  6. Una vez realizados estos cambios debemos agregar la clave publica a nuestro registro DNS generado `/etc/dkim/cosmosdesign.es.txt` y añadirla en el `/etc/bind/dbs/cosmosdesign.es`
+  **6.** Una vez realizados estos cambios debemos agregar la clave publica a nuestro registro DNS generado `/etc/dkim/cosmosdesign.es.txt` y añadirla en el `/etc/bind/dbs/cosmosdesign.es`
+  
  ![image](https://user-images.githubusercontent.com/73543470/166981051-e75d5090-6f66-40c9-b672-56634904696e.png)
 
-  7. Finalmente debemos reiniciar Postfix y OpenDKIM
+  **7.** Finalmente debemos reiniciar Postfix y OpenDKIM
 ```sh
 service postfix restart
 service opendkim restart
@@ -186,7 +204,7 @@ systemctl status apache2
 apt install curl
 curl -4 icanhazip.com
 ```
-
+#### ESTRUCTURA DE DIRECTORIOS/PERMISOS
 Una vez instalado debemos proceder a configurar el VirtualHost del servicio web. En debian ya se encuentra un directorio previamente definido para realizar la creación de directorios relacionado con las webs. Por tanto crearemos el directorio  `/var/www/cosmosdesign.es` con el nombre de nuestro dominio.
 
 Crearemos una estructura de directorios que sea compatible con el SW Panel ya que, aunque no lo estemos utilizando, nos interesa tenerlo configurado para poder visualizar en el apartado de gestion de ficheros, los ficheros principales de la web de un modo más gráfico.
@@ -221,6 +239,7 @@ nano /var/www/cosmosdesign.es/datos/web/index.html
 ```
 
 - En terminos generales la configuración de permisos debe quedar tal que así:
+
   ![image](https://user-images.githubusercontent.com/73543470/167138100-a0723d4b-a957-4226-a4c8-c6f4f9c3e277.png)
   
 _Al iniciar el Apache, este inicia una serie de processos que se ejecutan con el usuario www-data y el grupo www-data. En el caso de `/logs` hemos indicado que el usuario es www-data que forma parte del grupo root y el único que puede RWX és el usuario www-data_
@@ -230,7 +249,7 @@ _Al iniciar el Apache, este inicia una serie de processos que se ejecutan con el
 mkdir /etc/apache2/swhosting/vhost
 nano /etc/apache2/swhosting/vhost/cosmosdesign.es.conf
 ```
-
+#### CONFIGURACIÓN VIRTUAL HOST
 - Debemos configurar nuestro Virtual Host para que quede de la siguiente manera definiendo cada uno de los parametros
  
 ![image](https://user-images.githubusercontent.com/73543470/167114188-f0e9cdfb-cd7f-4526-a078-fb589a70066a.png)
@@ -255,7 +274,6 @@ a2dissite 000-default.conf
 
 También podemos visualizar nuestra pagina web accediendo a nuestro navegador
 
-
 ### PHP
 Es el componente que procesará el codigo permitiendonos asi ejecutar scripts, conectarnos a las bases de datos MariaDB para obtener información y entregar el contenido a el servidor web.
 
@@ -278,6 +296,7 @@ mysql_secure_installation
 El certificado SSL que he instalado en esta ocasión es Lets Encrypt. Ya que este es gratuito, ademas de autorenovable por tanto "infinito".
 La funcion de este certificado es generar una clave publica para el dominio cosmosdesign.es que te identifique como administrador de tu dominio. Estas claves se generan a traves de la instalación y activación del certificado, y nos permitiran hacer conexiones cifradas entre usuarios y nuestro servidor.
 
+#### SNAP, CORE Y CERTBOT
 - El metodo de instalación que utilizaremos es **cerbot**, pero antes debemos tener instalado el complemento **snapd** que es un daemon necesario para administrar snaps(instantaneas). Recuerda presionar `YES`+ `ENTER` para instalar todas sus dependencias tambien.
 ```sh
 apt install snapd
@@ -321,17 +340,18 @@ Una vez terminado el desafio y observado el mensaje final podemos acceder a nues
 
 ![image](https://user-images.githubusercontent.com/73543470/167051490-5499d805-7c65-4ffb-b230-bd5a3200e868.png)
 
+#### RENOVACIÓN AUTOMÁTICA
 Para olvidarnos del certificado por completo podemos realizar ela siguiente comanda para que Certbot renueve el SSL cuando este vaya a caducar
 ```sh
 certbot renew --dry-run
 ```
 
 
-### INSTALACIÓN NGINX
+## 4. INSTALACIÓN NGINX
 Cuando alguien hace una solicitud para abrir una página web, el navegador se comunica con el servidor de ese sitio web. Luego, el servidor busca los archivos solicitados para la página y se los envía al navegador.
 Funcina como servidor proxy de correo electrónico SMPT, POP3, IMAP.
 
-## 4. INSTALACIÓN POSTFIX + DOVECOT
+## 5. INSTALACIÓN POSTFIX + DOVECOT
 
 
 
