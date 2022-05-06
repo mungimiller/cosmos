@@ -307,10 +307,24 @@ Además de el resto de includes genericos de Apache:
   ```sh
   nano /etc/apache2/apache2.conf
   ```
+  Las definiciones del directorio aplican reglas para  `/`,`/usr/share`, `/var/www`
   
-#### VIRTUAL HOST - /vHost
+  ![image](https://user-images.githubusercontent.com/73543470/167173240-1eb0ed23-d770-4508-b42f-dc28f5eb7c6a.png)
+  ![image](https://user-images.githubusercontent.com/73543470/167173344-8c057c07-303d-4fc7-a743-0705efdf7c75.png)
+  
+  Las diferentes reglas establecidas en los diferentes directorios són:
+  - `Require`--> restringir o abrir el acceso a diferentes recursos de su servidor.
+  - `AllowOverride`--> Se usa para decidir si el archivo `.htacces` puede anular la configuración si se coloca en el directorio del contenido.
+- `FollowSymLinks` --> Afirmamos y permitimos que Apache siga los enlaces simbolicos del directorio.
+- `-Index` --> Denegamos que un diretorio se pueda mostrar como una lista si no hay una pagina index.
+ - `+MultiViews` --> Permite que si existe un archivo llamado configuration.php en la raiz siempre sea elegido aunque modifiques el archivo .htacces para que realize la busqueda en otro directorio.
+
+
+  
+#### VIRTUAL HOST - ALIAS
 En nuestro caso como ya sabemos se encuentra en el directorio `/etc/apache2/swhosting/vHost/cosmosdesign.es`
 Donde se detalla en "VIRTUAL HOST ARRIBA"
+
 
 
 
