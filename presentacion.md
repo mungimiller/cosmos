@@ -209,7 +209,28 @@ sudo a2enmod php7.4
  ```
  
 
- 
+### INSTALACIÓN CERTIFICADO SSL
+El certificado SSL que he instalado en esta ocasión es Lets Encrypt. Ya que este es gratuito, ademas de autorenovable por tanto "infinito".
+La funcion de este certificado es generar una clave publica para el dominio cosmosdesign.es que te identifique como administrador de tu dominio. Estas claves se generan a traves de la instalación y activación del certificado, y nos permitiran hacer conexiones cifradas entre usuarios y nuestro servidor.
+
+- El metodo de instalación que utilizaremos es **cerbot**, pero antes debemos tener instalado el complemento **snapd** que es un daemon necesario para administrar snaps(instantaneas). Recuerda presionar `YES`+ `ENTER` para instalar todas sus dependencias tambien.
+```sh
+apt install snapd
+```
+- Una vez instalado utilizaremos el comando snap para instalar el complemento `core`y actualizarlo.
+```sh
+sudo snap install core
+sudo snap refresh core
+```
+- Ahora podemos instalar el complemento cerbot, pero utilizaremos el comando snap y determinaremos con la opcion `--classic` que Certbot tiene permiso para editar ciertos archivos de configuración para configurar correctamente el certificado.
+```sh
+snap install --classic certbot
+```
+### CONFIGURACIÓN DEL CERTIFICADO SSL
+Cuando ya haya finalizado la instalación tenemos que configurar el certificado SSL ya que el Certbot necesita poder encontrar el Virtual Host en su configuración de apache para configurar automaticamente el SSL asi que previamente debemos tener hecho estos pasos "INSTALAR APACHE"
+
+
+
 ### INSTALACIÓN MARIA DB
 
 
