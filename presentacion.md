@@ -219,10 +219,29 @@ mkdir /etc/apache2/swhosting/vhost
 nano /etc/apache2/swhosting/vhost/cosmosdesign.es.conf
 ```
 
-- Debemos configurar nuestro Virtual Host para que quede de la siguiente manera definiendo cada uno de los parametros 
+- Debemos configurar nuestro Virtual Host para que quede de la siguiente manera definiendo cada uno de los parametros
+ 
 ![image](https://user-images.githubusercontent.com/73543470/167114188-f0e9cdfb-cd7f-4526-a078-fb589a70066a.png)
 
-En primer lugar definimos mediante `<VirtualHost*:8080>`que ese será el puerto por el que operará. Tanto `ServerName` como `ServerAlias` establecen que el dominio base  que debe coincidir con esta definicion de host virtual. Con `DocumentRoot` indicamos el path donde se encuentran los archivos que dan contenido a la página web.
+En primer lugar definimos mediante `<VirtualHost*:8080>`que ese será el puerto por el que operará. Tanto `ServerName` como `ServerAlias` establecen que el dominio base que debe coincidir con esta definicion de host virtual. Con `DocumentRoot` indicamos el path donde se encuentran los archivos que dan contenido a la página web.
+
+Con el parametros `Custom Logs` configuraremos el directorio y el nombre del archivo donde se guardaran nuestros registros Logs de Apache. En este caso, le aplicamos la plantilla common donde incluirá los principales paràmetros de los logs. Crearemos dos archivos, uno en el que el servidor almacena en el registro de acceso información sobre todas las peticiones que procesa.
+
+Con el parametro `Error Log` Apache enviará cualquier información de diagnóstico y registrará cualquier error que encuentre al procesar peticiones al archivo de registro seleccionado. Los 3 archivos los asignamos a la carpeta `logs` de nuestra web.
+
+- A continuación tenemos que habilitar el archivo con la herramienta `a2ensite`
+```sh
+a2ensite /etc/apache2/swhosting/vhosts/cosmosdesign.es.conf
+```
+- Después debemos deshabilitar el sitio que viene predeterminado con deafult.
+```sh
+a2dissite 000-default.conf
+```
+- Finalmente comprobamos que todo este correctamente con el siguiente comando
+
+![image](https://user-images.githubusercontent.com/73543470/167132191-fdcd0f44-2a0e-483f-bdcc-d6854e64853e.png)
+
+También podemos visualizar nuestra pagina web accediendo a nuestro navegador
 
 
 
