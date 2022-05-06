@@ -177,10 +177,53 @@ sudo apt install apache2
 ```sh
 systemctl status apache2
 ```
-- Una vez instalado debemos proceder a configurar el VirtualHost del servicio web. En debian ya se encuentra un directorio previamente definido para realizar la creación de directorios relacionado con las webs. Por tanto procederemos a crear el directorio  `/var/www/cosmosdesign.es` con el nombre de nuestro dominio.
+-  Cortafuegos que aun no se configurar
+-  Posteriormente instalaremos `curl` 
+- 
+Una vez instalado debemos proceder a configurar el VirtualHost del servicio web. En debian ya se encuentra un directorio previamente definido para realizar la creación de directorios relacionado con las webs. Por tanto crearemos el directorio  `/var/www/cosmosdesign.es` con el nombre de nuestro dominio.
+
+Crearemos una estructura de directorios que sea compatible con el SW Panel ya que, aunque no lo estemos utilizando, nos interesa tenerlo configurado para poder visualizar en el apartado de gestion de ficheros, los ficheros principales de la web de un modo más gráfico.
+
+- Para ello crearemos la siguiente estructura  dentro de cosmosdesign.es. Esta primera carpeta tendra /cache, /datos/data, /datos/web, /logs mediante los siguientes comandos
 ```sh
-mkdir -p /var/wwww/cosmosdesign.es/datos/web/
+mkdir - p /var/www/cosmosdesign.es/cache
+mkdir - p /var/www/cosmosdesign.es/datos
+mkdir - p /var/www/cosmosdesign.es/datos/data
+mkdir  -p /var/www/cosmosdesign.es/datos/web
+mkdir  -p /var/www/cosmosdesign.es/logs
 ```
+
+- Una vez creados todos los directorios toca dar permisos a estos, en este caso daremos permisos al usuario creado en el SW Panel al contratar el servicio. Este usuario puede conectarse al Panel de control de SW Hosting y configurar de una manera mas grafica el directorio `/var/www/datos//web` y restringiremos los permisos de `RWX` 
+```sh
+chown -R  AL...78:AL...78 /var/www/cosmosdesign.es/datos
+chmod -R 755 /var/www/cosmosdesign.es/datos
+```
+_Mediante `-R` especificamos que se realize de manera recursiva. De esta manera este usuario no puede acceder al resto del servidor solo a dichas carpetas, posteriormente configuraremos el servicio FTP.
+
+- Crearemos  el archivo `index.html` en el directorio `/var/www/cosmosdesign.es/datos/web` con el siguiente codigo para que Apache pueda servir el contenido.
+```sh
+nano /var/www/cosmosdesign.es/datos/web/index.html
+<html>
+    <head>
+        <title>Bienvenidos</title>
+    </head>
+    <body>
+        <h1>COSMOS SE ENCUENTRA EN MANTENIMIENTO</h1>
+    </body>
+</html>
+```
+
+- Lo siguiente es modificar el archivo de configuración de apache para nuestro uso. En primer lugar crearemos el directorio `swhosting/vhosts/` para que el SWPanel sepa encontrar el archvio de vhosts. Dentro de este directorio crearemos el archivo `cosmosdesign.es.conf`
+```sh
+mkdir /etc/apache2/swhosting/vhost
+nano /etc/apache2/swhosting/vhost/cosmosdesign.es.conf
+```
+
+- Debemos configurar nuestro Virtual Host para que quede de la siguiente manera definiendo cada uno de los parametros 
+![image](https://user-images.githubusercontent.com/73543470/167114188-f0e9cdfb-cd7f-4526-a078-fb589a70066a.png)
+
+En primer lugar definimos mediante `<VirtualHost*:8080>`que ese será el puerto por el que operará.
+
 
 ### PHP
 Debemos instalar el lenguaje PHP en nuestro Cloud ya que es esencial para crear sitios web y configurar el backend.
