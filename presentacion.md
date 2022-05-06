@@ -227,9 +227,39 @@ sudo snap refresh core
 snap install --classic certbot
 ```
 ### CONFIGURACIÓN DEL CERTIFICADO SSL
-Cuando ya haya finalizado la instalación tenemos que configurar el certificado SSL ya que el Certbot necesita poder encontrar el Virtual Host en su configuración de apache para configurar automaticamente el SSL asi que previamente debemos tener hecho estos pasos "INSTALAR APACHE"
+Cuando ya haya finalizado la instalación tenemos que comprobar la configuración de apache ya que  Certbot necesita poder encontrar el Virtual Host en su configuración de apache para configurar automaticamente el SSL asi que previamente debemos tener hecho estos pasos "INSTALAR APACHE"
 
+De todas maneras comprobaremos que tenemos `ServerName`configurado con el nombre del dominio en `/etc/apache2/sites-available/cosmosdesign.es.conf`
+![image](https://user-images.githubusercontent.com/73543470/167049886-df606684-64c5-44d2-a955-482bf30764f6.png)
 
+Con el siguiente comando nos fijaremos que no haya ningun error de sintaxix
+```sh
+apache2ctl configtest
+```
+Y recibirás un mensaje como este en caso de que todo sea correcto:
+![image](https://user-images.githubusercontent.com/73543470/167050097-ae1360e0-0368-4d01-9bb8-4d23c05512c1.png)
+
+explicar firewall complicado con iptables
+
+### OBTENER CERTIFICADO SSL
+
+Realizando la siguiente comanda instalaremos el certificado SSL, mediante `--apache` permitimos que certbot reconfigure apache y recargue la configuración cuando sea necesario.
+Indicamos mediante las dos `-d` que queremos que el certificado sea valido para ambos DNS.
+```sh
+sudo certbot --apache -d cosmosdesign.es -d www.cosmosdeisng.es
+```
+
+En el caso de ser la primera vez que inicia cerbot en el servidor, este le pedira que ingreses una dirección de corre electronico y acepte los terminos del servicio.
+A continuación certbot se comunicará cone l servidor Lets encrypt y ejecutara el desafio para verificar que eres tu el que controla el dominio por el cual se esta solicitando el certificado.
+
+Una vez terminado el desafio y observado el mensaje final podemos acceder a nuestro navegador, introducir nuestra URL y observaremos que esta tendrá un candado y en mas información veremos el nombre del Lets Encrypt
+
+![image](https://user-images.githubusercontent.com/73543470/167051490-5499d805-7c65-4ffb-b230-bd5a3200e868.png)
+
+Para olvidarnos del certificado por completo podemos realizar ela siguiente comanda para que Certbot renueve el SSL cuando este vaya a caducar
+```sh
+certbot renew --dry-run
+```
 
 ### INSTALACIÓN MARIA DB
 
