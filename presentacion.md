@@ -188,6 +188,7 @@ Una vez llegados ha este punto ya tendriamos configurado completamente nuestro s
 
 ## 2. INSTALACIÓN LAMP
 ### APACHE2
+_____________
 La función principal de apache es brindar a los usuarios todos los ficheros necesarios para la correcta visualización de la página web.
 - Instalamos realizando la comanda
 ```sh
@@ -274,12 +275,58 @@ a2dissite 000-default.conf
 
 También podemos visualizar nuestra pagina web accediendo a nuestro navegador
 
+### JERARQUIA DE ARCHIVOS APACHE
+Llegados a este punto podemos mencionar que la configuración de Apache no se lleva a cabo en un solo archivo, sino que ocurre a traves de un diseño donde se pueden agregar y modificar nuevos archivos.
+
+Los archivos que permiten la modificación de Apache son los siguientes:
+```sh
+ls -f /etc/apache2
+```
+![image](https://user-images.githubusercontent.com/73543470/167168084-f5d280a1-f744-469f-af44-ca4be55e47af.png)
+
+En este apartado profundizaremos en la configuración hablando de las utilidades de cada uno de los comandos.
+
+#### APACHE2.CONF
+Los detalles principales de la configuración vienen en este archivo, que se divide en tres partes.
+- Configuración para processos globales de Apache
+- Configuración del servidor
+- Configuración vHost
+  #### INCLUDE
+  La configuración del servidor y los vHosts se manejan mediante la directiva `INCLUDE`, que permite que Apache lea otros archivos de configuración en el archivo `apache2.conf`.
+  
+  En nuestro caso tenemos los siguientes `IncludeOptional`, que cargan los modulos de configuración `*.conf` de los directorios indicados. Nosotros al crear un directorio personalizado para el vhost lo tenemos que inlcuir de esta manera:
+  
+  ![image](https://user-images.githubusercontent.com/73543470/167170043-dc062011-d1f8-4ba5-a2a1-05ade42c0a1f.png)
+
+Además de el resto de includes genericos de Apache:
+![image](https://user-images.githubusercontent.com/73543470/167170253-35404bc4-3dd0-4c11-99df-d71e633207e5.png)
+![image](https://user-images.githubusercontent.com/73543470/167170323-29a3e3d6-6833-4f85-8339-a3e82a54265b.png)
+
+  #### <DIRECTORY>
+  Estas definiciones manejan diferentes directorios con sus respectivos archivos. Apache aplica todas las direcciones en orden, de la mas corta a la más larga, donde existe la posibilidad de anular las opciones anteriores.
+  ```sh
+  nano /etc/apache2/apache2.conf
+  ```
+  
+#### VIRTUAL HOST - /vHost
+En nuestro caso como ya sabemos se encuentra en el directorio `/etc/apache2/swhosting/vHost/cosmosdesign.es`
+Donde se detalla en "VIRTUAL HOST ARRIBA"
+
+
+
+
+
 ### PHP
+_____________
 Es el componente que procesará el codigo permitiendonos asi ejecutar scripts, conectarnos a las bases de datos MariaDB para obtener información y entregar el contenido a el servidor web.
 
-
+```sh
+apt install php libapache2-mod-php phpmysql
+```
+A continuación modificaremos nuestro Apache ya que este ahora mismo si un usuario solicita un directorio del servidor (un contenido de la pagina web) buscara un archivo llamado index.html
  
-### INSTALACIÓN MARIA DB
+### MARIA DB
+_____________
 Para realizar la instalación de este paquete debemos efectuar la siguiente comanda:
 ```sh
 apt install mariadb-server
