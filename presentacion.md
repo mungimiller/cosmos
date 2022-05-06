@@ -117,6 +117,8 @@ Al enviar un mensaje DKIM utiliza la clave privada para firmar el correo electro
 
 ### COMO GENERAR CLAVES DKIM
 
+💥Para realizar este apartado debes tener instalado **PostFix**
+
 Para generar las claves privadas-publicas e optado por **OpenDKIM**
 - Como siempre, previamente a una instalación realizamos
 ```sh
@@ -319,17 +321,6 @@ Además de el resto de includes genericos de Apache:
 - `-Index` --> Denegamos que un diretorio se pueda mostrar como una lista si no hay una pagina index.
  - `+MultiViews` --> Permite que si existe un archivo llamado configuration.php en la raiz siempre sea elegido aunque modifiques el archivo .htacces para que realize la busqueda en otro directorio.
 
-
-  
-#### VIRTUAL HOST - ALIAS
-En nuestro caso como ya sabemos se encuentra en el directorio `/etc/apache2/swhosting/vHost/cosmosdesign.es`
-Donde se detalla en "VIRTUAL HOST ARRIBA"
-
-
-
-
-
-
 ### PHP
 _____________
 Es el componente que procesará el codigo permitiendonos asi ejecutar scripts, conectarnos a las bases de datos MariaDB para obtener información y entregar el contenido a el servidor web.
@@ -337,7 +328,7 @@ Es el componente que procesará el codigo permitiendonos asi ejecutar scripts, c
 ```sh
 apt install php libapache2-mod-php phpmysql
 ```
-A continuación modificaremos nuestro Apache ya que este ahora mismo si un usuario solicita un directorio del servidor (un contenido de la pagina web) buscara un archivo llamado index.html
+A continuación modificaremos nuestro Apache ya que este ahora mismo 
  
 ### MARIA DB
 _____________
@@ -350,8 +341,6 @@ apt install mariadb-server
 ```sh
 mysql_secure_installation
 ```
- 
- 
 
 ## 3. INSTALACIÓN CERTIFICADO SSL
 El certificado SSL que he instalado en esta ocasión es Lets Encrypt. Ya que este es gratuito, ademas de autorenovable por tanto "infinito".
@@ -407,13 +396,12 @@ Para olvidarnos del certificado por completo podemos realizar ela siguiente coma
 certbot renew --dry-run
 ```
 
-
 ## 4. INSTALACIÓN NGINX
 Cuando alguien hace una solicitud para abrir una página web, el navegador se comunica con el servidor de ese sitio web. Luego, el servidor busca los archivos solicitados para la página y se los envía al navegador.
 Funcina como servidor proxy de correo electrónico SMPT, POP3, IMAP.
 
 ## 5. INSTALACIÓN POSTFIX + DOVECOT
-
+A continuación configuraremos el servidor de correo Postfix MTA(transferencia),
 
 
 ## CREACIÓN Y CONFIGURACIÓN DEL SERVICIO DE HOSTING
