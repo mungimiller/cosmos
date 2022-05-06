@@ -25,7 +25,7 @@ Una vez expuestos estos puntos, creo que quedan argumentados los motivos por los
 -
 -
 
-## 1. CREACIÓN Y INSTALACIÓN DE LOS SERVICIOS EN EL CLOUD
+## CREACIÓN Y INSTALACIÓN DE LOS SERVICIOS EN EL CLOUD
 En primer lugar hemos procedido a contratar el cloud a una empresa externa, en este caso se trata de SW Hosting. Actualmente trabajo allí, ese fue el motivo principal
 que me impulsó a tomar servicios con ellos.
 El cloud por el que me decidí se trata de un Debian Buster v.10, en el cual he instalado los siguientes servicios que son imprescindibles para el correcto funcionamiento del servicio de Hosting Web.
@@ -34,7 +34,7 @@ Los pasos de la instalación de los diferentes servicios son:
 
 ▶️ _Previamente siempre debemos realizar_ `sudo apt-get update` y `sudo apt-get upgrade` !
 
-### INSTALACIÓN DNS BIND
+## 1. INSTALACIÓN/CONFIGURACIÓN DNS BIND
 En primer lugar instalaremos BIND9, permite a nuestro servidor gestionar los diferentes registros DNS, para que estos resuelvan correctamente y muestren la información de la dirección IP a la que apuntan.
 
 - Instalarlo con la siguiente comanda:
@@ -86,6 +86,19 @@ A continuación voy a explicar los parametros que aparecen en la siguiente image
 
   Finalmente con `~all` los servidores que reciben correo suelen aceptar los mensajes de remitentes que no figuran en el registro SPF, pero los marca como sospechosos.
 
+- ![image](https://user-images.githubusercontent.com/73543470/166985751-da33ba48-b209-4e73-8b40-3b8e33cbad47.png)
+
+  En este caso configuraremos el servicio dmarc1, ayuda a los destinatarios a determinar si un mensaje coincide con lo que sabe sobre un remitente. Por tanto, si el mensaje no coincide el servidor receptor puede verificar el registro DMARC para orientarte sobre como manejar el mensaje no alieneado.
+  
+  En este caso, la `-p` indica que que no se lleve a cabo ninguna acción contra el correo no autenticado, pero que envie en su lugar informes de correo electronico a la dirección mailto inscrita en el registro DMARC
+  
+- ![image](https://user-images.githubusercontent.com/73543470/166985839-0d7df034-44e8-487f-972e-1d46a50559ad.png)
+  
+  El registro SRV permite que los servicios se ejecuten facilmente en puertos no standard y reducir la carga.
+  
+  El parametro `autodiscover`, como bien dice descubre automaticamente el nombre simbolico del servicio. Con `_tcp` indicamos el protocolo de transporte del servicio. 
+  
+  El valor `SRV` indica la clase de registro DNS que és. `443` indica el puerto en el que se encuentra el servicio. Finalmente `ce202205..dnssw.net` indica el nombre del host que  proporciona el servicio.
 
 - ![image](https://user-images.githubusercontent.com/73543470/166952004-258b38fd-9343-4e68-9d4f-8f68f574fb4b.png)
 
@@ -93,6 +106,8 @@ En este apartado hemos configurado registro DKIM, que és un metodo de autentifi
 
 Este se divide en dos partes, la que se almacena en los registro del DNS para el dominio y en las cabezeras que se adjunta a todos los correos electrònicos de un dominio.
 Al enviar un mensaje DKIM utiliza la clave privada para firmar el correo electronico mientras que la clave publica se publica en el DNS de tu dominio mediante registro TXT.
+
+### COMO GENERAR CLAVES DKIM
 
 Para generar las claves privadas-publicas e optado por **OpenDKIM**
 - Como siempre, previamente a una instalación realizamos
@@ -139,35 +154,21 @@ mkdir /etc/dkim
  ```sh
  opendkim-genkey -s mail -d cosmosdesign.es
  ```
- 5. Esta comanda creará dos archivos ya que `-s` especifica el selector que debe utilizará y la `-d` el dominio en cuestión. Los dos archivos creados son `cosmosdesign.es.private` y `cosmosdesign.es.txt`
+   5. Esta comanda creará dos archivos ya que `-s` especifica el selector que debe utilizará y la `-d` el dominio en cuestión. Los dos archivos creados son `cosmosdesign.es.private` y `cosmosdesign.es.txt`
  ![image](https://user-images.githubusercontent.com/73543470/166979958-c490b643-d4e3-47f5-9a07-eccf8b45d233.png)
  
- 6. Una vez realizados estos cambios debemos agregar la clave publica a nuestro registro DNS generado `/etc/dkim/cosmosdesign.es.txt` y añadirla en el `/etc/bind/dbs/cosmosdesign.es`
+  6. Una vez realizados estos cambios debemos agregar la clave publica a nuestro registro DNS generado `/etc/dkim/cosmosdesign.es.txt` y añadirla en el `/etc/bind/dbs/cosmosdesign.es`
  ![image](https://user-images.githubusercontent.com/73543470/166981051-e75d5090-6f66-40c9-b672-56634904696e.png)
 
-7. Finalmente debemos reiniciar Postfix y OpenDKIM
+  7. Finalmente debemos reiniciar Postfix y OpenDKIM
 ```sh
 service postfix restart
 service opendkim restart
 ```
 
-- ![image](https://user-images.githubusercontent.com/73543470/166985751-da33ba48-b209-4e73-8b40-3b8e33cbad47.png)
-
-  En este caso configuraremos el servicio dmarc1, ayuda a los destinatarios a determinar si un mensaje coincide con lo que sabe sobre un remitente. Por tanto, si el mensaje no coincide el servidor receptor puede verificar el registro DMARC para orientarte sobre como manejar el mensaje no alieneado.
-  
-  En este caso, la `-p` indica que que no se lleve a cabo ninguna acción contra el correo no autenticado, pero que envie en su lugar informes de correo electronico a la dirección mailto inscrita en el registro DMARC
-  
-- ![image](https://user-images.githubusercontent.com/73543470/166985839-0d7df034-44e8-487f-972e-1d46a50559ad.png)
-  
-  El registro SRV permite que los servicios se ejecuten facilmente en puertos no standard y reducir la carga.
-  
-  El parametro `autodiscover`, como bien dice descubre automaticamente el nombre simbolico del servicio. Con `_tcp` indicamos el protocolo de transporte del servicio. 
-  
-  El valor `SRV` indica la clase de registro DNS que és. `443` indica el puerto en el que se encuentra el servicio. Finalmente `ce202205..dnssw.net` indica el nombre del host que  proporciona el servicio.
-  
 Una vez llegados ha este punto ya tendriamos configurado completamente nuestro servicio DNS en el cloud.
 
-### INSTALACIÓN APACHE2
+## 2. INSTALACIÓN APACHE2
 La función principal de apache es brindar a los usuarios todos los ficheros necesarios para la correcta visualización de la página web.
 - Instalamos realizando la comanda
 ```sh
@@ -217,6 +218,10 @@ nano /var/www/cosmosdesign.es/datos/web/index.html
     </body>
 </html>
 ```
+
+- En terminos generales la configuración de permisos debe quedar tal que así:
+  ![image](https://user-images.githubusercontent.com/73543470/167138100-a0723d4b-a957-4226-a4c8-c6f4f9c3e277.png)
+_Al iniciar el Apache, este inicia una serie de processos que se ejecutan con el usuario www-data y el grupo www-data.En el caso de `/logs` hemos indicado que el usuario es www-data que forma parte del grupo root y el único que puede RWX és el usuario www-data _
 
 - Lo siguiente es modificar el archivo de configuración de apache para nuestro uso. En primer lugar crearemos el directorio `swhosting/vhosts/` para que el SWPanel sepa encontrar el archvio de vhosts. Dentro de este directorio crearemos el archivo `cosmosdesign.es.conf`
 ```sh
