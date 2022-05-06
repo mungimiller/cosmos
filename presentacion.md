@@ -222,7 +222,10 @@ nano /etc/apache2/swhosting/vhost/cosmosdesign.es.conf
 - Debemos configurar nuestro Virtual Host para que quede de la siguiente manera definiendo cada uno de los parametros 
 ![image](https://user-images.githubusercontent.com/73543470/167114188-f0e9cdfb-cd7f-4526-a078-fb589a70066a.png)
 
-En primer lugar definimos mediante `<VirtualHost*:8080>`que ese será el puerto por el que operará.
+En primer lugar definimos mediante `<VirtualHost*:8080>`que ese será el puerto por el que operará. Tanto `ServerName` como `ServerAlias` establecen que el dominio base  que debe coincidir con esta definicion de host virtual. Con `DocumentRoot` indicamos el path donde se encuentran los archivos que dan contenido a la página web.
+
+
+
 
 
 ### PHP
