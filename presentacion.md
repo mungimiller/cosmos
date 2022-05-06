@@ -178,8 +178,13 @@ sudo apt install apache2
 systemctl status apache2
 ```
 -  Cortafuegos que aun no se configurar
--  Posteriormente instalaremos `curl` 
-- 
+
+-  Posteriormente instalaremos `curl`, y efectuaremos la comanda para descargar icanhazip 
+```sh
+apt install curl
+curl -4 icanhazip.com
+```
+
 Una vez instalado debemos proceder a configurar el VirtualHost del servicio web. En debian ya se encuentra un directorio previamente definido para realizar la creación de directorios relacionado con las webs. Por tanto crearemos el directorio  `/var/www/cosmosdesign.es` con el nombre de nuestro dominio.
 
 Crearemos una estructura de directorios que sea compatible con el SW Panel ya que, aunque no lo estemos utilizando, nos interesa tenerlo configurado para poder visualizar en el apartado de gestion de ficheros, los ficheros principales de la web de un modo más gráfico.
