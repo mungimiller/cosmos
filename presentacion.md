@@ -342,6 +342,9 @@ apt install mariadb-server
 mysql_secure_installation
 ```
 
+ NOLOSE DE MOMENTO, creo que apache literal configura y lleva a cabo la resolucion de la pagina por internet, y nginx lo hace a nivel de servidor y este acuta como proxy del host(?).
+  
+ 
 ## 3. INSTALACIÓN CERTIFICADO SSL
 El certificado SSL que he instalado en esta ocasión es Lets Encrypt. Ya que este es gratuito, ademas de autorenovable por tanto "infinito".
 La funcion de este certificado es generar una clave publica para el dominio cosmosdesign.es que te identifique como administrador de tu dominio. Estas claves se generan a traves de la instalación y activación del certificado, y nos permitiran hacer conexiones cifradas entre usuarios y nuestro servidor.
@@ -472,6 +475,11 @@ Es necesaria la instalación de dicha aplicación para poder realizar pagos onli
 ## 6. CREACIÓN DE BOT DE SOPORTE
 
 ## 7. ANALSIS EMPRESARIAL DEL PROYECTO.
+
+  Problemas extras!
+  
+  Yo me encontre el siguiente:
+  Warning: Journal has been rotated since unit was started. Log output is incomplete or unavailable.
 
 
 
