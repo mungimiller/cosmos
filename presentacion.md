@@ -61,6 +61,9 @@ Ahora tenemos que crear nuestro cloud, para ello iremos a la parte superior dere
 
 Una vez aceptemos la compra se nos enviará al correo electronico las credenciales de usuario y contraseña de acceso SSH al Cloud. Y listo ya podriamos acceder a el.
 
+Para no tener que estar introduciendo la tediosa contraseña que debemos tener por la seguridad de nuestro cloud, yo he realizado una autorización para que mi Putty se pueda conectar directamente al cloud al cargar la configuración de este.
+
+Como nosotros ya tenemos el usuario SSH creado con unas credenciales uqe ya nos ha proporcionado la empresa de servicio de hosting. Lo unico que haremos sera decirle a windows que cada vez que ejecute el acceso directoq que crearemos de Putty, ejecute una comanda 
 ## CREACIÓN Y INSTALACIÓN DE LOS SERVICIOS EN EL CLOUD
 He instalado los siguientes servicios que son imprescindibles para el correcto funcionamiento del servicio de Hosting Web.
 
@@ -458,7 +461,9 @@ de un certificado SSL. Utilizaremos un certificado llamado Lets Encryps, este es
 
 
 ## 4. INSTALACIÓN/CONFIGURACIÓN DE WORDPRESS
-Previamente debemos tener instalado la pila LAMP y que nuestro dominio se encuetre baj un certificado SSL.
+Previamente debemos tener instalado la pila LAMP y que nuestro dominio se encuetre bajo un certificado SSL. También necesitamos un domini, adquirido y un
+
+  
 
 ### Crear BD y usuario en MARIADB
 - 
