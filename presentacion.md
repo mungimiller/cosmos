@@ -25,6 +25,22 @@ Una vez expuestos estos puntos, creo que quedan argumentados los motivos por los
 -
 -
 
+## COMPRAR DOMINO Y CLOUD
+En este caso he realizado la compra del domino y del hosting/cloud con la empresa de SW Hosting, ya que trabajo allí y es más comodo para mi monitorizar/configurar mi servidor ya que funciona bajo la infraestructura de SW
+
+El hecho de que conozca en cierta medida la infraestructura informatica de la empresa se debe a que ocupo la categoria **Help Desk**. Esta posición, es en la que problablemente empezarás en el caso de trabajar en el area de Hosting+Cloud ( con la finalidad de ser Administrador de Sistemas, en este caso lo más probable que sean de SO Linux en su gran mayoria ).
+
+Al trabajar en el area **Help Desk**, perteneces al departamento de Soporte de la empresa. Por tanto, aprendes como funciona la infraestructura de de dicha empresa, los diferentes programas que utilizan para dar mantenimiento a los servidores que funcionan 24Hs al dia. Además estas empresas suelen tener un cliente visual con el que el cliente puede administrarse el servidor de una manera más gràfica, en este caso seria SWPanel, pero encontrarias otras muchas posiblidades como cPanel, Plesk entre otros.
+
+Por tanto tu funcion és responder a las dudas de los clientes ya sea referente a la configuración del servidor mediante algún cliente de los anteriormente menciondos o errores o incidencias que esten teniendo los clientes con su propio servidor. Cabe recordar, que cuando tu contratas un servidor, a no ser que contrates un servicio de monitorización activo mensual, este es privado, y la empresa en cuestión no puede acceder a tu servidor para observar los logs por ejemplo. Normalmente, este apartado se suele llamar "Muro de soporte", serían las incidencias de menor nivel. 
+
+Después encontrariamos los **Tickets Técnicos**, donde entrarian las consultas/acciones/problemas sobre el servidor de un cliente que por ejemplo, paga la mensualidad de monitorización. En este caso, segun la dificultad de la propuesta tu función como HelpDesk es seguir el protocolo de la empresa, revisar el estado del cloud, observar si puedes realizar una acción en el servidor o solucionar un error de este. En el caso de no saber, siempre puedes preguntar a tus compañeros, ellos siempre saben más que tu cuando acabas de empezar. En el caso de ser una accion dificil o un error que no podeis solucionar, lo reportas con acciones que ya hayas realizado
+
+
+Antes de proceder a realizar la instalación del servicio, he comprado el dominio de la página web cosmodesigns.es, mediante la opción que proporciona el SW Panel.
+Una vez este dominio es comprado los registros DNS no apuntan a ningún servicio de Hosting. Por tanto, procederemos a asignar los DNS que le pertocan al dominio 
+utilzando la herramienta del SWPanel. Los DNS deben ser el nombre del cloud y uno de los servidores con los que SWHosting trabaja.
+
 ## CREACIÓN Y INSTALACIÓN DE LOS SERVICIOS EN EL CLOUD
 En primer lugar hemos procedido a contratar el cloud a una empresa externa, en este caso se trata de SW Hosting. Actualmente trabajo allí, ese fue el motivo principal
 que me impulsó a tomar servicios con ellos.
