@@ -467,6 +467,9 @@ Previamente debemos tener instalado la pila LAMP y que nuestro dominio se encuet
 
 ### CONFIGURAR INTERFICIE WORDPRESS
 Como los DNS todavia no se encuentran propagados he modificado mi archivo de host en Winodws para que mi PC apunte al dominio en cuestión con la IP asignada. Para así poder iniciar sesión en Wordpress y poder comenzar a adminstrarlo.
+
+ _Si quieres saber en que punto de propagación se encuentran tus DNS detu dominio puedes utilizar www.whatsmydns.net ._
+ 
 - Para modificar el archivo de host de nuestro Windows debemos abrir un **Bloc de Notas ejecutado como administrador**.
 
 - Debemos a acceder a archivos e ir al siguiente path `C:\Windows\System32\drivers\etc\hosts`
