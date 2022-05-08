@@ -25,26 +25,44 @@ Una vez expuestos estos puntos, creo que quedan argumentados los motivos por los
 -
 -
 
-## COMPRAR DOMINO Y CLOUD
+## QUE ES HELPDESK
 En este caso he realizado la compra del domino y del hosting/cloud con la empresa de SW Hosting, ya que trabajo allí y es más comodo para mi monitorizar/configurar mi servidor ya que funciona bajo la infraestructura de SW
 
 El hecho de que conozca en cierta medida la infraestructura informatica de la empresa se debe a que ocupo la categoria **Help Desk**. Esta posición, es en la que problablemente empezarás en el caso de trabajar en el area de Hosting+Cloud ( con la finalidad de ser Administrador de Sistemas, en este caso lo más probable que sean de SO Linux en su gran mayoria ).
 
 Al trabajar en el area **Help Desk**, perteneces al departamento de Soporte de la empresa. Por tanto, aprendes como funciona la infraestructura de de dicha empresa, los diferentes programas que utilizan para dar mantenimiento a los servidores que funcionan 24Hs al dia. Además estas empresas suelen tener un cliente visual con el que el cliente puede administrarse el servidor de una manera más gràfica, en este caso seria SWPanel, pero encontrarias otras muchas posiblidades como cPanel, Plesk entre otros.
 
-Por tanto tu funcion és responder a las dudas de los clientes ya sea referente a la configuración del servidor mediante algún cliente de los anteriormente menciondos o errores o incidencias que esten teniendo los clientes con su propio servidor. Cabe recordar, que cuando tu contratas un servidor, a no ser que contrates un servicio de monitorización activo mensual, este es privado, y la empresa en cuestión no puede acceder a tu servidor para observar los logs por ejemplo. Normalmente, este apartado se suele llamar "Muro de soporte", serían las incidencias de menor nivel. 
+Por tanto tu funcion és responder a las dudas de los clientes ya sea referente a la configuración del servidor mediante algún cliente de los anteriormente menciondos o errores o incidencias que esten teniendo los clientes con su propio servidor. Cabe recordar, que cuando tu contratas un servidor, a no ser que contrates un servicio de monitorización activo mensual, este es privado, y la empresa en cuestión no puede acceder a tu servidor para observar los logs por ejemplo. Normalmente, este apartado se suele llamar **"Muro de soporte"**, serían las incidencias de menor nivel. 
 
-Después encontrariamos los **Tickets Técnicos**, donde entrarian las consultas/acciones/problemas sobre el servidor de un cliente que por ejemplo, paga la mensualidad de monitorización. En este caso, segun la dificultad de la propuesta tu función como HelpDesk es seguir el protocolo de la empresa, revisar el estado del cloud, observar si puedes realizar una acción en el servidor o solucionar un error de este. En el caso de no saber, siempre puedes preguntar a tus compañeros, ellos siempre saben más que tu cuando acabas de empezar. En el caso de ser una accion dificil o un error que no podeis solucionar, lo reportas con acciones que ya hayas realizado
+Después encontrariamos los **Tickets Técnicos**, donde entrarian las consultas/acciones/problemas sobre el servidor de un cliente que por ejemplo, paga la mensualidad de monitorización. En este caso, segun la dificultad de la propuesta tu función como HelpDesk es seguir el protocolo de la empresa, revisar el estado del cloud, observar si puedes realizar una acción en el servidor o solucionar un error de este. En el caso de no saber, siempre puedes preguntar a tus compañeros, ellos siempre saben más que tu cuando acabas de empezar. En el caso de ser una accion dificil o un error que no podeis solucionar, lo reportas con acciones que ya hayas realizado para que el Administrador de Sistemas que lea tu reporte no tenga que realizar la tarea dos veces. En el caso de poder solucionar el ticket llevarás a cabo las acciones que creas necesarias. Normalmente suelen peditte coDeploys, cambios de cabezeras, cambiar parametros PHP de Apache, cambiar permisos de directorios y ficheros...
 
+Otra de las funciones que realizaras es supervisar el estado de los servidores con un programa de monitorización de equipos y servicios de la red. En mi caso es **NAGIOS**. En este, te iran apareciendo diferentes alertas como _Warning y Critical_ definiendo el problema ya sea a nivel de Hardware por ejemplo por sobreuso de los vCores, como por ejemplo un problema MAILQ o un RevisarHack por exceso de conexiones al servidor por segundo.
 
-Antes de proceder a realizar la instalación del servicio, he comprado el dominio de la página web cosmodesigns.es, mediante la opción que proporciona el SW Panel.
+## COMPRA DEL DOMINIO
+
+Antes de proceder a realizar la instalación del servicio, he comprado el dominio de la página web cosmodesigns.es, mediante la opción que proporciona el SW Panel de la siguiente manera:
+- Accedemos a Dashboard de SWPanel
+- Dominios i SSL
+- Cartera de Dominios
+- Añadir Dominio
+- Verificamos si este se encuentra disponible. Siempre podemos utilizar herramientas como www.who.is para verificar el estado del dominio que nos interese.
+- Una vez comprado nos pedira que demos un monton de datos declarando que somos una persona que existe, mediante DNI, etc.
+- Después ya tendríamos nuestro dominio comprado y guardado en nuestra billetera de dominios.
 Una vez este dominio es comprado los registros DNS no apuntan a ningún servicio de Hosting. Por tanto, procederemos a asignar los DNS que le pertocan al dominio 
 utilzando la herramienta del SWPanel. Los DNS deben ser el nombre del cloud y uno de los servidores con los que SWHosting trabaja.
 
+## COMPRA DEL CLOUD
+Ahora que ya tenemos en nuestra posesión el dominio, observaremos que estamos en el servidor whois de dominios delcarados en internet, resolviendo con el dia de contratación y la empresa que registró el dominio que en este caso fue SWHosting.
+
+Ahora tenemos que crear nuestro cloud, para ello iremos a la parte superior derecha del Panel y seleccionaremos Crear nuevo servicio.
+- Seleccionaremos Cloud
+- Cloud One
+- Debian v.10
+
+Una vez aceptemos la compra se nos enviará al correo electronico las credenciales de usuario y contraseña de acceso SSH al Cloud. Y listo ya podriamos acceder a el.
+
 ## CREACIÓN Y INSTALACIÓN DE LOS SERVICIOS EN EL CLOUD
-En primer lugar hemos procedido a contratar el cloud a una empresa externa, en este caso se trata de SW Hosting. Actualmente trabajo allí, ese fue el motivo principal
-que me impulsó a tomar servicios con ellos.
-El cloud por el que me decidí se trata de un Debian Buster v.10, en el cual he instalado los siguientes servicios que son imprescindibles para el correcto funcionamiento del servicio de Hosting Web.
+He instalado los siguientes servicios que son imprescindibles para el correcto funcionamiento del servicio de Hosting Web.
 
 Los pasos de la instalación de los diferentes servicios son:
 
