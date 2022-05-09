@@ -520,7 +520,57 @@ En este punto lo unico que queda por hacer antes de proceder a la instalación d
  
  
 ### INSTALACIÓN DEL ENTORNO
+Para instalar wordpress lo primero que debemos hacer es verificar si tenemos el comando `apt install curl` instalado. 
+  
+ Antes de proceder con la descarga e instalación tenemos que determinar donde va a estar instalado wordpress. En este caso como queremos instalarlo en el dominio cosmosdesign.es, por tanto, procederemos a instalar Wordpress en el directorio ` cd /var/www/cosmosdesign.es/datos/` que tenemos configurado hace rato.
+  
+ -  Una vez nos encontremos en el directorio anteriormente mencionado debemos descargar Wordpress en su verisón comprimida.
+ ```sh
+    curl -O https://wordpress.org/latest.tar.gz
+``` 
+  
+- Después tenemos que descomprimir:
+ ```sh
+ tar xzvf latest.tar.gz
+ ```
+  
+ - Observaremos que se han descargado todos los archivos siguientes:
+  ![image](https://user-images.githubusercontent.com/73543470/167429681-c74e120a-43c7-4cc0-b1bf-8f0d60f2e5bc.png)
 
+ - Una vez estemos ene ste punto modificaremos el nombre de la carpeta wordpres que hemos descargado por web. Y seguidamente le cambiaremos los permisos  de propiedad y le otorgaremos el usuario proporcionado por SWHosting. También podeis utilizar el usuario www-data ya que este permite que Apache pueda leer y escribir archivos de wordpress.
+ ```sh
+sudo chown -R Al..78:AL..78 /var/www/cosmosdesign.es/datos
+sudo chown -R www-data:www-data /var/www/cosmosdesign.es/datos
+ ```
+
+ - A continuación efectuaremos las siguientes comandas para que los directorios tengan los permisos correctos en los directorios de Wordpress.
+```sh
+sudo find /var/www/wordpress/ -type d -exec chmod 750 {} \;
+sudo find /var/www/wordpress/ -type f -exec chmod 640 {} \; 
+```
+  
+#### INSTALACIÓN DE CLAVES
+Posteriormente tenemos que configurar algunos archivos de la configuración principal de Wordpress. El primer objetivo sera ajustar algunas claves secretas para brindar seguridad en la instalación.
+  
+Para obtener los valores del generador de claves secretas tenemos que efectuar la siguiente comanda:
+```sh
+curl -s https://api.wordpress.org/secret-key/1.1/salt/
+```
+El cual mostrará el siguiente mensaje x ejemplo:
+![image](https://user-images.githubusercontent.com/73543470/167436074-89580424-ce2d-4d71-a12a-2c888bad3ccb.png)
+  
+- Una vez realizada esta comanda obtendremos valores unicos, que deberemos copiar directamente en nuestro archivo de configuración, wp-config.php para establecer las claves seguras. Para ello abrimos el archivo `nano /var/www/cosmosdesign.es/datos/web/wp-config.php`
+ ![image](https://user-images.githubusercontent.com/73543470/167437504-dd005376-d97c-4b10-a78d-6b9f6262af79.png)
+  
+ _Recuerda que debes substituir todos los valores mostrados por la comanda que genera las secret keys en el apartado indicado en esta última imagen._
+  
+-  Ahora que ya se encuentran securizadas las variables de wordpress, debemos ajustar el nombre de la base de datos, el usuario y la contraseña que hemos configurado previamente en MariaDB, en el mismo archivo de wp-config.php.
+ ![image](https://user-images.githubusercontent.com/73543470/167438662-dcbf4ec8-9056-476d-8dc1-f084c0ae7636.png)
+
+- También añadiremos la siguientes definiciones que permitiran la conexión FTP a un usuario en concreto, y mediante el FS_METHOD direct, evitamos que nuestro Wordpress solicite crenciales de FTP cuando se relicen ciertas acciones.
+  
+En este punto ya tendrimos configurados Wordpress y por tanto ya podriamos acceder a nuestro dominio utilizando nuestro dominio cosmosdesign.es para poder finalizar la configuración de Wordpress a través de interfaz web
+  
 ### CONFIGURAR INTERFICIE WORDPRESS
 Como los DNS todavia no se encuentran propagados he modificado mi archivo de host en Winodws para que mi PC apunte al dominio en cuestión con la IP asignada. Para así poder iniciar sesión en Wordpress y poder comenzar a adminstrarlo.
 
@@ -533,7 +583,9 @@ Como los DNS todavia no se encuentran propagados he modificado mi archivo de hos
 
 - Seguidamente tenemos que modificar el archivo añadiendo en la parte final de este el nombre del dominio i la IP asignada.
 ![image](https://user-images.githubusercontent.com/73543470/166690357-da34c6d3-c106-4735-a6c2-567d0d198303.png)
-
+  
+- Para acceder a wordpress tenemos que introducir la siguiente URL `http://cosmosdesign.es/wp-admin/` el cual nos redigira a la siguiente pagina donde hemos de especificar el nombre de usuario de conexión a wordpress y la contraseña además de un email. Finalizaremos haciendo click en instalar Wordpress.
+  
 - Para acceder a wordpress tenemos que introducir la siguiente URL `http://cosmosdesign.es/wp-admin/` donde nos llevará a iniciar sesión que dará a la siguiente ventana
 ![image](https://user-images.githubusercontent.com/73543470/166509748-f8182557-7336-4fbb-b21e-98d8467e90e0.png)
 
