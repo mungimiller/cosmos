@@ -468,11 +468,57 @@ usuario no root con privilegios
 ### Crear BD y usuario en MARIADB
 El primer paso és intalar la Base de Datos para poder almacenar y administrar la información del sitio y del usuario.
 
- - Tenemos que ejecutar MariaDB como cuenta RAIZ:
+#### CREAR USUARIO CON PERMISOS
+ - Tenemos que ejecutar MariaDB como cuenta RAIZ, o con cualquier usuario que tenga permisos administrativos. En este caso crearemos un usuario, al que le otorgaremos permisos administrativos. El usuario será CQ893_WP, pero antes tenemos que iniciar sesión como usuario raiz.
+
 ```sh
 sudo mariadb
 ```
+- Posteriormente crearemos el usuario con permisos administrativos utilizando la siguiente comanda:
+  ```sh
+  GRANT ALL ON *.* TO '	CQ893_WP'@'localhost' IDENTIFIED BY 'passowrd' WITH GRANT OPTION;
+```
+ - Eliminamos los privilegios para asegurar que los actuales se actualicen y cerrar MariaDB.
+ ```sh
+  FLUSH SERVICES;
+  exit;
+  ```
+#### CREAR BASE DE DATOS
+- Comenzaremos Creando una BD para wordpres realizando la siguiente comanda, el nombre de la base de datos sera la misma que la del usuario
+```mariadb
+CREATE DATABASE CQ893_WP DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+```
+  
+- Crearemos un usuario de MYSQL que utilizaremos exculsivamente para operar en nuestra nueva BD con la siguiente comanda:
+ ```sql
+ GRANT ALL ON CQ893_WP.* TO 'CQ893_WP'@'localhost' IDENTIFIED BY 'password';
+ ```
+ - Eliminamos los privilegios para asegurar que los actuales se actualicen y cerrar MariaDB.
+ ```sh
+  FLUSH SERVICES;
+  exit;
+  ```
 
+  Llegados a este punto ya tendiramos el usuario y la BD que utilizará Wordpress. Para continuar debemos verificar si tenemos la siguientes extensiones PHP instaladas utilizadas por el CMS de Wordpress.
+  
+ #### EXTENSIONES PHP ADICIONALES
+ AL configurar LAMP solo necesitamos una cantidad de extensiones minima para que PHP pueda comunicarse con MariaDB y Wordpress. Pero estos complementos necesitan a su vez mas complementos de los cuales se aprovechan para realizar funciones PHP extras.
+Por tanto instalaremos las siguientes:
+```sh
+sudo apt update
+sudo apt install php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip
+```
+  
+- Después de instalar los paquetes debemos reinciar apache2 para que este pueda cargar las nuevas extensiones instaladas.
+```sh
+sudo systemctl restart apache2
+```
+  
+En este punto lo unico que queda por hacer antes de proceder a la instalación de Wordpress es realizar algunos cambios en la configuración de Apache para permitir que el CMS funcione correctamente.
+  
+ #### CONFIGURACIÓN APACHE - .htaccess
+ 
+ 
 ### INSTALACIÓN DEL ENTORNO
 
 ### CONFIGURAR INTERFICIE WORDPRESS
