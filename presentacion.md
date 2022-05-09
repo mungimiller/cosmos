@@ -462,12 +462,16 @@ de un certificado SSL. Utilizaremos un certificado llamado Lets Encryps, este es
 
 
 ## 4. INSTALACIÓN/CONFIGURACIÓN DE WORDPRESS
-Previamente debemos tener instalado la pila LAMP y que nuestro dominio se encuetre bajo un certificado SSL. También necesitamos un domini, adquirido y un
-
-  
+Previamente debemos tener instalado la pila LAMP y que nuestro dominio se encuetre bajo un certificado SSL. También necesitamos un dominio adquirido y un
+usuario no root con privilegios
 
 ### Crear BD y usuario en MARIADB
-- 
+El primer paso és intalar la Base de Datos para poder almacenar y administrar la información del sitio y del usuario.
+
+ - Tenemos que ejecutar MariaDB como cuenta RAIZ:
+```sh
+sudo mariadb
+```
 
 ### INSTALACIÓN DEL ENTORNO
 
