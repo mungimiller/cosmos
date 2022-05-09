@@ -41,15 +41,18 @@ Otra de las funciones que realizaras es supervisar el estado de los servidores c
 ## COMPRA DEL DOMINIO
 
 Antes de proceder a realizar la instalación del servicio, he comprado el dominio de la página web cosmodesigns.es, mediante la opción que proporciona el SW Panel de la siguiente manera:
-- Accedemos a Dashboard de SWPanel
-- Dominios i SSL
-- Cartera de Dominios
-- Añadir Dominio
+- Accedemos a Dashboard de SWPanel > Dominios i SSL > Cartera de Dominios
+![image](https://user-images.githubusercontent.com/73543470/167443139-16b352ae-dca6-48bd-8c3d-0f3bcb9696fc.png)
 - Verificamos si este se encuentra disponible. Siempre podemos utilizar herramientas como www.who.is para verificar el estado del dominio que nos interese.
-- Una vez comprado nos pedira que demos un monton de datos declarando que somos una persona que existe, mediante DNI, etc.
+![image](https://user-images.githubusercontent.com/73543470/167444036-c95f308f-6dc3-4d58-81fd-1131c1dcf1da.png)
+
+- Este se nos añadirá al carrito superior, donde si accedemos debemos declarar que somos el propietario del dominio vinculando nuestro DNI, para confirmar que somos una perona real.
+![image](https://user-images.githubusercontent.com/73543470/167445056-5d0c5b84-158b-4f62-9522-e31533d2fc1f.png)
+
 - Después ya tendríamos nuestro dominio comprado y guardado en nuestra billetera de dominios.
-Una vez este dominio es comprado los registros DNS no apuntan a ningún servicio de Hosting. Por tanto, procederemos a asignar los DNS que le pertocan al dominio 
-utilzando la herramienta del SWPanel. Los DNS deben ser el nombre del cloud y uno de los servidores con los que SWHosting trabaja.
+![image](https://user-images.githubusercontent.com/73543470/167445176-bf809858-4cac-47dc-b1a5-5b1ba2df9c20.png)
+
+Una vez este dominio es comprado los registros DNS no apuntan a ningún servicio de Hosting. Por tanto, procederemos a asignar los DNS que le pertocan al dominio utilzando la herramienta del SWPanel. Los DNS deben ser el nombre del cloud y uno de los servidores con los que SWHosting trabaja.
 
 ## COMPRA DEL CLOUD
 Ahora que ya tenemos en nuestra posesión el dominio, observaremos que estamos en el servidor whois de dominios delcarados en internet, resolviendo con el dia de contratación y la empresa que registró el dominio que en este caso fue SWHosting.
