@@ -64,6 +64,7 @@ Una vez aceptemos la compra se nos enviará al correo electronico las credencial
 Para no tener que estar introduciendo la tediosa contraseña que debemos tener por la seguridad de nuestro cloud, yo he realizado una autorización para que mi Putty se pueda conectar directamente al cloud al cargar la configuración de este.
 
 Como nosotros ya tenemos el usuario SSH creado con unas credenciales uqe ya nos ha proporcionado la empresa de servicio de hosting. Lo unico que haremos sera decirle a windows que cada vez que ejecute el acceso directoq que crearemos de Putty, ejecute una comanda 
+
 ## CREACIÓN Y INSTALACIÓN DE LOS SERVICIOS EN EL CLOUD
 He instalado los siguientes servicios que son imprescindibles para el correcto funcionamiento del servicio de Hosting Web.
 
