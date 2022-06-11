@@ -856,7 +856,23 @@ En este caso instalaremos diferents extras a nuestro servidor, que nos vendrán 
   ```
   Una vez copiado nos dirigimos a `jail.local` y analizaremos el contenido de este y realizaremos algunas modificaciones:
   
+  En la siguiente imagen observamos el rango de IPs que no se deben banear ya que forman parte de la infraestructura de SW Hosting, también observamos que el tiempo de baneo es 10 horas. A continuación se indica que se procede a banear cuando hay 10 conexiones en un máximo de 60 segundos y en la última es por donde se notifica el baneo.
   ![image](https://user-images.githubusercontent.com/73543470/173201973-c505f312-824b-4119-b100-58c673450b56.png)
+  
+  Debemos configurar Fail2Ban para los diferentes servicios que funcionan en nuestro servidor, comenzaremos por configurar el servicio:
+  
+  ### Configuración SSH
+  Tenemos que configurar que escucha por el puerto 2200 ya que es con el puerto que trabaja SW Hosting.
+  
+  ![image](https://user-images.githubusercontent.com/73543470/173202223-9dbdb3c6-1c0e-4b4e-816d-4d7777e255ee.png)
+
+  ### Configuración PROTFTPD
+  Indicamos los puertos por los alias que hay definidos en el servidor
+  
+  ![image](https://user-images.githubusercontent.com/73543470/173202301-0c7c505d-ebee-4b36-8df5-d44035b6020d.png)
+  
+  ### Configuración POSTFIX
+
 
   
   
