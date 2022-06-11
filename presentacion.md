@@ -241,7 +241,15 @@ service postfix restart
 service opendkim restart
 ```
 
-Una vez llegados ha este punto ya tendriamos configurado completamente nuestro servicio DNS en el cloud.
+### CONFIGURAR ZONAS DNS DEL CLOUD
+Una vez hemos configurado los registros DNS de nuestro Cloud debemos modificar 3 archivos que se encuentran en el directorio `cd /etc/bind`.
+
+- En primer lugar nos encontrariamos con `named.conf`, en este archivo incluiremos nuestra nueva zona cosmosdesign.es ya que estamos declarando la resolución directa de nuestro dominio.
+![image](https://user-images.githubusercontent.com/73543470/173199193-b9ee5b5f-7f38-41e1-a240-1dfb9a21d9d4.png)
+
+- En tercer lugar nos encontrariamos con 'named.conf.default-zones', en esta debemos introducir estos parametros ya que SW Hosting trabaja con ellos. La resolución DNS a nivel de hosting se lleva a nivel de servidor, pero las zonas DNS pasan por otro servidor DNS privado de SWHosting, por tanto, no tengo manera de mostrar la configuración. 
+
+Por tanto, una vez llegados ha este punto ya tendriamos configurado completamente nuestro servicio DNS en el cloud para trabajar con SWHosting.
 
 ## 2. INSTALACIÓN LAMP
 ### APACHE2
@@ -609,6 +617,60 @@ Llegados a este punto debemos reinciar el servicio Postfix para que los cambios 
  ```
 /etc/init.d/dovecot reload  
 ```
+  
+## INSTALAR Y CONFIGURAR SPAM ASSASSIN
+  En primer lugar debemos instalar el paquete:
+  
+  ```
+  apt-get install spamassasin spamc 
+   ```
+  
+   Seguidamente debemos crear un usuario para Spam Assasin
+  ```
+  adduser spamd --disabled-login
+  ```
+  
+  Ahora debemos dirigirnos al archivo ` nano /etc/defaul/assassin` y editarlo. Lo primero que debemos hacer es activarlo añadiendo esta linea:
+  
+  ![image](https://user-images.githubusercontent.com/73543470/173200027-aaeacd50-28e9-4d2f-9b3f-5a14c7e55700.png)
+  
+  Después necesitamos configurar los parámetros de inicio y las opiones indicando el directorio de creación junto con el usuario
+  
+  ![image](https://user-images.githubusercontent.com/73543470/173200110-b999f3fc-7046-4461-af0e-6c912fd7a492.png)
+  
+  En la siguiente linea debemos especificar que el PID del archivo también se guardará en el directorio `/home/spamd`
+  
+  ![image](https://user-images.githubusercontent.com/73543470/173200186-949e7585-6959-4e87-9c9f-5b726c1ff1bc.png)
+  
+  Finalmente mediante el `CRON=1` especificamos que las reglas de Spam Asssasins se actualizarán automáticamente.
+  
+  ![image](https://user-images.githubusercontent.com/73543470/173200228-1eeb2d83-7e5a-42b0-8e68-2e6a450c8450.png)
+  
+  Una vez llegados a este punto tenemos que configurar las reglas antispam que tendrá nuestro servicio. Para ello debes dirigirte al archivp `nano /etc/spamassassin/local.cf`.
+  
+  SpamAssassin califica el correo, y detecta que el que tiene mas de 5 en su verificación es correo no deseado. Para que realice esta funcion debemos modificar y descomentar estos parámetros en dicho archivo:
+  ```
+  rewrite_header Subject ***** SPAM _SCORE_ *****
+report_safe             0
+required_score          5.0
+use_bayes               1
+use_bayes_rules         1
+bayes_auto_learn        1
+skip_rbl_checks         0
+use_razor2              0
+use_dcc                 0
+use_pyzor               0
+  ```
+  
+  Posteriormente, necesitamos modificar el archivo `/etc/postfix/master.cf` para decirle que cada correo será revisado por SpamAssassin. Debemos encontrar la linea creada anteriormente con submission y agregar que utilizará el filtro de Spam Assassin
+  
+  ![image](https://user-images.githubusercontent.com/73543470/173200580-0a75e371-4191-439f-be93-67579b046b33.png)
+  
+  Finalmente debemos añadir el siguiente parámetro para que spam assassin pueda trabajar.
+  
+  ![image](https://user-images.githubusercontent.com/73543470/173200663-884af2e6-6909-40a3-a971-ff97966e781b.png)
+  
+  Por último debes iniciar el servicio SpamAssassin y reiniciar Postfix ya que hemos realizado modificaciones en su configuración.
 
 ## CREACIÓN Y CONFIGURACIÓN DEL SERVICIO DE HOSTING
 Una vez configurado el Cloud al completo podemos proceder a la creación del servicio de Hosting.
@@ -623,7 +685,6 @@ En este caso al tratarse de un dominio .es la propagación és más lenta ya que
 
 Cuando los DNS del dominio ya coinciden con los del Hosting y además estos se encuentran propagados a través de internet. Procederemos a la creación y instalación 
 de un certificado SSL. Utilizaremos un certificado llamado Lets Encryps, este es gratuito y lo que nos proporciona es que no salte ese aviso de que la página no es segura al entrar en ella, además del candado en el lado superior izquierdo del navegador. Estos mensajes no se muestran porque la web se encuentra encryptada y por tanto es más segura.
-
 
 
 ## 4. INSTALACIÓN/CONFIGURACIÓN DE WORDPRESS
