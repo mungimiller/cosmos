@@ -476,6 +476,7 @@ Este lo tenemos que configurar para poder manejar las conexiones SMTP y enviar l
   
 ### main.cf
   En primer lugar debemos hacer una copia del archivo original en `cd /etc/postfix`
+  
   ```
   cp /etc/postfix/main.cf /etc/postfix/main.cf
   ```
@@ -503,6 +504,7 @@ Para entender un poco mejor que significan todas estas lineas de comandos, parti
   ![image](https://user-images.githubusercontent.com/73543470/173192389-fb18cd4f-b743-4efb-8b5d-11c72a208a6c.png)
   
 Para finalizar todos los parametros que debes añadir/modificar de `main.cf` son los siguientes:
+  
 ```
 smtpd_tls_cert_file = /etc/ssl/swhosting/certs/MV2016070510001.dnssw.net.pem
 smtpd_tls_key_file = /etc/ssl/swhosting/private/MV2016070510001.dnssw.net.key
@@ -521,15 +523,18 @@ smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
 
 ### master.cf  
 El archivo `master.cf` contiene la configuración especifica de cada instància de postfix. En este aparecen los bloques de submisiones y submisiones de estos.
+  
 ![image](https://user-images.githubusercontent.com/73543470/173192534-ca391be3-9eac-4974-9537-121300ac2305.png)
 
 - El siguiente bloque debemos añadirlo al final del archivo, ya que mediante estos parametros hacemos referéncia a:
   Submision ( Puerto 587 ) Ofrece la posibilidad de usar TLS (STARTTLS) ya que así lo establecimos en main.cf con `smtpd_tls_security=may`
   Submissions ( Puerto 465 ) Permite y obliga a conectarte via TLS segun los parametros que establecimos anterioremnte `smptd_tls_auth_only=yes` y `smtpd_tls_wrappermdoe=yes`
+  
   ![image](https://user-images.githubusercontent.com/73543470/173192666-16879334-76f8-4bf0-8ce4-404c6201f90c.png)
 
  Te estarás preguntando y porque submission? Són alias de nombres de puertos, la manera de añadirlos es la siguiente:
  Debemos acceder a `nano /etc/services`, buscar el nombre que haya para el puerto 465, duplicarlo y cambiarle el nombre a submission.
+  
   ![image](https://user-images.githubusercontent.com/73543470/173193068-24b208ba-f0fd-403c-9e51-366cdbaf91f8.png)
 
 ## SNI
@@ -538,9 +543,11 @@ El archivo `master.cf` contiene la configuración especifica de cada instància 
   - Este sni.db se genera automaticamente con la ejecución de `postmap -F /etc/postfix/sni`
   
   Por tanto para la configuración de este debemos acceder al fichero `nano /etc/postfix/sni` e introducir el nombre del cloud con el path de las claves KEY y PEM del certificado SSL. Seguidamente debes introducir el nombre del alias que hace referencia a la IP del correo configurada en los DNS del Cloud, junto con sus respectivas claves.
+  
   ![image](https://user-images.githubusercontent.com/73543470/173193378-a6929b88-8382-4995-a319-186674b201da.png)
   
 Llegados a este punto debemos reinciar el servicio Postfix para que los cambios efectuados se lleven a cabo:
+  
   ```
   /etc/init.d/postfix relaod
   ```
@@ -549,13 +556,22 @@ Llegados a este punto debemos reinciar el servicio Postfix para que los cambios 
  Para proceder a la configuración de este debemos acceder a los archivos `/etc/dovecot/conf.d/10-ssl.conf` y `10-sni.conf`
   
  - En primer lugar accederemos a `10-ssl.conf`, donde indicaremos que queremos el servicio ssl activo, e indicaremos donde se encuentra el path a las claves PEM y KEY del ceritficado SSL
+  
   ![image](https://user-images.githubusercontent.com/73543470/173194336-c52f37ab-7065-420d-9c2b-7211d90714f2.png)
 
-- Aquí indicaremos el directorio raiz de donde se encuentran nuestros certificados
+   Aquí indicaremos el directorio raiz de donde se encuentran nuestros certificados
+  
   ![image](https://user-images.githubusercontent.com/73543470/173194407-8acd3ad3-e0d8-48bc-8705-73a9caca99eb.png)
   
-Una vez terminado procederemos a modificar el archivo `10-sni.conf`
+- Una vez terminado procederemos a modificar el archivo `10-sni.conf`, en el que deberemos añadir el nombre de nuestro alias de dominio que ahce referencia al DNS del mail, con la localización de los certificados de SLL.
   
+  ![image](https://user-images.githubusercontent.com/73543470/173194637-5def9534-f94b-4342-b85d-bd451ec47243.png)
+  
+ Para finalziar debemos reiniciar el servicio dovecot:
+ ```
+/etc/init.d/dovecot reload  
+```
+
   
 
   
