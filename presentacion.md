@@ -445,7 +445,123 @@ Cuando alguien hace una solicitud para abrir una página web, el navegador se co
 Funcina como servidor proxy de correo electrónico SMPT, POP3, IMAP.
 
 ## 5. INSTALACIÓN POSTFIX + DOVECOT
-A continuación configuraremos el servidor de correo Postfix MTA(transferencia),
+En este apartado configuraremos el servidor para que también opere como un servidor de corre utilizando las tecnologias Postfix, Dovecot, MariaDB y SpamAssasin.
+
+Previamente debemos tener configuradosel dominio, mysql, root y SLL. Además necesitamos tener configurado FQDN.
+
+Debemos realizar la instalación en la raiz por tanto realizamos la siguiente comanda:
+```
+sudo -i
+```
+
+### 1. Instalación de paquetes:
+```
+apt-get install postfix postfix-mysql dovecot-core dovecot-imapd dovecot-lmtpd dovecot-mysql
+```
+
+Una vez comenzada la instalación nos saltará la siguiente pantalla, donde debes seleccionar Internet Site:
+  
+ ![image](https://user-images.githubusercontent.com/73543470/173190837-1c82b5f6-987e-4582-82c5-e3524d1d548e.png)
+
+ Posteriormente tendremos que introducir nuestro dominio o FQDN:
+  
+ ![image](https://user-images.githubusercontent.com/73543470/173190890-323a44f3-3879-4b9a-89ba-e761b1390bca.png)
+
+ Una vez instaladas las tecnologias, debemos dirigirnos a nuestro Gestor de BD, en nuestro caso, MariaDB. En este, vamos a configurar 3 tablas, una para el dominio, una para los usuarios y la ultima para el alias.
+  
+Para ello iniciaremos sesion en mysql sfsdf
+  
+## 3.Configurar Postfix
+Este lo tenemos que configurar para poder manejar las conexiones SMTP y enviar los mensajes para cada usuario introducido en la base de datos.
+  
+### main.cf
+  En primer lugar debemos hacer una copia del archivo original en `cd /etc/postfix`
+  ```
+  cp /etc/postfix/main.cf /etc/postfix/main.cf
+  ```
+Procederemos a abrir dicho archivo `nano main.cf` y lo primero que debemos configurar son los parámetros TLS donde utilizaremos el certificado SSL instalado con anterioridad. 
+Este archivo basicamente contiene la configuración de los servicios que treballen amb postfix. 
+Los parámetros a configurar són los siguientes:
+  
+![image](https://user-images.githubusercontent.com/73543470/173192048-3e709eee-00db-4e73-a711-125dd440c2fe.png)
+
+Para entender un poco mejor que significan todas estas lineas de comandos, partiremos el codigo:
+- Especifican la ruta donde se encuentra el certificado, estas claves siempre deben tener la extensión, .PEM y .KEY
+  
+  ![image](https://user-images.githubusercontent.com/73543470/173192101-51469f57-9584-4a54-b058-ace541cf45b8.png)
+
+- Los siguientes indican que se pueden establecer conexiones con  TLS o no, dejando al cliente la opción de activarlo o no. El mismo trabajo lo realizan para el servicio smptd, que es el encargado de que el cliente envie correos al servidor.
+  
+  ![image](https://user-images.githubusercontent.com/73543470/173192212-3868728e-e4da-4a83-95f4-d26bd75fafdc.png)
+
+- Otro parametro importante es el siguiente, donde se configura el directorio para descargar la caché de la CPU en las negociaciones TLS
+  
+  ![image](https://user-images.githubusercontent.com/73543470/173192336-b493ee94-20fc-44d7-897b-9e29ae463e7b.png)
+
+- Por último observamos el soporte SNI, este contiene la tabla con el nombre del dominio y la ruta para PEM y KEY.
+  
+  ![image](https://user-images.githubusercontent.com/73543470/173192389-fb18cd4f-b743-4efb-8b5d-11c72a208a6c.png)
+  
+Para finalizar todos los parametros que debes añadir/modificar de `main.cf` son los siguientes:
+```
+smtpd_tls_cert_file = /etc/ssl/swhosting/certs/MV2016070510001.dnssw.net.pem
+smtpd_tls_key_file = /etc/ssl/swhosting/private/MV2016070510001.dnssw.net.key
+smtp_tls_security_level = may 
+smtp_tls_note_starttls_offer = yes 
+smtpd_tls_security_level = may 
+smtpd_tls_loglevel = 1 
+smtpd_tls_received_header = yes 
+smtpd_tls_session_cache_timeout = 3600s 
+tls_random_source = dev:/dev/urandom 
+tls_random_exchange_name = /var/lib/postfix/prng_exch 
+tls_server_sni_maps = hash:/etc/postfix/sni
+smtpd_tls_session_cache_database = btree:${data_directory}/smtpd_scache
+smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
+```
+
+### master.cf  
+El archivo `master.cf` contiene la configuración especifica de cada instància de postfix. En este aparecen los bloques de submisiones y submisiones de estos.
+![image](https://user-images.githubusercontent.com/73543470/173192534-ca391be3-9eac-4974-9537-121300ac2305.png)
+
+- El siguiente bloque debemos añadirlo al final del archivo, ya que mediante estos parametros hacemos referéncia a:
+  Submision ( Puerto 587 ) Ofrece la posibilidad de usar TLS (STARTTLS) ya que así lo establecimos en main.cf con `smtpd_tls_security=may`
+  Submissions ( Puerto 465 ) Permite y obliga a conectarte via TLS segun los parametros que establecimos anterioremnte `smptd_tls_auth_only=yes` y `smtpd_tls_wrappermdoe=yes`
+  ![image](https://user-images.githubusercontent.com/73543470/173192666-16879334-76f8-4bf0-8ce4-404c6201f90c.png)
+
+ Te estarás preguntando y porque submission? Són alias de nombres de puertos, la manera de añadirlos es la siguiente:
+ Debemos acceder a `nano /etc/services`, buscar el nombre que haya para el puerto 465, duplicarlo y cambiarle el nombre a submission.
+  ![image](https://user-images.githubusercontent.com/73543470/173193068-24b208ba-f0fd-403c-9e51-366cdbaf91f8.png)
+
+## SNI
+  Este se establece en la configuración del main.cf que hemos mostrado anteriormente, `tls_server_sni_maps = hash:/etc/postfix/sni`
+  - hash: indica que buscará el arxiu /etc/postfix/sni.db
+  - Este sni.db se genera automaticamente con la ejecución de `postmap -F /etc/postfix/sni`
+  
+  Por tanto para la configuración de este debemos acceder al fichero `nano /etc/postfix/sni` e introducir el nombre del cloud con el path de las claves KEY y PEM del certificado SSL. Seguidamente debes introducir el nombre del alias que hace referencia a la IP del correo configurada en los DNS del Cloud, junto con sus respectivas claves.
+  ![image](https://user-images.githubusercontent.com/73543470/173193378-a6929b88-8382-4995-a319-186674b201da.png)
+  
+Llegados a este punto debemos reinciar el servicio Postfix para que los cambios efectuados se lleven a cabo:
+  ```
+  /etc/init.d/postfix relaod
+  ```
+ ## DOVECOT
+ Se trata de un MDA que tiene por función almacenar el correo y servirlo mediante POP3 o IMAP al programa cliente (MUA).
+ Para proceder a la configuración de este debemos acceder a los archivos `/etc/dovecot/conf.d/10-ssl.conf` y `10-sni.conf`
+  
+ - En primer lugar accederemos a `10-ssl.conf`, donde indicaremos que queremos el servicio ssl activo, e indicaremos donde se encuentra el path a las claves PEM y KEY del ceritficado SSL
+  ![image](https://user-images.githubusercontent.com/73543470/173194336-c52f37ab-7065-420d-9c2b-7211d90714f2.png)
+
+- Aquí indicaremos el directorio raiz de donde se encuentran nuestros certificados
+  ![image](https://user-images.githubusercontent.com/73543470/173194407-8acd3ad3-e0d8-48bc-8705-73a9caca99eb.png)
+  
+Una vez terminado procederemos a modificar el archivo `10-sni.conf`
+  
+  
+
+  
+
+  
+  
 
 
 ## CREACIÓN Y CONFIGURACIÓN DEL SERVICIO DE HOSTING
