@@ -42,14 +42,18 @@ Otra de las funciones que realizaras es supervisar el estado de los servidores c
 
 Antes de proceder a realizar la instalación del servicio, he comprado el dominio de la página web cosmodesigns.es, mediante la opción que proporciona el SW Panel de la siguiente manera:
 - Accedemos a Dashboard de SWPanel > Dominios i SSL > Cartera de Dominios
+
 ![image](https://user-images.githubusercontent.com/73543470/167443139-16b352ae-dca6-48bd-8c3d-0f3bcb9696fc.png)
 - Verificamos si este se encuentra disponible. Siempre podemos utilizar herramientas como www.who.is para verificar el estado del dominio que nos interese.
+
 ![image](https://user-images.githubusercontent.com/73543470/167444036-c95f308f-6dc3-4d58-81fd-1131c1dcf1da.png)
 
 - Este se nos añadirá al carrito superior, donde si accedemos debemos declarar que somos el propietario del dominio vinculando nuestro DNI, para confirmar que somos una perona real.
+
 ![image](https://user-images.githubusercontent.com/73543470/167445056-5d0c5b84-158b-4f62-9522-e31533d2fc1f.png)
 
 - Después ya tendríamos nuestro dominio comprado y guardado en nuestra billetera de dominios.
+
 ![image](https://user-images.githubusercontent.com/73543470/167445176-bf809858-4cac-47dc-b1a5-5b1ba2df9c20.png)
 
 Una vez este dominio es comprado los registros DNS no apuntan a ningún servicio de Hosting. Por tanto, procederemos a asignar los DNS que le pertocan al dominio utilzando la herramienta del SWPanel. Los DNS deben ser el nombre del cloud y uno de los servidores con los que SWHosting trabaja.
@@ -91,6 +95,7 @@ sudo systemctl status bind9
 mkdir /etc/bind/dbs
 ```
 - Hemos creado la carpeta ya que puede que en un futuro existan mas hostings en el servidor y por tanto diversas configuraciones DNS. Debemos entrar a la carpeta y  vamos a crear un archivo con el nombre del dominio en cuestión y configurar los registros DNS que deben resolver para ese dominio.
+-
 ![image](https://user-images.githubusercontent.com/73543470/166709151-e4f824f7-eda7-43ed-8651-08c934f4a5e4.png)
 
 
@@ -102,26 +107,31 @@ A continuación voy a explicar los parametros que aparecen en la siguiente image
   En este apartado debemos indicar le nombre del servidor, en mi caso tiene este nombre ya que al generar   el cloud con con SW Hosting, le assigna un nombre con la fecha de creación del cloud.
 
 ####  REGISTRO MX
+
   ![image](https://user-images.githubusercontent.com/73543470/166711011-7b944677-b39a-4873-981a-be6b448c5073.png)
 
   Con la siguiente linea indicamos que el servidor de correo és el mismo en el que nos encontramos ahora  mismo.
 
 ####  REGISTRO DNS
+
 ![image](https://user-images.githubusercontent.com/73543470/166711274-b4d0ae55-80b9-4836-8247-f0f3e79aacc2.png)
 
   En la siguiente liena encontramos los registros DNS que utiliza nuestro Cloud para resolver a nivel de internet, en este caso tenemos dos, el principal que vendria a ser el nombre del cloud nuevamente y el secundario que es un servidor dns con el que trabaja SWHosting.
 
 ####  REGISTRO A
+
 ![image](https://user-images.githubusercontent.com/73543470/166712006-6f4ff46e-f30a-4d64-ba8c-d72f9ea4e31e.png)
 
   Aquí nos encontramos el registro A, el cual hace referencia a la página web. Cuando escribimos cosmosdesign.es, realmente estamos haciando referencia a la IP descrita en este apartado.
 
 #### REGISTRO CNAME
+
 ![image](https://user-images.githubusercontent.com/73543470/166711970-6c14c516-534e-430f-911d-e03a3904b3b1.png)
 
   Observamos que estos dos parametros hacen referéncia a los registros CNAME que son alias del dominio, su funcion son parecida a la de un subdominio. EN este caso hemos indicado que si escriben el dominio con www tambien resuelva y muestre nuestra pàgina. También hemos indicado que si escriben mail.nombredelcloud.es este resuelva con el nombre del servidor, el cual te redireccionará al webmail.
 
 #### REGISTRO TXT - SPF1
+
 ![image](https://user-images.githubusercontent.com/73543470/166950612-5bd81bd9-5e39-41e0-a8b9-55e09c9335f6.png)
 
   La función de SPF és determinar que servidores de correo y dominios tiene permitido enviar correo en nombre de tu dominio. También indica a los servidores que reciben tu correo que hacer con los mensajes una vez comprobados, confirman que los mensajes parecen proceder de tu servidor autorizado.
@@ -133,6 +143,7 @@ A continuación voy a explicar los parametros que aparecen en la siguiente image
   Finalmente con `~all` los servidores que reciben correo suelen aceptar los mensajes de remitentes que no figuran en el registro SPF, pero los marca como sospechosos.
 
 #### REGISTRO TXT - DMARC1
+
 ![image](https://user-images.githubusercontent.com/73543470/166985751-da33ba48-b209-4e73-8b40-3b8e33cbad47.png)
 
   En este caso configuraremos el servicio dmarc1, ayuda a los destinatarios a determinar si un mensaje coincide con lo que sabe sobre un remitente. Por tanto, si el mensaje no coincide el servidor receptor puede verificar el registro DMARC para orientarte sobre como manejar el mensaje no alieneado.
@@ -140,6 +151,7 @@ A continuación voy a explicar los parametros que aparecen en la siguiente image
   En este caso, la `-p` indica que que no se lleve a cabo ninguna acción contra el correo no autenticado, pero que envie en su lugar informes de correo electronico a la dirección mailto inscrita en el registro DMARC
   
  ####  REGISTRO SRV
+ 
 ![image](https://user-images.githubusercontent.com/73543470/166985839-0d7df034-44e8-487f-972e-1d46a50559ad.png)
   
   El registro SRV permite que los servicios se ejecuten facilmente en puertos no standard y reducir la carga.
@@ -149,6 +161,7 @@ A continuación voy a explicar los parametros que aparecen en la siguiente image
   El valor `SRV` indica la clase de registro DNS que és. `443` indica el puerto en el que se encuentra el servicio. Finalmente `ce202205..dnssw.net` indica el nombre del host que  proporciona el servicio.
 
 #### REGISTRO TXT - DKIM1
+
 ![image](https://user-images.githubusercontent.com/73543470/166952004-258b38fd-9343-4e68-9d4f-8f68f574fb4b.png)
 
 En este apartado hemos configurado registro DKIM, que és un metodo de autentificación de correo electronico que evita que spammers entre otros elementos maliciosos, se hagan pasar por un dominio.
@@ -213,6 +226,7 @@ mkdir /etc/dkim
  ```sh
  opendkim-genkey -s mail -d cosmosdesign.es
  ```
+ 
    **5.** Esta comanda creará dos archivos ya que `-s` especifica el selector que debe utilizará y la `-d` el dominio en cuestión. Los dos archivos creados son `cosmosdesign.es.private` y `cosmosdesign.es.txt`
    
  ![image](https://user-images.githubusercontent.com/73543470/166979958-c490b643-d4e3-47f5-9a07-eccf8b45d233.png)
@@ -254,6 +268,7 @@ Una vez instalado debemos proceder a configurar el VirtualHost del servicio web.
 Crearemos una estructura de directorios que sea compatible con el SW Panel ya que, aunque no lo estemos utilizando, nos interesa tenerlo configurado para poder visualizar en el apartado de gestion de ficheros, los ficheros principales de la web de un modo más gráfico.
 
 - Para ello crearemos la siguiente estructura  dentro de cosmosdesign.es. Esta primera carpeta tendra /cache, /datos/data, /datos/web, /logs mediante los siguientes comandos
+
 ```sh
 mkdir - p /var/www/cosmosdesign.es/cache
 mkdir - p /var/www/cosmosdesign.es/datos
@@ -262,7 +277,9 @@ mkdir  -p /var/www/cosmosdesign.es/datos/web
 mkdir  -p /var/www/cosmosdesign.es/logs
 ```
 
-- Una vez creados todos los directorios toca dar permisos a estos, en este caso daremos permisos al usuario creado en el SW Panel al contratar el servicio. Este usuario puede conectarse al Panel de control de SW Hosting y configurar de una manera mas grafica el directorio `/var/www/datos//web` y restringiremos los permisos de `RWX` 
+- Una vez creados todos los directorios toca dar permisos a estos, en este caso daremos permisos al usuario creado en el SW Panel al contratar el servicio. Este usuario puede conectarse al Panel de control de SW Hosting y configurar de una manera mas grafica el directorio `/var/www/datos//web` y restringiremos los permisos de
+`RWX` 
+
 ```sh
 chown -R  AL...78:AL...78 /var/www/cosmosdesign.es/datos
 chmod -R 755 /var/www/cosmosdesign.es/datos
@@ -270,6 +287,7 @@ chmod -R 755 /var/www/cosmosdesign.es/datos
 _Mediante `-R` especificamos que se realize de manera recursiva. De esta manera este usuario no puede acceder al resto del servidor solo a dichas carpetas, posteriormente configuraremos el servicio FTP._
 
 - Crearemos  el archivo `index.html` en el directorio `/var/www/cosmosdesign.es/datos/web` con el siguiente codigo para que Apache pueda servir el contenido.
+
 ```sh
 nano /var/www/cosmosdesign.es/datos/web/index.html
 <html>
@@ -289,6 +307,7 @@ nano /var/www/cosmosdesign.es/datos/web/index.html
 _Al iniciar el Apache, este inicia una serie de processos que se ejecutan con el usuario www-data y el grupo www-data. En el caso de `/logs` hemos indicado que el usuario es www-data que forma parte del grupo root y el único que puede RWX és el usuario www-data_
 
 - Lo siguiente es modificar el archivo de configuración de apache para nuestro uso. En primer lugar crearemos el directorio `swhosting/vhosts/` para que el SWPanel sepa encontrar el archvio de vhosts. Dentro de este directorio crearemos el archivo `cosmosdesign.es.conf`
+
 ```sh
 mkdir /etc/apache2/swhosting/vhost
 nano /etc/apache2/swhosting/vhost/cosmosdesign.es.conf
@@ -305,13 +324,16 @@ Con el parametros `Custom Logs` configuraremos el directorio y el nombre del arc
 Con el parametro `Error Log` Apache enviará cualquier información de diagnóstico y registrará cualquier error que encuentre al procesar peticiones al archivo de registro seleccionado. Los 3 archivos los asignamos a la carpeta `logs` de nuestra web.
 
 - A continuación tenemos que habilitar el archivo con la herramienta `a2ensite`
+-
 ```sh
 a2ensite /etc/apache2/swhosting/vhosts/cosmosdesign.es.conf
 ```
 - Después debemos deshabilitar el sitio que viene predeterminado con deafult.
+
 ```sh
 a2dissite 000-default.conf
 ```
+
 - Finalmente comprobamos que todo este correctamente con el siguiente comando
 
 ![image](https://user-images.githubusercontent.com/73543470/167132191-fdcd0f44-2a0e-483f-bdcc-d6854e64853e.png)
@@ -322,9 +344,11 @@ También podemos visualizar nuestra pagina web accediendo a nuestro navegador
 Llegados a este punto podemos mencionar que la configuración de Apache no se lleva a cabo en un solo archivo, sino que ocurre a traves de un diseño donde se pueden agregar y modificar nuevos archivos.
 
 Los archivos que permiten la modificación de Apache son los siguientes:
+
 ```sh
 ls -f /etc/apache2
 ```
+
 ![image](https://user-images.githubusercontent.com/73543470/167168084-f5d280a1-f744-469f-af44-ca4be55e47af.png)
 
 En este apartado profundizaremos en la configuración hablando de las utilidades de cada uno de los comandos.
@@ -342,7 +366,9 @@ Los detalles principales de la configuración vienen en este archivo, que se div
   ![image](https://user-images.githubusercontent.com/73543470/167170043-dc062011-d1f8-4ba5-a2a1-05ade42c0a1f.png)
 
 Además de el resto de includes genericos de Apache:
+
 ![image](https://user-images.githubusercontent.com/73543470/167170253-35404bc4-3dd0-4c11-99df-d71e633207e5.png)
+
 ![image](https://user-images.githubusercontent.com/73543470/167170323-29a3e3d6-6833-4f85-8339-a3e82a54265b.png)
 
   #### <DIRECTORY>
@@ -442,7 +468,19 @@ certbot renew --dry-run
 
 ## 4. INSTALACIÓN NGINX
 Cuando alguien hace una solicitud para abrir una página web, el navegador se comunica con el servidor de ese sitio web. Luego, el servidor busca los archivos solicitados para la página y se los envía al navegador.
-Funcina como servidor proxy de correo electrónico SMPT, POP3, IMAP.
+Funciona como servidor proxy de correo electrónico SMPT, POP3, IMAP.
+  
+En primer lugar hemos de instalar los siguientes paquetes:
+```
+ apt-get install nginx php5-fpm php5-mysql mysql-server 
+```
+  
+El archivo de configuración del host se encuentra en `/etc/nginx/nginx.conf`, en este observaremos las configuraciónes default con las que trabaja nginx. En este apartado lo unico que haremos será añadir las siguientes lineas. La función de estas es indicar a nginx donde se encuentran las configuraciones de nuestros Hosts Virtuales.
+
+![image](https://user-images.githubusercontent.com/73543470/173195437-71037c80-c17a-4d35-9083-3af4b5b1bc1b.png)
+  
+Ahora podemos comprobar que la pagina por defecto de Nginx se encuentra accediendo por la IP del navegador. El archivo de esta configuración se encuentra en el directorio `/etc/nginx/config.d/default.conf`, en el cual indicaremos lo siguiente 
+  
 
 ## 5. INSTALACIÓN POSTFIX + DOVECOT
 En este apartado configuraremos el servidor para que también opere como un servidor de corre utilizando las tecnologias Postfix, Dovecot, MariaDB y SpamAssasin.
@@ -454,7 +492,7 @@ Debemos realizar la instalación en la raiz por tanto realizamos la siguiente co
 sudo -i
 ```
 
-### 1. Instalación de paquetes:
+### Instalación de paquetes:
 ```
 apt-get install postfix postfix-mysql dovecot-core dovecot-imapd dovecot-lmtpd dovecot-mysql
 ```
@@ -471,7 +509,7 @@ Una vez comenzada la instalación nos saltará la siguiente pantalla, donde debe
   
 Para ello iniciaremos sesion en mysql sfsdf
   
-## 3.Configurar Postfix
+## Configurar Postfix
 Este lo tenemos que configurar para poder manejar las conexiones SMTP y enviar los mensajes para cada usuario introducido en la base de datos.
   
 ### main.cf
@@ -571,14 +609,6 @@ Llegados a este punto debemos reinciar el servicio Postfix para que los cambios 
  ```
 /etc/init.d/dovecot reload  
 ```
-
-  
-
-  
-
-  
-  
-
 
 ## CREACIÓN Y CONFIGURACIÓN DEL SERVICIO DE HOSTING
 Una vez configurado el Cloud al completo podemos proceder a la creación del servicio de Hosting.
