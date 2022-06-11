@@ -839,13 +839,34 @@ Una vez creado el Wordpress, voy a realizar una lista con los plugins que tengo 
 
 **Información extra:** _Un CDN a grandes rasgos es un servidor donde se almacenan las imágenes, videos, etc. de tu página web. Basicamente almacena todos los archivos de gran peso, excepto el codigo de la página. Esta información se replican en diferentes nodos de manera que cuando algun usuario accede a la web, detectan que nodo de CDN se encuentra más cerca del punto de carga(PC USUARIO) y procede a cargar las imagenes de dicho nodo, mientras que el codigo lo carga desde el servidor donde se encuentra el hosting._
 
-## 5. INSTALACIÓN WOOCOMMERCE
+## 5. INSTALACIÓN EXTRAS
 
-Es necesaria la instalación de dicha aplicación para poder realizar pagos online
+En este caso instalaremos diferents extras a nuestro servidor, que nos vendrán bien a la hora de administrarlo o mantenerlo seguro. Comenzaremos por instalar Fail2Ban, es una aplicación escrita en Python, protegiendo a tu sistema bloqueando los intentos de acceso de fuerza bruta.
+  
+  ## Instalación Fail2Ban
+  En primer lugar como siempre, debemos instalar el aplicativo.
+  ```
+  apt-get update
+  apt-get install fail2ban
+  ```
+  
+  Seguidamente hemos de acceder a `cd /etc/fail2ban` y tenemos que copiar el contenido de `jail.conf` a jail.local
+  ```
+  cp -pr jail.conf jail.local
+  ```
+  Una vez copiado nos dirigimos a `jail.local` y analizaremos el contenido de este y realizaremos algunas modificaciones:
+  
+  ![image](https://user-images.githubusercontent.com/73543470/173201973-c505f312-824b-4119-b100-58c673450b56.png)
 
-## 6. CREACIÓN DE BOT DE SOPORTE
+  
+  
+  
 
-## 7. ANALSIS EMPRESARIAL DEL PROYECTO.
+
+## 6. COMO SER AUTÓNOMO
+  
+  
+## 7. BALANCE EMPRESARIAL DEL PROYECTO
 
   Problemas extras!
   
