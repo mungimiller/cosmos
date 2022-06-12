@@ -20,10 +20,20 @@ va guiando en tu proceso de aprendizaje.
 Una vez expuestos estos puntos, creo que quedan argumentados los motivos por los que he realizado este proyecto y en que puntos me he fijado para fortalecer las debilidades
 
 ## ÍNDICE
-- Instalación servicios Cloud
-- Configuración 
--
--
+- 
+- Compra del dominio/cloud 
+- Configuración BIND9 - DNS
+- Configuración LAMP
+- Instalación Certificado SSL
+- Configuración NGINX
+- Configuración POSTFIX + DOVECOT
+- Instalación de WORDRPRESS
+- Configuración SPAMASSASIN
+- Configuración FAIL2BAN
+- SCRIPTS
+- COMO SER AUTÓNOMO
+- BALANCE EMPRESARIAL
+- CONCLUSIÓN
 
 ## QUE ES HELPDESK
 En este caso he realizado la compra del domino y del hosting/cloud con la empresa de SW Hosting, ya que trabajo allí y es más comodo para mi monitorizar/configurar mi servidor ya que funciona bajo la infraestructura de SW
