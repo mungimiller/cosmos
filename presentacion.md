@@ -14,7 +14,6 @@ En cuarto lugar, y por último, la idea de implementar un pequeño curso de apre
 Una vez expuestos estos puntos, creo que quedan argumentados los motivos por los que he realizado este proyecto y en que puntos me he fijado para fortalecer las debilidades
 
 ## ÍNDICE
-- 
 - Compra del dominio/cloud 
 - Configuración BIND9 - DNS
 - Configuración LAMP
