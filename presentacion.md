@@ -368,16 +368,16 @@ Los detalles principales de la configuración vienen en este archivo, que se div
 - Configuración vHost
   #### INCLUDE
   La configuración del servidor y los vHosts se manejan mediante la directiva `INCLUDE`, que permite que Apache lea otros archivos de configuración en el archivo `apache2.conf`.
-  
+
   En nuestro caso tenemos los siguientes `IncludeOptional`, que cargan los modulos de configuración `*.conf` de los directorios indicados. Nosotros al crear un directorio personalizado para el vhost lo tenemos que inlcuir de esta manera:
-  
-  ![image](https://user-images.githubusercontent.com/73543470/167170043-dc062011-d1f8-4ba5-a2a1-05ade42c0a1f.png)
 
-Además de el resto de includes genericos de Apache:
+    ![image](https://user-images.githubusercontent.com/73543470/167170043-dc062011-d1f8-4ba5-a2a1-05ade42c0a1f.png)
 
-![image](https://user-images.githubusercontent.com/73543470/167170253-35404bc4-3dd0-4c11-99df-d71e633207e5.png)
+  Además de el resto de includes genericos de Apache:
 
-![image](https://user-images.githubusercontent.com/73543470/167170323-29a3e3d6-6833-4f85-8339-a3e82a54265b.png)
+  ![image](https://user-images.githubusercontent.com/73543470/167170253-35404bc4-3dd0-4c11-99df-d71e633207e5.png)
+
+  ![image](https://user-images.githubusercontent.com/73543470/167170323-29a3e3d6-6833-4f85-8339-a3e82a54265b.png)
 
   #### <DIRECTORY>
   Estas definiciones manejan diferentes directorios con sus respectivos archivos. Apache aplica todas las direcciones en orden, de la mas corta a la más larga, donde existe la posibilidad de anular las opciones anteriores.
@@ -411,15 +411,40 @@ Para realizar la instalación de este paquete debemos efectuar la siguiente coma
 ```sh
 apt install mariadb-server
 ```
-
--  A continuación ejecutaremos un script de seguridad e MariaDB.
-```sh
-mysql_secure_installation
-```
-
- NOLOSE DE MOMENTO, creo que apache literal configura y lleva a cabo la resolucion de la pagina por internet, y nginx lo hace a nivel de servidor y este acuta como proxy del host(?).
   
- 
+-  Nos aseguramos de que se encuentra iniciado mariadb-server con la siguiente comanda:
+  ```
+  systemctl start mariadb.service
+  ```
+  
+- Una vez este se encuentre activo, procederemos a utilizar un script de mariaDB para restringir el acceso al servidor y eliminar cuentas no utilizadas. Así que en primer lugar debemos ejecutar la siguiente comanda: 
+ ```
+  sudo mysql_secure_installation
+ ```
+  
+- En este se iniciará y nos pedirá que ingreses la contraseña a la raiz de la base de datos actual. Como no tenemos ninguno creado, lo dejaremos en blanco.
+  ![image](https://user-images.githubusercontent.com/73543470/173236497-86bbd605-c8ca-4bf9-a737-20a795948f07.png)
+  
+- En la siguiente opción que nos muestra es si desea configurar una contrasé ade reaiz de la base de datos y seleccionaremos NO
+  
+  ![image](https://user-images.githubusercontent.com/73543470/173236539-9a5ac8fe-9ffc-449c-ae8b-1c193e5bedaf.png)
+
+- Al aceptar este script aceptamos los valores predeterminados para todas las preguntas posteriores, también eliminará usuarios anonimos, la BD de prueba i los inicios de sesión raiz remotos y cargará nuevas reglas para que MariaDB sea más seguro.
+  
+- A continuación, no vamos a modificar la cuenta raiz ya que por tareas de rotación de logs y el inicio y la detención de el servidor de BD es mejor no cambiar los detalles de autentificación de la cuenta raiz. Por tanto, procederemos a crear una nueva cuenta con las mismas capacidades que la cuenta RAIZ, de la siguiente manera:
+  ```
+  GRANT ALL ON *.* TO 'admin'@'localhost' IDENTIFIED BY 'password' WITH GRANT OPTION;
+  ```
+  
+- Seguidamente vaciamos los privilegios para asgeurarnos que estos nuevos se guardan:
+  ```
+  FLUSH PRIVILEGES;
+  ```
+
+- Comprovamos que maria DB se encuentra funcional y podemos acceder a dicha cuenta:
+![image](https://user-images.githubusercontent.com/73543470/173236848-99e4a8de-1fe5-4cf2-8579-90c282107375.png)
+
+  
 ## 3. INSTALACIÓN CERTIFICADO SSL
 El certificado SSL que he instalado en esta ocasión es Lets Encrypt. Ya que este es gratuito, ademas de autorenovable por tanto "infinito".
 La funcion de este certificado es generar una clave publica para el dominio cosmosdesign.es que te identifique como administrador de tu dominio. Estas claves se generan a traves de la instalación y activación del certificado, y nos permitiran hacer conexiones cifradas entre usuarios y nuestro servidor.
@@ -484,11 +509,67 @@ En primer lugar hemos de instalar los siguientes paquetes:
 ```
   
 El archivo de configuración del host se encuentra en `/etc/nginx/nginx.conf`, en este observaremos las configuraciónes default con las que trabaja nginx. En este apartado lo unico que haremos será añadir las siguientes lineas. La función de estas es indicar a nginx donde se encuentran las configuraciones de nuestros Hosts Virtuales.
+  
+Además debemos añadir 
 
 ![image](https://user-images.githubusercontent.com/73543470/173195437-71037c80-c17a-4d35-9083-3af4b5b1bc1b.png)
   
 Ahora podemos comprobar que la pagina por defecto de Nginx se encuentra accediendo por la IP del navegador. El archivo de esta configuración se encuentra en el directorio `/etc/nginx/config.d/default.conf`, en el cual indicaremos lo siguiente 
   
+La jerarquia de directorios del servicio de hosting ya la tenemos creada en el directorio `cd /var/www/cosmosdesign.es`. Para que Nginx pueda servir el contenido de dicha página web debemos crear un archivo de configuración, y como hemos especificado anteriormente  en `nginx.conf` hemos incluido nuestro path personalizado llamado:
+  ```
+  /etc/nginx/swhosting/vhosts/cosmosdesign.es
+  ```
+
+La configuración de este archivo contien la información de como tiene que efectuarse nginx en nuestro dominio. Nosotros hemos realizado las siguientes configuraciones que detallaremos en breves. Lo primero que podemos observar es que abrimos el parametro server con tal de especificar las variables que actuan en dicho servidor.
+  
+- En este caso podemos ver que nginx se comunica con a través del puerto 80
+![image](https://user-images.githubusercontent.com/73543470/173237275-3d35abf7-1a1c-418f-97bb-246ab78d0d5a.png)
+  
+  Significado de las diferentes variables que hay que introducir/modificar:
+  
+  - Indicamos que el path en el que se encuentran los diferentes archivos que se proporcionan al cargar la página web
+  
+  ![image](https://user-images.githubusercontent.com/73543470/173237516-9f6353a9-7473-44f6-8712-ff7f7f8868e0.png)
+  
+  - Indicamos que priorice la busqueda de estos archivos con este orden, ya que si hay un .html se cargará antes que un php
+  
+  ![image](https://user-images.githubusercontent.com/73543470/173237604-01d57af7-a367-4601-9473-1300595e46d8.png)
+  
+  - En este apartado debemos indicar la resolución DNS de nuestro dominio, con y sin www.
+  
+  ![image](https://user-images.githubusercontent.com/73543470/173237630-11d1f5d8-9a1c-41d5-ae54-d182e1439de9.png)
+  
+  - En la siguiente linea indicamos que muestre error 503 cuando no es capaz de cargar contenido con ngninx en la misma página.
+  
+  ![image](https://user-images.githubusercontent.com/73543470/173237665-20bb26e1-7f5c-48a3-aa02-97ec523b3c9a.png)
+
+  - En esta imagen observamos el path en el que guardaremos los logs de error y de acceso de nuestro nginx
+  
+  ![image](https://user-images.githubusercontent.com/73543470/173237688-f15917a1-3c7b-4126-899c-b52879d88949.png)
+
+  - Por último realizamos un include diciendole a nginx que en el siguiente path `/etc/nginx/swhosting/all-vhosts.conf` se encuentran archivos de configuración. Este último paso no es necesario a noser que trabajes con swhosting, ya que en dicho archivo de configuración se encuentran configuraciones predeterminadas del servicio, cuando los contratas con ellos.
+  
+  ![image](https://user-images.githubusercontent.com/73543470/173237722-b3575329-2478-48a3-9546-55db1064aba7.png)
+
+
+-  En este caso observamos que nginx esta a la escucha por el puerto 443 y esperando contenido HTTP2 o conexiones SSL. Hemos implementado estas dos escuchas para dividir el trafico que se realiza en la web en dos puertos diferentes segun las consultas que se realizan a nuestra página web.  
+  
+ ![image](https://user-images.githubusercontent.com/73543470/173237321-f89f2480-5b12-4844-a142-8e20d34ffc5f.png)
+  
+A continuación podemos comprobar si las configuraciónes realizadas son correctas:
+  
+![image](https://user-images.githubusercontent.com/73543470/173238017-cc50d507-b946-47a5-ba75-46d9cb9e5194.png)
+  
+En el caso de ser asi, procederemos a reiniciar nuestro servicio nginx.
+```
+systemctl restart nginx  
+```
+  
+### Crear un Proxy Pass en NGINX
+
+
+
 
 ## 5. INSTALACIÓN POSTFIX + DOVECOT
 En este apartado configuraremos el servidor para que también opere como un servidor de corre utilizando las tecnologias Postfix, Dovecot, MariaDB y SpamAssasin.
