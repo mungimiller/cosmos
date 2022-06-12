@@ -618,59 +618,7 @@ Llegados a este punto debemos reinciar el servicio Postfix para que los cambios 
 /etc/init.d/dovecot reload  
 ```
   
-## INSTALAR Y CONFIGURAR SPAM ASSASSIN
-  En primer lugar debemos instalar el paquete:
-  
-  ```
-  apt-get install spamassasin spamc 
-   ```
-  
-   Seguidamente debemos crear un usuario para Spam Assasin
-  ```
-  adduser spamd --disabled-login
-  ```
-  
-  Ahora debemos dirigirnos al archivo ` nano /etc/defaul/assassin` y editarlo. Lo primero que debemos hacer es activarlo añadiendo esta linea:
-  
-  ![image](https://user-images.githubusercontent.com/73543470/173200027-aaeacd50-28e9-4d2f-9b3f-5a14c7e55700.png)
-  
-  Después necesitamos configurar los parámetros de inicio y las opiones indicando el directorio de creación junto con el usuario
-  
-  ![image](https://user-images.githubusercontent.com/73543470/173200110-b999f3fc-7046-4461-af0e-6c912fd7a492.png)
-  
-  En la siguiente linea debemos especificar que el PID del archivo también se guardará en el directorio `/home/spamd`
-  
-  ![image](https://user-images.githubusercontent.com/73543470/173200186-949e7585-6959-4e87-9c9f-5b726c1ff1bc.png)
-  
-  Finalmente mediante el `CRON=1` especificamos que las reglas de Spam Asssasins se actualizarán automáticamente.
-  
-  ![image](https://user-images.githubusercontent.com/73543470/173200228-1eeb2d83-7e5a-42b0-8e68-2e6a450c8450.png)
-  
-  Una vez llegados a este punto tenemos que configurar las reglas antispam que tendrá nuestro servicio. Para ello debes dirigirte al archivp `nano /etc/spamassassin/local.cf`.
-  
-  SpamAssassin califica el correo, y detecta que el que tiene mas de 5 en su verificación es correo no deseado. Para que realice esta funcion debemos modificar y descomentar estos parámetros en dicho archivo:
-  ```
-  rewrite_header Subject ***** SPAM _SCORE_ *****
-report_safe             0
-required_score          5.0
-use_bayes               1
-use_bayes_rules         1
-bayes_auto_learn        1
-skip_rbl_checks         0
-use_razor2              0
-use_dcc                 0
-use_pyzor               0
-  ```
-  
-  Posteriormente, necesitamos modificar el archivo `/etc/postfix/master.cf` para decirle que cada correo será revisado por SpamAssassin. Debemos encontrar la linea creada anteriormente con submission y agregar que utilizará el filtro de Spam Assassin
-  
-  ![image](https://user-images.githubusercontent.com/73543470/173200580-0a75e371-4191-439f-be93-67579b046b33.png)
-  
-  Finalmente debemos añadir el siguiente parámetro para que spam assassin pueda trabajar.
-  
-  ![image](https://user-images.githubusercontent.com/73543470/173200663-884af2e6-6909-40a3-a971-ff97966e781b.png)
-  
-  Por último debes iniciar el servicio SpamAssassin y reiniciar Postfix ya que hemos realizado modificaciones en su configuración.
+
 
 ## CREACIÓN Y CONFIGURACIÓN DEL SERVICIO DE HOSTING
 Una vez configurado el Cloud al completo podemos proceder a la creación del servicio de Hosting.
@@ -840,10 +788,68 @@ Una vez creado el Wordpress, voy a realizar una lista con los plugins que tengo 
 **Información extra:** _Un CDN a grandes rasgos es un servidor donde se almacenan las imágenes, videos, etc. de tu página web. Basicamente almacena todos los archivos de gran peso, excepto el codigo de la página. Esta información se replican en diferentes nodos de manera que cuando algun usuario accede a la web, detectan que nodo de CDN se encuentra más cerca del punto de carga(PC USUARIO) y procede a cargar las imagenes de dicho nodo, mientras que el codigo lo carga desde el servidor donde se encuentra el hosting._
 
 ## 5. INSTALACIÓN EXTRAS
-
-En este caso instalaremos diferents extras a nuestro servidor, que nos vendrán bien a la hora de administrarlo o mantenerlo seguro. Comenzaremos por instalar Fail2Ban, es una aplicación escrita en Python, protegiendo a tu sistema bloqueando los intentos de acceso de fuerza bruta.
+  ## INSTALAR Y CONFIGURAR SPAM ASSASSIN
+  En primer lugar debemos instalar el paquete:
   
+  ```
+  apt-get install spamassasin spamc 
+   ```
+  
+   Seguidamente debemos crear un usuario para Spam Assasin
+  ```
+  adduser spamd --disabled-login
+  ```
+  
+  Ahora debemos dirigirnos al archivo ` nano /etc/defaul/assassin` y editarlo. Lo primero que debemos hacer es activarlo añadiendo esta linea:
+  
+  ![image](https://user-images.githubusercontent.com/73543470/173200027-aaeacd50-28e9-4d2f-9b3f-5a14c7e55700.png)
+  
+  Después necesitamos configurar los parámetros de inicio y las opiones indicando el directorio de creación junto con el usuario
+  
+  ![image](https://user-images.githubusercontent.com/73543470/173200110-b999f3fc-7046-4461-af0e-6c912fd7a492.png)
+  
+  En la siguiente linea debemos especificar que el PID del archivo también se guardará en el directorio `/home/spamd`
+  
+  ![image](https://user-images.githubusercontent.com/73543470/173200186-949e7585-6959-4e87-9c9f-5b726c1ff1bc.png)
+  
+  Finalmente mediante el `CRON=1` especificamos que las reglas de Spam Asssasins se actualizarán automáticamente.
+  
+  ![image](https://user-images.githubusercontent.com/73543470/173200228-1eeb2d83-7e5a-42b0-8e68-2e6a450c8450.png)
+  
+  Una vez llegados a este punto tenemos que configurar las reglas antispam que tendrá nuestro servicio. Para ello debes dirigirte al archivp `nano /etc/spamassassin/local.cf`.
+  
+  SpamAssassin califica el correo, y detecta que el que tiene mas de 5 en su verificación es correo no deseado. Para que realice esta funcion debemos modificar y descomentar estos parámetros en dicho archivo:
+  ```
+  rewrite_header Subject ***** SPAM _SCORE_ *****
+report_safe             0
+required_score          5.0
+use_bayes               1
+use_bayes_rules         1
+bayes_auto_learn        1
+skip_rbl_checks         0
+use_razor2              0
+use_dcc                 0
+use_pyzor               0
+  ```
+  
+  Posteriormente, necesitamos modificar el archivo `/etc/postfix/master.cf` para decirle que cada correo será revisado por SpamAssassin. Debemos encontrar la linea creada anteriormente con submission y agregar que utilizará el filtro de Spam Assassin
+  
+  ![image](https://user-images.githubusercontent.com/73543470/173200580-0a75e371-4191-439f-be93-67579b046b33.png)
+  
+  Finalmente debemos añadir el siguiente parámetro para que spam assassin pueda trabajar.
+  
+  ![image](https://user-images.githubusercontent.com/73543470/173200663-884af2e6-6909-40a3-a971-ff97966e781b.png)
+  
+  Por último debes iniciar el servicio SpamAssassin y reiniciar Postfix ya que hemos realizado modificaciones en su configuración.
+  ```
+  /etc/init.d/postfix reload
+  /etc/init.d/assasssin reload
+  ```
+
   ## Instalación Fail2Ban
+  
+  En este caso instalaremos diferents extras a nuestro servidor, que nos vendrán bien a la hora de administrarlo o mantenerlo seguro. Comenzaremos por instalar Fail2Ban, es una aplicación escrita en Python, protegiendo a tu sistema bloqueando los intentos de acceso de fuerza bruta.
+  
   En primer lugar como siempre, debemos instalar el aplicativo.
   ```
   apt-get update
@@ -997,7 +1003,7 @@ En este caso instalaremos diferents extras a nuestro servidor, que nos vendrán 
   
     Coste del Cloud/Hosting V.3 = 37€/mensual
   
-    TOTAL= |75€| |80€| |112|
+    TOTAL= |68€| |80€| |112|
   
     _La cuota de la seguridad social consta de un descuento del 80% el primer año por tanto pagarenmos 60€ en vez de 294_
  
@@ -1027,7 +1033,7 @@ En este caso instalaremos diferents extras a nuestro servidor, que nos vendrán 
   Si la ejecutamos el resultado del Pack Simple és:
   
   ```
-  Q*= 75 / 150 - 10 = 0.55
+  Q*= 68 / 150 - 10 = 0.5
   ```
   Esto signfica que con tan solo una venta ya nos encontrariamos por encima del punto muerto y por tanto los beneficios son mayores
   
@@ -1037,13 +1043,18 @@ En este caso instalaremos diferents extras a nuestro servidor, que nos vendrán 
   En el caso de encontrarnos sin bonos de la seguridad social como autonomo al punto muerto varia un poco, quedando de esta manera:
   
   ```
-  Q* =  294 / 150 -10 = 1.4 
+  Q* =  302 / 150 -10 = 2
   ```
   En este caso tenemos que vender minimo 2 para que sea rentable ya que sino estaríamos obteniendo perdidas.
   
   _En estas sumas ya se encuentra el precio con el IVA añadido_
 
+  
+  En el caso de las otras opciones los resultados son similares ya que el coste es mucho menor que el precio de venta por lo tanto, solo con vender uno este ya es rentable aunque no excesivamente.
+  
+  Los calculos efectuados se han realizado para calcuar el beneficio mensual no anual. Por tanto para no obtener perdidas cada mes minimo debemos vender 1 página web Simple y pasados los años de bono de autonomo, deberemos vender 4 cada mes para poder obtener beneficio.
 
 
-
+### 8. CONCLUSIÓN
+  
 
