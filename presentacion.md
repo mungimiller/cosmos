@@ -884,7 +884,7 @@ En este caso instalaremos diferents extras a nuestro servidor, que nos vendrán 
   
   Antes que nada debes conocer las dos instituciones con la que debes tratar para realizar dichos tramites que son: *la Agencia Tributaria* (Hacienda) y la Seguridad Social (INSS)
   
-  #### Requisitos Previos para ser Autónomo
+  ### Requisitos Previos para ser Autónomo
   Estos requisitos son establecido spor el Estatuto de Trabajadores Autonomo de España y son los siguientes:
   
   - Contar con actividad economica por cuenta propia, es decir, tener algun tipo de ingreso o ahorro.
@@ -895,10 +895,18 @@ En este caso instalaremos diferents extras a nuestro servidor, que nos vendrán 
   - Estar dado de alta en el Régmen Especial de Trabajdores Autónomos.(https://www.seg-social.es/wps/portal/wss/internet/Trabajadores/Afiliacion/10548/32825#625) 
   - La actividad debe realizarse de manera habitual como fuente de ingreso principal o secundaria y emitir una factura por ello.
   
-  #### Requisitos y solicitudes para ser autónomo en Hacienda
+  ### Requisitos y solicitudes para ser autónomo en Hacienda
   Para estar registrado en Hacienda como un autonomo debes realizar los siguientes passos en orden:
   
-  1. Solicitar una cita en la Agencia Tributaria más cercana de tu localidad
+  **1.** Solicitar una cita en la Agencia Tributaria más cercana de tu localidad
+  **2.** Rellenar y presentar el modelo 036 o 037, basicamente son documentos donde informarmos a la agencia tributaria datos costos/beneficios que generamos con nuestra actividad.
+  **3.** Estar al corriente de que porcentaje de Impuesto de Actividades Economicas (IAE) te correspone dependiendo de tu servicio profesional. En la siguiente URL puedes comprobar el porcentaje. https://www2.agenciatributaria.gob.es/ADUA/internet/es/aeat/dit/adu/adws/certificados/Tabla_de_epigrafes_IAE.pdf 
+  **4.** Debes estar atento ya que puede que necesites registrarte en el Regimen de Operadores Intracomunitario (ROI), és decir si tu empresa realizará operaciones dirigidas a algun otro pais de la Union Europea.
+  **5.** Conocer en que régimen fiscal te incluirán de acuerdo con tu actividad profesional.
+  **6.** Estar al tanto del impuesto que te correspondrá pagar.
+  **7.** Conocer los modelos de autoliquidación que tendrás quepresentar cada trimestre y las declaraciones informativas anuales cuando finaliza el año. Estos se presentan mediante el modelo 111 (IRPF) y el modelo 115 (alquiler de immuebles urbanos).
+  - Te proporciono más información sobre el modelo: https://www.infoautonomos.com/fiscalidad/rellenar-modelo-111-irpf/
+  **8.** Finalmente debes darte de alta voluntariamente en el servicio de notificaciones electrónicas de hacienda
   
   
 ## 7. BALANCE EMPRESARIAL DEL PROYECTO
