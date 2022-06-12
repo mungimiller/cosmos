@@ -1025,9 +1025,44 @@ Una vez realizadas estas modificaciones debemos realizar la siguiente comanda pa
   
 ## 6. SCRIPTS DESARROLLADOS
   
-En este apartado voy a mostrar los scripts que he realizado en el cloud para que se efectuen de una manera automática.
+En este apartado voy a mostrar los scripts que he realizado en el cloud para que se efectuen de una manera automática. Son 3 scripts que ayudan mucho y evitan gastos de 3eros ya que en uno contamos con un backup completo de nuestra pagina web y en los otros dos mantenemos informado al cliente de las diferentes sobre cargas de recursos que más pueden afectar a su página web.
+
+  ### BACKUPS WORDPRESS
   
-  En primer lugar nos encontrariamos con el indispensable script de copias de seguridad.
+  - En primer lugar nos encontrariamos con el indispensable script de copias de seguridad de nuestra base de datos, en este caso será de Wordpress. El metodo que vasmos a utilizar és un mysqldump que esta considerado como una copia en caliente ya que no hay que parar ningún servicio. Antes de realizar ningun tipo script debemos crear la infraestructura de directorios que contendrá dicha información, en mi caso es la siguiente:
+  ```
+  mkdir /cosmos-admin
+  mkdir /cosmos-admin/backups_wordpress
+  mkdir /cosmos-admin/backups_wordpress/BasesdeDatos
+  mkdir /cosmos-admin/backups_wordpress/WebContent
+  mkdir /cosmos-admin/scripts
+  mkdir /cosmos-admin/backups_wordpress/Logs
+
+  ```
+ - En segundo lugar crearemos el script con el nombre `nano /cosmos-design/scripts/cosmos_wp.sh` y realizaremos los pasos mencionados en la imagen inferior, antes de continuar debemos dar permisos de ejecución a nuestro scritp:
+  ```
+  chmod 777 cosmos_wp.sh
+  ```
+  ![image](https://user-images.githubusercontent.com/73543470/173249020-ae76084e-c77d-43c5-be12-2d1b73028a0f.png)
+
+- En tercer lugar he creado otro pequeño script que hace una copia pero del contenido web de Wordpress:
+  
+  ![image](https://user-images.githubusercontent.com/73543470/173249084-8ac9e1ca-000b-4043-b0e5-c854025acafa.png)
+
+  Finalmente he realizado un CRON que ejecuta cada dia a las 12 de la noche el script realizado anteriormente. Para crearlo e introducido la siguiente comanda `crontab -e` y se me ha abierto la siguiente ventana donde e añadido las últimas dos lineas
+  
+  ![image](https://user-images.githubusercontent.com/73543470/173249220-aa9c5b6b-3f5d-45df-9f84-634318eb1816.png)
+
+  ### SOBREUSO DE RAM
+  
+  - En este caso se trata de un script que te envia por email un correo indicando que tu RAM esta haciendo un uso excesivo de recursos.
+  
+  ![image](https://user-images.githubusercontent.com/73543470/173249498-ead216be-6d0b-4d3b-9edc-821e99f6df7a.png)
+
+  ### SOBREUSO DE DISCO
+  
+  - En este caso trataremos un script con el que automáticamente se debe enviar un correo alertando al cliente que se esta quedando sin espacio disponible en su disco. Concretamente cuando este llegue a un 90% de ocupación.
+  
   
 ## 7. COMO SER AUTÓNOMO
   Como hemos decidido tomar esta iniciativa, para poder facturar y declarar el dinero ganado con esta nueva entidad, debemos convertirnos en autónomos. Supongo que te estarás preguntando que requisitos se necesitan para ser autonomo, que documentos o donde hay que dirigirse.
