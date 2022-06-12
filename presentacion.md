@@ -590,8 +590,6 @@ Para configurar dicho proxypass debemos acceder a nuestro archivo de configuraci
   /etc/init.d/nginx reload
 ```
 
-
-
 ## 5. INSTALACIÓN POSTFIX + DOVECOT
 En este apartado configuraremos el servidor para que también opere como un servidor de corre utilizando las tecnologias Postfix, Dovecot, MariaDB y SpamAssasin.
 
@@ -719,24 +717,7 @@ Llegados a este punto debemos reinciar el servicio Postfix para que los cambios 
  ```
 /etc/init.d/dovecot reload  
 ```
-  
-
-
-## CREACIÓN Y CONFIGURACIÓN DEL SERVICIO DE HOSTING
-Una vez configurado el Cloud al completo podemos proceder a la creación del servicio de Hosting.
-Antes de proceder a realizar la instalación del servicio, he comprado el dominio de la página web cosmodesigns.es, mediante la opción que proporciona el SW Panel.
-Una vez este dominio es comprado los registros DNS no apuntan a ningún servicio de Hosting. Por tanto, procederemos a asignar los DNS que le pertocan al dominio 
-utilzando la herramienta del SWPanel. Los DNS deben ser el nombre del cloud y uno de los servidores con los que SWHosting trabaja. 
-En este caso `ce202224546545.dnssw.net` y `dns4.swhosting.com`
-
-Modificar estos DNS hará que nuestro dominio apunte al servicio de Hosting creado anteriormente, y así pueda cargar el contenido de la pàgina web. La propagación de 
-los DNS a través de la red lleva un tiempo hasta que se registra alrededor del mundo.
-En este caso al tratarse de un dominio .es la propagación és más lenta ya que la aprobación y propagación del domino la lleva a cabo el Gobierno Español.
-
-Cuando los DNS del dominio ya coinciden con los del Hosting y además estos se encuentran propagados a través de internet. Procederemos a la creación y instalación 
-de un certificado SSL. Utilizaremos un certificado llamado Lets Encryps, este es gratuito y lo que nos proporciona es que no salte ese aviso de que la página no es segura al entrar en ella, además del candado en el lado superior izquierdo del navegador. Estos mensajes no se muestran porque la web se encuentra encryptada y por tanto es más segura.
-
-
+ 
 ## 4. INSTALACIÓN/CONFIGURACIÓN DE WORDPRESS
 Previamente debemos tener instalado la pila LAMP y que nuestro dominio se encuetre bajo un certificado SSL. También necesitamos un dominio adquirido y un
 usuario no root con privilegios
@@ -791,9 +772,6 @@ sudo systemctl restart apache2
 ```
   
 En este punto lo unico que queda por hacer antes de proceder a la instalación de Wordpress es realizar algunos cambios en la configuración de Apache para permitir que el CMS funcione correctamente.
-  
- #### CONFIGURACIÓN APACHE - .htaccess
- 
  
 ### INSTALACIÓN DEL ENTORNO
 Para instalar wordpress lo primero que debemos hacer es verificar si tenemos el comando `apt install curl` instalado. 
@@ -965,6 +943,7 @@ use_pyzor               0
   Una vez copiado nos dirigimos a `jail.local` y analizaremos el contenido de este y realizaremos algunas modificaciones:
   
   En la siguiente imagen observamos el rango de IPs que no se deben banear ya que forman parte de la infraestructura de SW Hosting, también observamos que el tiempo de baneo es 10 horas. A continuación se indica que se procede a banear cuando hay 10 conexiones en un máximo de 60 segundos y en la última es por donde se notifica el baneo.
+  
   ![image](https://user-images.githubusercontent.com/73543470/173201973-c505f312-824b-4119-b100-58c673450b56.png)
   
   Debemos configurar Fail2Ban para los diferentes servicios que funcionan en nuestro servidor, comenzaremos por configurar el servicio:
@@ -980,8 +959,50 @@ use_pyzor               0
   ![image](https://user-images.githubusercontent.com/73543470/173202301-0c7c505d-ebee-4b36-8df5-d44035b6020d.png)
   
   ### Configuración POSTFIX
+  Indicamos los puertos por los alias que hay definidos en el servidor.
+  
+  ![image](https://user-images.githubusercontent.com/73543470/173240042-30d1c216-d2e2-47b7-8e6a-f8888769fb61.png)
 
+  ### Configuración SASL
 
+  ![image](https://user-images.githubusercontent.com/73543470/173240089-90f55efc-bce7-4779-aeed-69d2ba4e6770.png)
+  
+  ### Configuración Dovecot y Coruierauth
+
+  ![image](https://user-images.githubusercontent.com/73543470/173240152-cb55bded-13c7-4621-bcf2-b43fd87da4bf.png)
+  
+  ### Configuración MYSQL
+  
+  ### Configuración WP
+  
+  ### Creación JAIL 
+Una vez tenemos configurado todos los parametros de los diferentes servicios que actuan en el servidor, para poder crear la JAIL  i asi bloquear los intentos de conexion massivos se deben seguir los siguientes pasos. Estos pasos los mostrare una única vez pero este procedimiento se debe llevar a cabo con todas las configuraciones de servicios mencionadas anteriormente:
+  
+  - Antes de crear las JAILS debemos crear los filtros personalizados donde mediante expresiones regulares le tenemos que especificar que debe buscar en el fichero de logs especificado en el `jail.local`. Por tanto debemos dirigirnos al directorio `/etc/fail2ban/filter.d` y comenzar a crear ficheros con el nombre del servicio al que realizan la filtración, como por ejemplo realizaremos el de conexión FTP.
+  ```
+  touch /etc/fail2ban/filter.d/vsftpd.conf
+  ```
+  ![image](https://user-images.githubusercontent.com/73543470/173241762-fb6d0203-3def-4d44-b29a-6ec669fb9f67.png)
+  
+   Posteriormente debemos introducir la siguiente contenido para que filtre por FAIL LOGIN CLIENT en el archivo de log especificado:
+  
+  ![image](https://user-images.githubusercontent.com/73543470/173241814-f0e6b121-9a3b-4aa4-b7f5-51523c1d83a5.png)
+
+  
+   - En primer lugar crearemos la JAIL e indicaremos cuales són las funciones de las diferentes variables que se encuentran en dicha JAIL:
+  
+    https://user-images.githubusercontent.com/73543470/173202223-9dbdb3c6-1c0e-4b4e-816d-4d7777e255ee.png
+  
+    `enabled` --> Indica que se encuentra activo
+    `port` -->  Los puertos implicados con el servicio, deben ir separados por comas
+    `filter` --> Es el nombre del filtro que definiremos en el siguiente `/etc/fail2ban/filter.d/nombre_delfiltro.conf`
+    `logpath` --> Se trata de la ruta absoluta del fichero de logs. Fail2Ban tendra en cuenta los logs que hagan "match" con dicha IP
+    `maxretry` --> Numero de intentos con los que te quedarás baneado al intentar acceder al servicio en cuestión.
+  
+Una vez realizadas estas modificaciones debemos realizar la siguiente comanda para comprovar que este se encuentra correctamente configurado:
+  ```
+  fail2ban-regex /path/al/fichero/de/log.log /etc/fail2ban/filter.d/filtro_fail2ban.conf
+  ```
   
 ## 6. SCRIPTS DESARROLLADOS
   
@@ -1079,8 +1100,9 @@ use_pyzor               0
   
   Propongo la siguiente URL donde encontrarás más información sobre si puedes realizar facturaciones sin estar dado de alta:
   
-  https://www.infoautonomos.com/facturas/facturar-sin-ser-autonomo/
-  https://www.infoautonomos.com/ser-autonomo-o-no/ser-autonomo-o-no-con-ingresos-bajos/
+  - https://www.infoautonomos.com/facturas/facturar-sin-ser-autonomo/
+  
+  - https://www.infoautonomos.com/ser-autonomo-o-no/ser-autonomo-o-no-con-ingresos-bajos/
   
 ## 7. BALANCE EMPRESARIAL DEL PROYECTO
   
