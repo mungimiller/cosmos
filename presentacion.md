@@ -1025,6 +1025,10 @@ Una vez realizadas estas modificaciones debemos realizar la siguiente comanda pa
   
 ## 6. SCRIPTS DESARROLLADOS
   
+En este apartado voy a mostrar los scripts que he realizado en el cloud para que se efectuen de una manera automática.
+  
+  En primer lugar nos encontrariamos con el indispensable script de copias de seguridad.
+  
 ## 7. COMO SER AUTÓNOMO
   Como hemos decidido tomar esta iniciativa, para poder facturar y declarar el dinero ganado con esta nueva entidad, debemos convertirnos en autónomos. Supongo que te estarás preguntando que requisitos se necesitan para ser autonomo, que documentos o donde hay que dirigirse.
   
@@ -1209,4 +1213,18 @@ Una vez realizadas estas modificaciones debemos realizar la siguiente comanda pa
 
 ### 8. CONCLUSIÓN
   
+Una vez llegados a este punto deberiamos tener nuestro Cloud configurado y operativo para el hosting de una página web. En donde hemos aplicado todos los conocimientos aprendidos en el ciclo superior de ASIX y unos cuantos conceptos donde nos hemos adentrado con más profundidad. Los cuales los he aprendido en el trabajo, donde empece a realizar las practicas.
+  
+No es un proyecto súper complicado, ni súper original, pero la intención de este proyecto, es que sea real y palpable. Queria emprender y no supe como hasta que di con esta idea. Dia tras dia, en mi trabajo observaba a clientes que no tenian ni idea de realizar este tipo de tareas y nos pedian ayuda a nosotros, pero claro, el soporte que realizamos en SW Hosting es a nivel de servidor y no ha nivel de diseño de páginas web. Al observar la demanda, me decanté por realizar una pagina web donde la gente pudiera ponerse en contacto con nosotros y poder desarrollar nuestro potencial.
+  
+Además de crear paginas web vi la oportunidad de desarrollar mis capacidades como Administrador de Sistemas, ya que en un principio estamos trabajando bajo otra empresa de Hosting, pero en un futuro y en el caso de que la empresa fuera productiva, la idea es tener nuestros propios servidores con AWS donde nosotros los administramos y gestionamos por completo. Donde tambien me gustaría implementar scripts de autolanzado.
+  
+Estoy satisfecho con el trabajo realizado, ya que gracias a este proyecto he entendido en mas profundidad el comportamiento de un Cloud junto con todos sus servicios. Además de tomar la inciativa de montar una pequeña empresa que conlleve pocos gastos y aunque puede que no rentable, me sirva como experiencia y como un dinero extra que puede entrar cada mes. Queria agradecer al equipo docente de ASIX2, ya que gracias a ellos muchos de nosotros hemos dado un giro 180º a nuestra vida simplemente dandonos conocimientos sobre este sector. Agradecer a todos los compañeros que he tenido este curso, con los que nos hemos apoyado y ayudado mutuamente y hemos logrado llegar hasta el final de este camino.
+  
+Espero que el proyecto este a la altura y no haya sido demasiado aburrido de corregir para vosotros. Un gusto cerrar esta etapa con vosotros y deseo lo mejor.
+  
+
+
+  
+
 
