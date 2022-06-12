@@ -392,9 +392,9 @@ Los detalles principales de la configuración vienen en este archivo, que se div
   Las diferentes reglas establecidas en los diferentes directorios són:
   - `Require`--> restringir o abrir el acceso a diferentes recursos de su servidor.
   - `AllowOverride`--> Se usa para decidir si el archivo `.htacces` puede anular la configuración si se coloca en el directorio del contenido.
-- `FollowSymLinks` --> Afirmamos y permitimos que Apache siga los enlaces simbolicos del directorio.
-- `-Index` --> Denegamos que un diretorio se pueda mostrar como una lista si no hay una pagina index.
- - `+MultiViews` --> Permite que si existe un archivo llamado configuration.php en la raiz siempre sea elegido aunque modifiques el archivo .htacces para que realize la busqueda en otro directorio.
+  - `FollowSymLinks` --> Afirmamos y permitimos que Apache siga los enlaces simbolicos del directorio.
+  - `-Index` --> Denegamos que un diretorio se pueda mostrar como una lista si no hay una pagina index.
+  - `+MultiViews` --> Permite que si existe un archivo llamado configuration.php en la raiz siempre sea elegido aunque modifiques el archivo .htacces para que realize la busqueda en otro directorio.
 
 ### PHP
 _____________
