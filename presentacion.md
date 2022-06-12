@@ -577,9 +577,18 @@ systemctl restart nginx
   
   ![image](https://user-images.githubusercontent.com/73543470/173238402-3ff68902-4bf1-4a79-a96f-6c84448d95f1.png)
 
-Para configurar dicho proxypass debemos acceder a nuestro archivo de configuración  
+Para configurar dicho proxypass debemos acceder a nuestro archivo de configuración que se encuentra en `/etc/nginx/swhosting/vhost/cosmosdesign.es` y debremos añadir los siguientes parametros.
 
 ![image](https://user-images.githubusercontent.com/73543470/173238326-b76f414c-4a1d-4a2f-b99d-8521ffdca7fa.png)
+  
+  - Establecemos los encabezados de las solicitudes, en primer lugar nos encontramos con proxy_pass donde especificarems que se realiza de manera local y en que puertos. 
+  En las siguientes variables se especifican el host, la IP real del sv y la IP forwarded que es de donde proviene la consulta. 
+  ![image](https://user-images.githubusercontent.com/73543470/173239046-dc361ca7-9395-4f95-9de8-09ac06877173.png)
+  
+  Reiniciamos nginx y ya tendriamos configurado nuestro proxy pass:
+  ```
+  /etc/init.d/nginx reload
+```
 
 
 
