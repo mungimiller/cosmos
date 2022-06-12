@@ -1037,7 +1037,6 @@ En este apartado voy a mostrar los scripts que he realizado en el cloud para que
   mkdir /cosmos-admin/backups_wordpress/WebContent
   mkdir /cosmos-admin/scripts
   mkdir /cosmos-admin/backups_wordpress/Logs
-
   ```
  - En segundo lugar crearemos el script con el nombre `nano /cosmos-design/scripts/cosmos_wp.sh` y realizaremos los pasos mencionados en la imagen inferior, antes de continuar debemos dar permisos de ejecución a nuestro scritp:
   ```
@@ -1062,6 +1061,9 @@ En este apartado voy a mostrar los scripts que he realizado en el cloud para que
   ### SOBREUSO DE DISCO
   
   - En este caso trataremos un script con el que automáticamente se debe enviar un correo alertando al cliente que se esta quedando sin espacio disponible en su disco. Concretamente cuando este llegue a un 90% de ocupación.
+  
+  ![image](https://user-images.githubusercontent.com/73543470/173250106-cb676b8f-6aa9-4a5f-99b4-7d35217fbd2d.png)
+
   
   
 ## 7. COMO SER AUTÓNOMO
