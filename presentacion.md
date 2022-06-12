@@ -845,7 +845,7 @@ _Si quieres saber en qué punto de propagación se encuentran tus DNS de tu domi
 ![image](https://user-images.githubusercontent.com/73543470/166509748-f8182557-7336-4fbb-b21e-98d8467e90e0.png)
 
 - Una vez llegados a este punto procederemos a utilizar uno de los Temas predefinidos de los que consta Wordpress. Para ello debemos acceder Apariencias > Temas. En este punto tras una larga búsqueda, me decidí por el siguiente:
-![image](https://user-images.githubusercontent.com/73543470/166525726-202a64c7-8ebc-4232-a60e-1a01050b5f42.png)
+![image](https://user-images.githubusercontent.com/73543470/173254333-716c434f-1e00-43cc-a749-207158d5760a.png)
 
 En este apartado mostraré mediante un breve resumen todas las modificaciones que he realizado en el tema elegido. Dividiéndolo por las diferentes páginas realizadas en el WordPress.
 
@@ -865,6 +865,8 @@ Una vez creado el Wordpress, voy a realizar una lista con los plugins que tengo 
 - **YOAST SEO -->** Básicamente es una ayuda extra al crear la página para que esta quede más optimizada y tu web obtenga más entradas para los motores de búsquedas.
 - **LITTLE SPEED CACHÉ -->** Configuración de la caché, servicios CDN, optimización de imagenes y páginas.
 - **ELEMENTOR -->** Modificar los elementos visuales de una página web como textos, botones, etc.
+- **GDPR Cookie Compliance** --> Nos permite que los clientes acepten nuestras cookies
+- **GTransalte** --> Nos permite tener la página en más idiomas.
 
 **Información extra:** _Un CDN a grandes rasgos es un servidor donde se almacenan las imágenes, videos, etc. de tu página web. Básicamente almacena todos los archivos de gran peso, excepto el código de la página. Esta información se replican en diferentes nodos, de manera que cuando algún usuario accede a la web, detectan que nodo de CDN se encuentra más cerca del punto de carga(PC USUARIO) y procede a cargar las imágenes de dicho nodo, mientras que el código lo carga desde el servidor donde se encuentra el hosting._
   
