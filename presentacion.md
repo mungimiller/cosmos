@@ -1123,7 +1123,9 @@ Una vez realizadas estas modificaciones debemos realizar la siguiente comanda pa
   En el caso de no tener conocimiento de gestion de Hosting + Cloud tus costos aumentarian, igual que si la gestión de darse de alta como autonomo te la realiza una gestoría.
   
   En el caso de cosmos design hemos procedido a evaluar los Costes que conllevaria el proyecto, y los hemos dividido en Fijos i Variables:
-  __
+  
+ ___
+  
   - Coste Fijo:
   
     Cuota Seguridad Social = 60€/mes --> En el caso de no contar con el bono son 220
@@ -1139,13 +1141,17 @@ Una vez realizadas estas modificaciones debemos realizar la siguiente comanda pa
     TOTAL= |68€| |80€| |112|
   
     _La cuota de la seguridad social consta de un descuento del 80% el primer año por tanto pagarenmos 60€ en vez de 294_
- __
+  
+ ___
+  
   - Costes Variables
   
     Uso de recursos del Cloud = No se pueden calcular, porque dependen del proyecto del cliente.
   
     Tempo de dedicación al proyecto = Variable segun la cantidad de horas que debo dedicarle al proyecto
- __
+  
+ ___
+  
   - Beneficios:
     
     Pack Simple = desde 150€
@@ -1153,7 +1159,8 @@ Una vez realizadas estas modificaciones debemos realizar la siguiente comanda pa
     Pack Completo = desde 300€
   
     Pack E-Commerce = desde 500€
- __ 
+  
+ ___
   
   ### PUNTO MUERTO CONOCE TU BENEFICIO
   Partiendo de la formula de Punto Muerto obtendremos la cantidad de servicios que tenemos que bender para obtener beneficio, aunque ha simple vista, observamos que solo con 1 sola venta ya obtenemos la cantidad suficiente de dinero como para no obtener perdidas. Por este motivo, es factible realizar este tipo de emprendimientos, ya que las perdidas son minimas.
