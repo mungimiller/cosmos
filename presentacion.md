@@ -875,11 +875,30 @@ En este caso instalaremos diferents extras a nuestro servidor, que nos vendrán 
 
 
   
+## 6. SCRIPTS DESARROLLADOS
   
+## 7. COMO SER AUTÓNOMO
+  Como hemos decidido tomar esta iniciativa, para poder facturar y declarar el dinero ganado con esta nueva entidad, debemos convertirnos en autónomos. Supongo que te estarás preguntando que requisitos se necesitan para ser autonomo, que documentos o donde hay que dirigirse.
   
-
-
-## 6. COMO SER AUTÓNOMO
+  El motivo por el cual nos tenemos que hacer autonomos es por el hecho de emprender un negocio, aunque este sea online. Por tanto, como nosotros vamos a vender nuestro servicio de creación de paginas web, deberemos facturar los costes y los beneficios a nombre de la entidad empresarial y no bajo nuestro nombre.
+  
+  Antes que nada debes conocer las dos instituciones con la que debes tratar para realizar dichos tramites que son: *la Agencia Tributaria* (Hacienda) y la Seguridad Social (INSS)
+  
+  #### Requisitos Previos para ser Autónomo
+  Estos requisitos son establecido spor el Estatuto de Trabajadores Autonomo de España y son los siguientes:
+  
+  - Contar con actividad economica por cuenta propia, es decir, tener algun tipo de ingreso o ahorro.
+  - Ser mayor de edad con libre disposición de bienes.
+  - Ser menor de edad, pero emancipado y cumpliendo el articulo 232 del Codigo Civil.
+  - Estar registrado en Hacienda, demostrando actividad economica.
+  - Desarrollar esta actividad sin depender de la dirección de otros 
+  - Estar dado de alta en el Régmen Especial de Trabajdores Autónomos.(https://www.seg-social.es/wps/portal/wss/internet/Trabajadores/Afiliacion/10548/32825#625) 
+  - La actividad debe realizarse de manera habitual como fuente de ingreso principal o secundaria y emitir una factura por ello.
+  
+  #### Requisitos y solicitudes para ser autónomo en Hacienda
+  Para estar registrado en Hacienda como un autonomo debes realizar los siguientes passos en orden:
+  
+  1. Solicitar una cita en la Agencia Tributaria más cercana de tu localidad
   
   
 ## 7. BALANCE EMPRESARIAL DEL PROYECTO
