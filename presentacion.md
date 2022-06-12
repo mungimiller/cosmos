@@ -916,9 +916,79 @@ En este caso instalaremos diferents extras a nuestro servidor, que nos vendrán 
   
   **8.** Finalmente debes darte de alta voluntariamente en el servicio de notificaciones electrónicas de hacienda
   
+  _Revisar modelos 037, 111 ya que son con los que realizas la solicitud_
+  
+   ### Requisitos y solicitudes para ser autónomo en Seguridad Social
+  En un plazo de 60 dias antes de el inicio de la actividad marcada por Hacienda, debes de darte de alta en RETA. Los pasos a seguir son los siguientes.
+  
+  1. Alta presencial como Autonomo de SS tendrás que entregar el modelo TA0521 de solicitud  junto con el DNI y la fotocopia del alta en hacienda.
+  
+  2. Debes presentar tu CNAE, el codigo con el que se representa tua ctividad economica.
+  
+  3. Definiremos nuestra bse de cotización entre una cuantía máxima y minima, anual. La base de coticación mínima y máxima són **960,60€€ y 4139.40** establecida por el Gobierno Español. Por tanto la cutoa de autonomos minimaes de el 30.6% de 966.6, por lo que tendremos que pagar 294 mensuales.
+  
+  - URL con más información sobre las bases de cotización: https://www.infoautonomos.com/seguridad-social/bonificaciones-autonomos-reta/
+  
+   4. Para conocer las bonificaciones de la Seguridad Social y que concuerde con su caso:
+  
+  - También proporciono este articulo sobre las bonificaciones en la cuota de autónomos para que este no sea tan costoso: https://www.infoautonomos.com/seguridad-social/bonificaciones-autonomos-reta/
+  
+  
+  Una vez llegados a este punto ya tendríamos toda la documentación preparada y lista para estar dados de alta de autonomos. Vale y ahora que? Ya que te has dado de alta de autonomo para poder realizar facturas de manera legal. 
+  
+  Observamos 3 modelos diferentes de facturación segun el tipo de negocio que llevemos a cabo:
+  
+  - **Factura de tipo simplificada** --> es un tipo de factura que se emite para clientes particulares que no entran en la categoria de empresas ni se encuentran dados de alta en el sistema de autonomos
+  
+  - **Factura de tipo venta** --> es un tipo de factura que sigue el modelo de relación comercial autonomo-empresa. Es la más conocida y la más completa.
+  
+  - **Factura de tipo rectificativa** -->  es una clase de factura que únicamente se emite ene l casod e que hayas llegado a realizar una factura con algun error.
+  
+  Segun el cliente, deberemos de hacer uso de un modelo o de otro. Siempre podemos contar con algun progarama para gestionar las facturas y emitirlas como Mgest, Factusol, SeniorFactu, Contasol...
+
+  
+  Ya llegaríamos a el final del apartado de como darte de alta en la Seguridad Social y Hacienda y finalmente ser autonomo. Pero en España esto lo único que te hace pensar es, vale ya estoy dado de alta, ahora cuanto voy a tener que pagar y cada cuanto?
+  
+  #### Que debemos pagar a Hacienda?
+  
+  - **Declaración IRPF**
+    Es un impuesto que se paga a nivel progresivo, cuanto más ingresos se generan mayor será el porcentaje de este impuesto
+  
+  - **IVA**
+    Es un impuesto sobre el valor producido por las empresas. En España esta se posiciona en un 21% que debes incluir en el coste de tus productos
+  
+  - **Tramitar modelo 347 (en caso de operar para terceros dentro de la UE)**
+    Si emites facturas y desarrollas servicios a terceros en la UE debes presnetar este modelo para tramitar el excento del IVA
+  
+  
+  #### Hecha la ley hecha la trampa
+  En nuestro caso, no hemos decidido dar el paso darnos de alta como autónomo, ya que, como mi actividad on genera ingresos superiores a los 950 € brutos mensuales y la actividad económica no es habitual, podemos realizar facturas sin ser autonomos.
+  
+  Propongo la siguiente URL donde encontrarás más información sobre si puedes realizar facturaciones sin estar dado de alta:
+  
+  https://www.infoautonomos.com/facturas/facturar-sin-ser-autonomo/
+  https://www.infoautonomos.com/ser-autonomo-o-no/ser-autonomo-o-no-con-ingresos-bajos/
   
 ## 7. BALANCE EMPRESARIAL DEL PROYECTO
-
+  
+  Finalmente, una vez desarrollado el proyecto debemos valorar los costes que este va a tener, plantear los beneficios minimos que necesitamos para no obtener perdidas(Punto Muerto) y definir los posibles Costes Variables o Costes Fijos que este va a tener.
+  
+  És importante siempre que se decida empezar un proyecto evaluarlo fincancieramente, ya que, puede ser una muy buena idea pero que requiera de un capital más grande para comenzar y esto conlleve a un riesgo mayor, ya que la posibilidad de perder dinero aumenta exponencialmente.
+  
+  A priori, un emprendimiento online es el menos costoso de todos, ya que, para empezar no cuentas con ninguna tienda fisica, la cual es bastante costosa. Básicamente con una empresa online solo debemos hacernos cargo de los gastos de Hosting + Cloud + Cuota Autonomo + Hacienda.
+  En el caso de no tener conocimiento de gestion de Hosting + Cloud tus costos aumentarian, igual que si la gestión de darse de alta como autonomo te la realiza una gestoría.
+  
+  En el caso de cosmos design hemos procedido a evaluar los Costes que conllevaria el proyecto, y los hemos dividido en Fijos i Variables:
+  
+  - Coste Fijo:
+    Cuota Seguridad Social = 60€/mes
+    Coste del Dominio = 7.50€/anual
+    Coste del Hosting = 7.50€/mensual
+  
+    _La cuota de la seguridad social consta de un descuento del 80% el primer año por tanto pagarenmos 60€ en vez de 294_
+ 
+  - Costes Variables
+    Uso de recursos del Cloud
   Problemas extras!
   
   Yo me encontre el siguiente:
