@@ -423,6 +423,7 @@ apt install mariadb-server
  ```
   
 - En este se iniciará y nos pedirá que ingreses la contraseña a la raiz de la base de datos actual. Como no tenemos ninguno creado, lo dejaremos en blanco.
+  
   ![image](https://user-images.githubusercontent.com/73543470/173236497-86bbd605-c8ca-4bf9-a737-20a795948f07.png)
   
 - En la siguiente opción que nos muestra es si desea configurar una contrasé ade reaiz de la base de datos y seleccionaremos NO
@@ -474,6 +475,7 @@ Con el siguiente comando nos fijaremos que no haya ningun error de sintaxix
 apache2ctl configtest
 ```
 Y recibirás un mensaje como este en caso de que todo sea correcto:
+  
 ![image](https://user-images.githubusercontent.com/73543470/167050097-ae1360e0-0368-4d01-9bb8-4d23c05512c1.png)
 
 explicar firewall complicado con iptables
@@ -583,6 +585,7 @@ Para configurar dicho proxypass debemos acceder a nuestro archivo de configuraci
   
   - Establecemos los encabezados de las solicitudes, en primer lugar nos encontramos con proxy_pass donde especificarems que se realiza de manera local y en que puertos. 
   En las siguientes variables se especifican el host, la IP real del sv y la IP forwarded que es de donde proviene la consulta. 
+  
   ![image](https://user-images.githubusercontent.com/73543470/173239046-dc361ca7-9395-4f95-9de8-09ac06877173.png)
   
   Reiniciamos nginx y ya tendriamos configurado nuestro proxy pass:
@@ -973,9 +976,15 @@ use_pyzor               0
   
   ### Configuración MYSQL
   
+  ![image](https://user-images.githubusercontent.com/73543470/173242246-38f6aae0-304c-435d-ba65-e74eeff6d963.png)
+
   ### Configuración WP
   
+  ![image](https://user-images.githubusercontent.com/73543470/173242260-a8588cd1-dfb6-42c6-bc5b-9dbaac7cb713.png)
+
+  
   ### Creación JAIL 
+  __
 Una vez tenemos configurado todos los parametros de los diferentes servicios que actuan en el servidor, para poder crear la JAIL  i asi bloquear los intentos de conexion massivos se deben seguir los siguientes pasos. Estos pasos los mostrare una única vez pero este procedimiento se debe llevar a cabo con todas las configuraciones de servicios mencionadas anteriormente:
   
   - Antes de crear las JAILS debemos crear los filtros personalizados donde mediante expresiones regulares le tenemos que especificar que debe buscar en el fichero de logs especificado en el `jail.local`. Por tanto debemos dirigirnos al directorio `/etc/fail2ban/filter.d` y comenzar a crear ficheros con el nombre del servicio al que realizan la filtración, como por ejemplo realizaremos el de conexión FTP.
@@ -1081,7 +1090,7 @@ Una vez realizadas estas modificaciones debemos realizar la siguiente comanda pa
   
   Ya llegaríamos a el final del apartado de como darte de alta en la Seguridad Social y Hacienda y finalmente ser autonomo. Pero en España esto lo único que te hace pensar es, vale ya estoy dado de alta, ahora cuanto voy a tener que pagar y cada cuanto?
   
-  #### Que debemos pagar a Hacienda?
+  ### Que debemos pagar a Hacienda?
   ____
   
   - **Declaración IRPF**
@@ -1094,7 +1103,7 @@ Una vez realizadas estas modificaciones debemos realizar la siguiente comanda pa
     Si emites facturas y desarrollas servicios a terceros en la UE debes presnetar este modelo para tramitar el excento del IVA
   
   
-  #### Hecha la ley hecha la trampa
+  ### Hecha la ley hecha la trampa
   ____
   En nuestro caso, no hemos decidido dar el paso darnos de alta como autónomo, ya que, como mi actividad on genera ingresos superiores a los 950 € brutos mensuales y la actividad económica no es habitual, podemos realizar facturas sin ser autonomos.
   
