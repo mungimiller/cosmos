@@ -883,8 +883,9 @@ En este caso instalaremos diferents extras a nuestro servidor, que nos vendrán 
   El motivo por el cual nos tenemos que hacer autonomos es por el hecho de emprender un negocio, aunque este sea online. Por tanto, como nosotros vamos a vender nuestro servicio de creación de paginas web, deberemos facturar los costes y los beneficios a nombre de la entidad empresarial y no bajo nuestro nombre.
   
   Antes que nada debes conocer las dos instituciones con la que debes tratar para realizar dichos tramites que son: *la Agencia Tributaria* (Hacienda) y la Seguridad Social (INSS)
-  
+
   ### Requisitos Previos para ser Autónomo
+  ____
   Estos requisitos son establecido spor el Estatuto de Trabajadores Autonomo de España y son los siguientes:
   
   - Contar con actividad economica por cuenta propia, es decir, tener algun tipo de ingreso o ahorro.
@@ -896,6 +897,7 @@ En este caso instalaremos diferents extras a nuestro servidor, que nos vendrán 
   - La actividad debe realizarse de manera habitual como fuente de ingreso principal o secundaria y emitir una factura por ello.
   
   ### Requisitos y solicitudes para ser autónomo en Hacienda
+  ____
   Para estar registrado en Hacienda como un autonomo debes realizar los siguientes passos en orden:
   
   **1.** Solicitar una cita en la Agencia Tributaria más cercana de tu localidad.
@@ -919,6 +921,7 @@ En este caso instalaremos diferents extras a nuestro servidor, que nos vendrán 
   _Revisar modelos 037, 111 ya que son con los que realizas la solicitud_
   
    ### Requisitos y solicitudes para ser autónomo en Seguridad Social
+  ____
   En un plazo de 60 dias antes de el inicio de la actividad marcada por Hacienda, debes de darte de alta en RETA. Los pasos a seguir son los siguientes.
   
   1. Alta presencial como Autonomo de SS tendrás que entregar el modelo TA0521 de solicitud  junto con el DNI y la fotocopia del alta en hacienda.
@@ -950,6 +953,7 @@ En este caso instalaremos diferents extras a nuestro servidor, que nos vendrán 
   Ya llegaríamos a el final del apartado de como darte de alta en la Seguridad Social y Hacienda y finalmente ser autonomo. Pero en España esto lo único que te hace pensar es, vale ya estoy dado de alta, ahora cuanto voy a tener que pagar y cada cuanto?
   
   #### Que debemos pagar a Hacienda?
+  ____
   
   - **Declaración IRPF**
     Es un impuesto que se paga a nivel progresivo, cuanto más ingresos se generan mayor será el porcentaje de este impuesto
@@ -962,6 +966,7 @@ En este caso instalaremos diferents extras a nuestro servidor, que nos vendrán 
   
   
   #### Hecha la ley hecha la trampa
+  ____
   En nuestro caso, no hemos decidido dar el paso darnos de alta como autónomo, ya que, como mi actividad on genera ingresos superiores a los 950 € brutos mensuales y la actividad económica no es habitual, podemos realizar facturas sin ser autonomos.
   
   Propongo la siguiente URL donde encontrarás más información sobre si puedes realizar facturaciones sin estar dado de alta:
