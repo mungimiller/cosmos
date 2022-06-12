@@ -553,9 +553,14 @@ La configuración de este archivo contien la información de como tiene que efec
   ![image](https://user-images.githubusercontent.com/73543470/173237722-b3575329-2478-48a3-9546-55db1064aba7.png)
 
 
--  En este caso observamos que nginx esta a la escucha por el puerto 443 y esperando contenido HTTP2 o conexiones SSL. Hemos implementado estas dos escuchas para dividir el trafico que se realiza en la web en dos puertos diferentes segun las consultas que se realizan a nuestra página web.  
+-  En este caso observamos que nginx esta a la escucha por el puerto 443 y esperando contenido HTTP2 o conexiones SSL. Hemos implementado estas dos escuchas para dividir el trafico que se realiza en la web en dos puertos diferentes segun las consultas que se realizan a nuestra página web. Por ejemplo en caso de cargar la pagina con certificado SSL utilizará este apartado de Nginx
   
  ![image](https://user-images.githubusercontent.com/73543470/173237321-f89f2480-5b12-4844-a142-8e20d34ffc5f.png)
+  
+  La configuración es la misma que en el puerto 80 solo que en esta activamos el certificado SSL y revisamos su PEM y su KEY
+  
+  ![image](https://user-images.githubusercontent.com/73543470/173238251-3c71adf3-c1c1-44dc-9e63-71c20c42d36e.png)
+
   
 A continuación podemos comprobar si las configuraciónes realizadas son correctas:
   
@@ -567,7 +572,14 @@ systemctl restart nginx
 ```
   
 ### Crear un Proxy Pass en NGINX
+ 
+  En primer lugar comentar que un servidor proxy es una interfaz de la comunicación de la red que se encarga de las peticiones y las transmite en forma de representante antes de que esta llegue a internet y viceversa. En este caso su función principal es entregar el contenido de la imagen incluyendo informaciones sobre el servidor principal.
+  
+  ![image](https://user-images.githubusercontent.com/73543470/173238402-3ff68902-4bf1-4a79-a96f-6c84448d95f1.png)
 
+Para configurar dicho proxypass debemos acceder a nuestro archivo de configuración  
+
+![image](https://user-images.githubusercontent.com/73543470/173238326-b76f414c-4a1d-4a2f-b99d-8521ffdca7fa.png)
 
 
 
