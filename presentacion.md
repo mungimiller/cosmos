@@ -1031,7 +1031,7 @@ En este caso instalaremos diferents extras a nuestro servidor, que nos vendrán 
   ```
   Esto signfica que con tan solo una venta ya nos encontrariamos por encima del punto muerto y por tanto los beneficios son mayores
   
-  ![image](https://user-images.githubusercontent.com/73543470/173235587-2aec7382-360b-4e86-a7c5-d9c428d0b850.png)
+![image](https://user-images.githubusercontent.com/73543470/173235587-2aec7382-360b-4e86-a7c5-d9c428d0b850.png)
   
   En el caso de encontrarnos sin bonos de la seguridad social como autonomo al punto muerto varia un poco, quedando de esta manera:
   
