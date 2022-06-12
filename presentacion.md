@@ -1,21 +1,15 @@
 # CREACIÓN DE COSMOS
-La idea de crear un proyecto real ya llevaba tiempo rondandome la cabeza. Al observar la oportunidad de realizar un proyecto de final de ASIX, junté diferentes conceptos
-y formé la idea de crear una página web de creación de páginas web ( vaya redundancia).
+La idea de crear un proyecto real ya llevaba tiempo rondándome la cabeza. Al observar la oportunidad de realizar un proyecto de final de ASIX, junté diferentes conceptos y formé la idea de crear una página web de creación de páginas web ( vaya redundancia).
 
-Siempre quise emprender con un proyecto online, y con los conocimientos adquiridos, crear páginas web me pareció una buena opción.
-Observé que habia bastante competencia en el mercado, pero busque unos patrones en los que me pudiera distinguir de el resto de empresas.
+Siempre quise emprender con un proyecto online, y con los conocimientos adquiridos, crear páginas web me pareció una buena opción. Observé que había bastante competencia en el mercado, pero busque unos patrones en los que me pudiera distinguir del resto de empresas.
 
-En primer lugar, observé que todas las paginas ofrecian el servicio, pero ninguna mostraba el coste directo de la creación de dichas páginas. Por tanto, para focalizar l pàgina web en los clientes, descartamos en cierta medida los proyectos en los que segun lo que te demanden los costes de este varian mucho y valoré la manera de realizar un precio "Standard" con una serie de parametros de configuración y implementanción de dichas paginas web.
+En primer lugar, observé que todas las páginas ofrecían el servicio, pero ninguna mostraba el coste directo de la creación de dichas páginas. Por tanto, para focalizar la página web en los clientes, descartamos en cierta medida los proyectos en los que según lo que te demanden, los costes de este varían mucho y valoré la manera de realizar un precio "Standard" con una serie de parámetros de configuración e implementación de dichas páginas web.
 
-En segundo lugar, observé que las paginas no cuentan con un servicio de Soporte o la mayoria no cuentan con el. De aquí, nace la idea de realizar un bot de soporte que 
-guie al usuario sobre los servicios de la pàgina web y te describa los diferentes conceptos informaticos que engloban la creación de una pàgina web.
+En segundo lugar, observé que las páginas no cuentan con un servicio de Soporte o la mayoría no cuentan con el. De aquí, nace la idea de realizar un bot de soporte que guie al usuario sobre los servicios de la página web y te describa los diferentes conceptos informáticos que engloban la creación de una página web.
 
-En tercer lugar, al contar con un primer servicio de atención al cliente con el Bot, pensé en crear un mantenimiento mensual de tus pàginas web explicando detalladamente
-el tipo de trabajo que se realiza y dejando en claro al cliente que no deberá gestionar ninguna de sus páginas web ya que paga una cuota mensual.
+En tercer lugar, al contar con un primer servicio de atención al cliente con el Bot, pensé en crear un mantenimiento mensual de tus páginas web, explicando detalladamente el tipo de trabajo que se realiza y dejando en claro al cliente que no deberá gestionar ninguna de sus páginas web, ya que paga una cuota mensual.
 
-En cuarto lugar y por último, la idea de implementar un pequeño curso de aprendizaje tanto en creación de pàginas web como en gestión de la misma a nivel de servicio de 
-Hosting. En un futuro, la idea también es integrar un curso de quota mensual, en la que además de realizar el curso puedas obtener mentoria por parte de un tutor que te 
-va guiando en tu proceso de aprendizaje.
+En cuarto lugar, y por último, la idea de implementar un pequeño curso de aprendizaje tanto en creación de páginas web como en gestión de la misma a nivel de servicio de Hosting. En un futuro, la idea también es integrar un curso de cuota mensual, en la que además de realizar el curso puedas obtener mentoría por parte de un tutor que te va guiando en tu proceso de aprendizaje.
 
 Una vez expuestos estos puntos, creo que quedan argumentados los motivos por los que he realizado este proyecto y en que puntos me he fijado para fortalecer las debilidades
 
@@ -36,17 +30,17 @@ Una vez expuestos estos puntos, creo que quedan argumentados los motivos por los
 - CONCLUSIÓN
 
 ## QUE ES HELPDESK
-En este caso he realizado la compra del domino y del hosting/cloud con la empresa de SW Hosting, ya que trabajo allí y es más comodo para mi monitorizar/configurar mi servidor ya que funciona bajo la infraestructura de SW
+En este caso he realizado la compra del dominio y del hosting/cloud con la empresa de SW Hosting, ya que trabajo allí y es más cómodo para mí monitorizar/configurar mi servidor, porque funciona bajo la infraestructura de SW
 
-El hecho de que conozca en cierta medida la infraestructura informatica de la empresa se debe a que ocupo la categoria **Help Desk**. Esta posición, es en la que problablemente empezarás en el caso de trabajar en el area de Hosting+Cloud ( con la finalidad de ser Administrador de Sistemas, en este caso lo más probable que sean de SO Linux en su gran mayoria ).
+El hecho de que conozca en cierta medida la infraestructura informática de la empresa se debe a que ocupo la categoría **Help Desk**. Esta posición es en la que probablemente empezarás en el caso de trabajar en el área de Hosting+Cloud ( con la finalidad de ser Administrador de Sistemas, en este caso lo más probable que sean de SO Linux en su gran mayoría ).
 
-Al trabajar en el area **Help Desk**, perteneces al departamento de Soporte de la empresa. Por tanto, aprendes como funciona la infraestructura de de dicha empresa, los diferentes programas que utilizan para dar mantenimiento a los servidores que funcionan 24Hs al dia. Además estas empresas suelen tener un cliente visual con el que el cliente puede administrarse el servidor de una manera más gràfica, en este caso seria SWPanel, pero encontrarias otras muchas posiblidades como cPanel, Plesk entre otros.
+Al trabajar en el área **Help Desk**, perteneces al departamento de Soporte de la empresa. Por tanto, aprendes como funciona la infraestructura de dicha empresa, los diferentes programas que utilizan para dar mantenimiento a los servidores que funcionan 24hs al día. Además, estas empresas suelen tener un cliente visual con el que el cliente puede administrarse el servidor de una manera más gráfica, en este caso seria SWPanel, pero encontrarías otras muchas posibilidades como cPanel, Plesk entre otros.
 
-Por tanto tu funcion és responder a las dudas de los clientes ya sea referente a la configuración del servidor mediante algún cliente de los anteriormente menciondos o errores o incidencias que esten teniendo los clientes con su propio servidor. Cabe recordar, que cuando tu contratas un servidor, a no ser que contrates un servicio de monitorización activo mensual, este es privado, y la empresa en cuestión no puede acceder a tu servidor para observar los logs por ejemplo. Normalmente, este apartado se suele llamar **"Muro de soporte"**, serían las incidencias de menor nivel. 
+Por tanto, tu función es responder a las dudas de los clientes, ya sea referente a la configuración del servidor mediante algún cliente de los anteriormente mencionados o errores o incidencias que estén teniendo los clientes con su propio servidor. Cabe recordar, que cuando tú contratas un servidor, a no ser que contrates un servicio de monitorización activo mensual, este es privado, y la empresa en cuestión no puede acceder a tu servidor para observar los logs por ejemplo. Normalmente, este apartado se suele llamar **"Muro de soporte"**, serían las incidencias de menor nivel.
 
-Después encontrariamos los **Tickets Técnicos**, donde entrarian las consultas/acciones/problemas sobre el servidor de un cliente que por ejemplo, paga la mensualidad de monitorización. En este caso, segun la dificultad de la propuesta tu función como HelpDesk es seguir el protocolo de la empresa, revisar el estado del cloud, observar si puedes realizar una acción en el servidor o solucionar un error de este. En el caso de no saber, siempre puedes preguntar a tus compañeros, ellos siempre saben más que tu cuando acabas de empezar. En el caso de ser una accion dificil o un error que no podeis solucionar, lo reportas con acciones que ya hayas realizado para que el Administrador de Sistemas que lea tu reporte no tenga que realizar la tarea dos veces. En el caso de poder solucionar el ticket llevarás a cabo las acciones que creas necesarias. Normalmente suelen peditte coDeploys, cambios de cabezeras, cambiar parametros PHP de Apache, cambiar permisos de directorios y ficheros...
+Después encontraríamos los **Tickets Técnicos**, donde entrarían las consultas/acciones/problemas sobre el servidor de un cliente que, por ejemplo, paga la mensualidad de monitorización. En este caso, según la dificultad de la propuesta, tu función como HelpDesk es seguir el protocolo de la empresa, revisar el estado del cloud, observar si puedes realizar una acción en el servidor o solucionar un error de este. En el caso de no saber, siempre puedes preguntar a tus compañeros, ellos siempre saben más que tú cuando acabas de empezar. En el caso de ser una acción difícil o un error que no podéis solucionar, lo reportas con acciones que ya hayas realizado para que el Administrador de Sistemas que lea tu reporte no tenga que realizar la tarea dos veces. En el caso de poder solucionar el ticket llevarás a cabo las acciones que creas necesarias. Normalmente suelen pedirte Deploys, cambios de cabeceras, cambiar parámetros PHP de Apache, cambiar permisos de directorios y ficheros...
 
-Otra de las funciones que realizaras es supervisar el estado de los servidores con un programa de monitorización de equipos y servicios de la red. En mi caso es **NAGIOS**. En este, te iran apareciendo diferentes alertas como _Warning y Critical_ definiendo el problema ya sea a nivel de Hardware por ejemplo por sobreuso de los vCores, como por ejemplo un problema MAILQ o un RevisarHack por exceso de conexiones al servidor por segundo.
+Otra de las funciones que realizaras es supervisar el estado de los servidores con un programa de monitorización de equipos y servicios de la red. En mi caso es **NAGIOS**. En este, te irán apareciendo diferentes alertas como _Warning y Critical_ definiendo el problema, ya sea a nivel de Hardware por ejemplo por sobreúso de los vCores, como por ejemplo un problema MAILQ o un RevisarHack por exceso de conexiones al servidor por segundo.
 
 ## COMPRA DEL DOMINIO
 
@@ -54,11 +48,12 @@ Antes de proceder a realizar la instalación del servicio, he comprado el domini
 - Accedemos a Dashboard de SWPanel > Dominios i SSL > Cartera de Dominios
 
 ![image](https://user-images.githubusercontent.com/73543470/167443139-16b352ae-dca6-48bd-8c3d-0f3bcb9696fc.png)
+
 - Verificamos si este se encuentra disponible. Siempre podemos utilizar herramientas como www.who.is para verificar el estado del dominio que nos interese.
 
 ![image](https://user-images.githubusercontent.com/73543470/167444036-c95f308f-6dc3-4d58-81fd-1131c1dcf1da.png)
 
-- Este se nos añadirá al carrito superior, donde si accedemos debemos declarar que somos el propietario del dominio vinculando nuestro DNI, para confirmar que somos una perona real.
+- Este se nos añadirá al carrito superior, donde si accedemos debemos declarar que somos el propietario del dominio vinculando nuestro DNI, para confirmar que somos una persona real.
 
 ![image](https://user-images.githubusercontent.com/73543470/167445056-5d0c5b84-158b-4f62-9522-e31533d2fc1f.png)
 
@@ -66,21 +61,17 @@ Antes de proceder a realizar la instalación del servicio, he comprado el domini
 
 ![image](https://user-images.githubusercontent.com/73543470/167445176-bf809858-4cac-47dc-b1a5-5b1ba2df9c20.png)
 
-Una vez este dominio es comprado los registros DNS no apuntan a ningún servicio de Hosting. Por tanto, procederemos a asignar los DNS que le pertocan al dominio utilzando la herramienta del SWPanel. Los DNS deben ser el nombre del cloud y uno de los servidores con los que SWHosting trabaja.
+Una vez este dominio es comprado, los registros DNS no apuntan a ningún servicio de Hosting. Por tanto, procederemos a asignar los DNS que le pertenecen al dominio utilizando la herramienta del SWPanel. Los DNS deben ser el nombre del cloud y uno de los servidores con los que SWHosting trabaja.
 
 ## COMPRA DEL CLOUD
-Ahora que ya tenemos en nuestra posesión el dominio, observaremos que estamos en el servidor whois de dominios delcarados en internet, resolviendo con el dia de contratación y la empresa que registró el dominio que en este caso fue SWHosting.
+Ahora que ya tenemos en nuestra posesión el dominio, observaremos que estamos en el servidor whois de dominios declarados en internet, resolviendo con el día de contratación y la empresa que registró el dominio que en este caso fue SWHosting.
 
 Ahora tenemos que crear nuestro cloud, para ello iremos a la parte superior derecha del Panel y seleccionaremos Crear nuevo servicio.
 - Seleccionaremos Cloud
 - Cloud One
 - Debian v.10
 
-Una vez aceptemos la compra se nos enviará al correo electronico las credenciales de usuario y contraseña de acceso SSH al Cloud. Y listo ya podriamos acceder a el.
-
-Para no tener que estar introduciendo la tediosa contraseña que debemos tener por la seguridad de nuestro cloud, yo he realizado una autorización para que mi Putty se pueda conectar directamente al cloud al cargar la configuración de este.
-
-Como nosotros ya tenemos el usuario SSH creado con unas credenciales uqe ya nos ha proporcionado la empresa de servicio de hosting. Lo unico que haremos sera decirle a windows que cada vez que ejecute el acceso directoq que crearemos de Putty, ejecute una comanda 
+Una vez aceptemos la compra se nos enviará al correo electrónico las credenciales de usuario y contraseña de acceso SSH al Cloud. Y listo ya podríamos acceder a él.
 
 ## CREACIÓN Y INSTALACIÓN DE LOS SERVICIOS EN EL CLOUD
 He instalado los siguientes servicios que son imprescindibles para el correcto funcionamiento del servicio de Hosting Web.
