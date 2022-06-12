@@ -986,18 +986,62 @@ En este caso instalaremos diferents extras a nuestro servidor, que nos vendrán 
   En el caso de cosmos design hemos procedido a evaluar los Costes que conllevaria el proyecto, y los hemos dividido en Fijos i Variables:
   
   - Coste Fijo:
-    Cuota Seguridad Social = 60€/mes
-    Coste del Dominio = 7.50€/anual
-    Coste del Hosting = 7.50€/mensual
+  
+    Cuota Seguridad Social = 60€/mes --> En el caso de no contar con el bono son 220
+  
+    Coste del Dominio = 7.50€/anual --> Pasamos el coste a mensual y el resultado es: 0.625€
+  
+    Coste del Hosting V.1 = 7.50€/mensual
+  
+    Coste del Cloud/Hosting V.2 = 12€/mensual
+  
+    Coste del Cloud/Hosting V.3 = 37€/mensual
+  
+    TOTAL= |75€| |80€| |112|
   
     _La cuota de la seguridad social consta de un descuento del 80% el primer año por tanto pagarenmos 60€ en vez de 294_
  
   - Costes Variables
-    Uso de recursos del Cloud
-  Problemas extras!
   
-  Yo me encontre el siguiente:
-  Warning: Journal has been rotated since unit was started. Log output is incomplete or unavailable.
+    Uso de recursos del Cloud = No se pueden calcular, porque dependen del proyecto del cliente.
+  
+    Tempo de dedicación al proyecto = Variable segun la cantidad de horas que debo dedicarle al proyecto
+  
+  - Beneficios:
+    
+    Pack Simple = desde 150€
+   
+    Pack Completo = desde 300€
+  
+    Pack E-Commerce = desde 500€
+  
+  Partiendo de la formula de Punto Muerto obtendremos la cantidad de servicios que tenemos que bender para obtener beneficio, aunque ha simple vista, observamos que solo con 1 sola venta ya obtenemos la cantidad suficiente de dinero como para no obtener perdidas. Por este motivo, es factible realizar este tipo de emprendimientos, ya que las perdidas son minimas.
+  
+  
+  La formula es la siguiente:
+  
+  ```
+  Q*= CostesFijos / PrecioProducto - Coste Variable de Cada Producto
+  ```
+  
+  Si la ejecutamos el resultado del Pack Simple és:
+  
+  ```
+  Q*= 75 / 150 - 10 = 0.55
+  ```
+  Esto signfica que con tan solo una venta ya nos encontrariamos por encima del punto muerto y por tanto los beneficios son mayores
+  
+  ![image](https://user-images.githubusercontent.com/73543470/173235587-2aec7382-360b-4e86-a7c5-d9c428d0b850.png)
+  
+  En el caso de encontrarnos sin bonos de la seguridad social como autonomo al punto muerto varia un poco, quedando de esta manera:
+  
+  ```
+  Q* =  294 / 150 -10 = 1.4 
+  ```
+  En este caso tenemos que vender minimo 2 para que sea rentable ya que sino estaríamos obteniendo perdidas.
+  
+  _En estas sumas ya se encuentra el precio con el IVA añadido_
+
 
 
 
